@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "aoi.js":"^5.2.2",
+    "aoi.js":"^5.2.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3"
   }
