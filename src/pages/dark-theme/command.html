@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<title>Create Command!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
+<script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
+
+<link rel="stylesheet"
+
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+<style>
+  textarea::placeholder {
+    color: #FFFFFF;  
+  }
+  input::placeholder {
+    color: #FFFFFF;  
+  }
+  textarea {
+    color: #FFFFFF;
+    border:1px solid white;
+  }
+  input {
+    color: #FFFFFF;
+    border:1px solid white;
+  }
+</style>
+<body style="background-color:#000000">
+<div class="w3-container" align = "center">
+  <h2 style="color:#FFFFFF"><b>Create A New Command!</b></h2>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large"><i class='fas fa-plus'></i> Create a Command</button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom " style="max-width:600px;background-color:#2a2d32;">
+
+      <div class="w3-center" ><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        <img src="/bird.png" alt="Aoi.JS" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form class="w3-container" action="/action_page.php">
+        <div class="w3-section">
+          <label style="color:#FFFFFF"><b>Name:</b></label>
+          <input class="w3-input w3-margin-bottom" type="text" placeholder="Enter the name of the command!" id="name" onblur="getVal()" 
+ onkeyup="getVal()" required>
+          <br>
+          <label style="color:#FFFFFF"><b>Code:</b></label><br>
+          <textarea id="res" class="w3-input  w3-margin-bottom" rows="5" cols="33" required draggable="false" placeholder="Enter the code" style="resize: none;"  spellcheck="false" onblur="getVal()"onkeyup="getVal()" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
+            <br>
+            <label style="color:#FFFFFF">
+        <input type="checkbox" checked="checked" id="np" onblur="getVal()"> Non prefixed
+      </label>
+            <br>
+          <br>
+            <b style="color:#FFFFFF">Raw Code:</b><br>
+          <textarea class="w3-input w3-margin-bottom" id="code" rows="5" cols="33" required draggable="false" spellcheck="false" readonly style="resize: none;"></textarea><br><br>
+            <!--<textarea id="node" rows="5" cols="60" required draggable="false" style="resize: none;"  spellcheck="false" readonly></textarea>-->
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit"><i class='fas fa-upload	'></i> Create</button>
+          
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-blue" align = "center">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red"><i class='fas fa-times'></i> Cancel</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+var t = document.getElementById('name');
+t.style.backgroundColor='#444452';
+t = document.getElementById('res');
+t.style.backgroundColor='#444452';
+t = document.getElementById('code');
+t.style.backgroundColor='#444452';
+
+
+function getVal() {
+  const val = document.getElementById("name").value||"";
+  const val2 = document.getElementById("res").value;
+    const val3 = document.getElementById("np").checked;
+  var a;
+  if (val3==true){
+    a="true"
+  }
+  else{
+    a=false
+  }
+  if(!val2){
+    document.getElementById('code').value=`
+    module.exports = {
+      name:"${val}",
+      code:"",
+      nonPrefixed: ${a},
+    }
+    `;
+  }
+  else{
+    document.getElementById('code').value=`module.exports = {
+name:"${val}",
+code:\`${val2}\`,
+nonPrefixed: ${a}
+}`;
+}
+  document.getElementById('code').style.height = ''; document.getElementById('code').style.height = document.getElementById('code').scrollHeight +'px'
+  
+  let n = val2.split(" ");
+  let lastword = n[n.length - 1];
+  if(lastword.startsWith("$")==true){
+    //document.getElementById("node").value=lastword
+  }
+}
+
+document.getElementById('id01').style.display='block'
+</script>
+</body>
+
+</html>
