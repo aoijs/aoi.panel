@@ -15,7 +15,12 @@ class Panel {
     //console.log(params)
     const thirtyDays=1000 * 60 * 60 * 24 * 30;
     const app = express()
-    app.use(session({ secret:params.secret, cookie: { maxAge: thirtyDays }}))
+    app.use(session({
+      secret:params.secret,
+      cookie: { maxAge: thirtyDays },
+      resave: true,
+      saveUninitialized: true
+    }))
     app.listen(params.port)
     require("./framework.js")(app)
     
