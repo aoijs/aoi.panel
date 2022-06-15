@@ -1,4 +1,5 @@
-const { Panel } = require("./src/index.js")
+const { Panel } = require("./src/panel.js")
+
 module.exports = {
   Panel:Panel
 }
