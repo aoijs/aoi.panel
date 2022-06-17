@@ -1,3 +1,5 @@
+const aoijs = require("aoi.js")
+
 module.exports = (app,params) => {
   const path = require('path')
   
