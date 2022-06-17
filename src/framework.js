@@ -13,7 +13,7 @@ module.exports = (app,params) => {
   app.get('/login', async (req,res) => {
     req.session.uname=req.query.uname;
     req.session.pswd=req.query.pswd;
-    if (req.session.pswd == params.password && req.session.uname){
+    if (req.session.pswd == params.password && req.session.uname == params.username){
       res.redirect("/panel")
     }
     else{
@@ -21,7 +21,7 @@ module.exports = (app,params) => {
     }
   })
 
-  app.get('/data', async (req,res) => {
+  app.get('/data', isLoggedIn , async (req,res) => {
     var b = req.session.uname;
     var a = req.session.pswd;
     res.send(a+"\n "+b)
@@ -38,7 +38,7 @@ module.exports = (app,params) => {
   
   
   function isLoggedIn(req,res,next) {
-    if(1==2){
+    if(req.session.pswd == params.password && req.session.uname == params.username){
       return next()
     }
     else {
