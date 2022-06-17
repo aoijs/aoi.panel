@@ -22,7 +22,7 @@ class Panel {
       saveUninitialized: true
     }))
     app.listen(params.port)
-    require("./framework.js")(app)
+    require("./framework.js")(app,params)
     
   }
 }
