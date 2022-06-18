@@ -3,7 +3,7 @@ const aoijs = require("aoi.js")
 module.exports = (app,params) => {
   const path = require('path')
   
-  app.get('/command/create', isLoggedIn , function(req,res) {
+  app.get('/commands', isLoggedIn , function(req,res) {
     res.sendFile(path.join(__dirname, "/pages/dark-theme/command.html"))
   })
 
@@ -22,6 +22,13 @@ module.exports = (app,params) => {
       res.redirect("/")
     }
   })
+
+  app.get('/panel', async (req,res) => {
+    var a = path.join(__dirname,"/pages/main.html")
+    console.log(bot.user.tag)
+    res.render(a,{ usertag:bot.user.tag })
+  })
+  
 
   app.get('/data', isLoggedIn , async (req,res) => {
     var b = req.session.uname;
