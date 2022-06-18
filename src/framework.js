@@ -25,7 +25,6 @@ module.exports = (app,params) => {
   var bot = params.bot
   app.get('/panel', async (req,res) => {
     var a = path.join(__dirname,"/pages/main.html")
-    console.log(bot.user.tag)
     res.render(a,{ usertag:bot.user.tag })
   })
   
