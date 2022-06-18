@@ -1,5 +1,5 @@
 {
-  "name": "@AkaruiDevelopment/panel",
+  "name": "@akarui/panel",
   "version": "0.0.1-dev",
   "description": "Developer Panel for AOI.JS",
   "main": "index.js",
@@ -13,7 +13,9 @@
     "leref",
     "Bumblebee",
     "aoi",
-    "dbdjs"
+    "dbdjs",
+    "akarui",
+    "akaruidevelopment"
   ],
   "author": "Bumblebee",
   "bugs": {

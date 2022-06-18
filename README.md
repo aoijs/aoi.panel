@@ -1,8 +1,8 @@
-# @AkaruiDevelopment/Panel
+# @akarui/Panel
 ## Developer panel for Aoi.js.
 ### Work in progress
 ```js
-const { Panel } = require("@AkaruiDevelopment/panel")
+const { Panel } = require("@akarui/panel")
 
 const { Bot } = require("aoi.js")
 
