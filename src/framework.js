@@ -22,7 +22,7 @@ module.exports = (app,params) => {
       res.redirect("/")
     }
   })
-
+  var bot = params.bot
   app.get('/panel', async (req,res) => {
     var a = path.join(__dirname,"/pages/main.html")
     console.log(bot.user.tag)
