@@ -12,7 +12,7 @@ module.exports = (app,params) => {
   app.post('/new_command', isLoggedIn, function(req,res) {
         let name = req.body.name
         let resp = req.body.res
-    res.send(name+":name :: "+resp+":res :: ")
+    res.send(req)
   })
 
   app.get('/', async (req,res) => {
