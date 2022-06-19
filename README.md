@@ -15,7 +15,7 @@ const bot = new Bot({
 const panel = new Panel({
   username:"NeverGonnaGiveYouUp",//username for logging in
   password:"helloDarknessMyOldFriend",//password for logging in
-  secret:"lol god",//session secret
+  secret:"AoijsOP",//session secret
   port:3000,//port on which website is hosted
   bot:bot//your aoi.js client
 })

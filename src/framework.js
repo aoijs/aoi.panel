@@ -9,7 +9,11 @@ module.exports = (app,params) => {
   app.get('/commands.js', function(req,res) {
     res.sendFile(path.join(__dirname, "/pages/dark-theme/commands-highlight.js"))
   })
-
+  app.post('/new_command', isLoggedIn, function(req,res) {
+        let name = req.body.name
+        let res = req.body.res
+    res.send(name+":name :: "+res+":res :: ")
+  })
 
   app.get('/', async (req,res) => {
     var a = path.join(__dirname,"/pages/login.html")
