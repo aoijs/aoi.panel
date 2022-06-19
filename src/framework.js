@@ -10,8 +10,7 @@ module.exports = (app,params) => {
     res.sendFile(path.join(__dirname, "/pages/dark-theme/commands-highlight.js"))
   })
   app.post('/new_command', isLoggedIn, function(req,res) {
-        let name = req.body.name
-        let resp = req.body.res
+        
     res.send(req)
   })
 
