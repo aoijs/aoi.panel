@@ -11,8 +11,8 @@ module.exports = (app,params) => {
   })
   app.post('/new_command', isLoggedIn, function(req,res) {
         let name = req.body.name
-        let res = req.body.res
-    res.send(name+":name :: "+res+":res :: ")
+        let resp = req.body.res
+    res.send(name+":name :: "+resp+":res :: ")
   })
 
   app.get('/', async (req,res) => {
