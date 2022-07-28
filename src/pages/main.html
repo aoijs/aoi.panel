@@ -9,18 +9,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
+  
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
+
+/* CUSTOM SCROLL BAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: grey; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #0373fc; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0373fc; 
+}
+
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <div class="w3-top">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-plus"></i> Variables</a>
@@ -31,14 +50,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="/commands" class="w3-bar-item w3-button w3-padding-large">Commands</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Variables</a>
+    <a href="/commands" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-plus"></i> Variables</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Servers</a>
   </div>
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+<header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
   <!--<img src="/bird.png" alt="Avatar" style="width:20%" class="w3-circle w3-margin-top">-->
   
@@ -51,16 +70,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content">
     <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
-
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h1>Create / Edit Commands</h1>
+      <h5 class="w3-padding-32">Create or edit commands for your bots users to interact with the users.</h5>
+      <p class="w3-text-grey">All types of commands can be created here including slash commands, interaction replies, e.t.c.</p>
+      <button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="/commands">Commands</button>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+      <i class="fa fa-solid fa-clipboard-list w3-padding-64 w3-text-indigo fa-10x"></i>
     </div>
   </div>
 </div>
@@ -68,24 +85,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content">
     <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+      <h1>Create / Edit Variables</h1>
+      <h5 class="w3-padding-32">Create or edit variables here.</h5>
 
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p class="w3-text-grey">Variables can be used for different purposes. They can store global data, server data, channel data, user data, e.t.c.</p>
+      <button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Variables</button>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+      <i class="fa fa-solid fa-plus w3-padding-64 w3-text-indigo fa-10x"></i>
     </div>
   </div>
 </div>
 
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-black">  
-  <div class="w3-xlarge w3-padding-32">
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-indigo" style="background-color:#3f51b5;">  
+  <div class="w3-xlarge w3-padding-32 w3-indigo">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
     <i class="fa fa-snapchat w3-hover-opacity"></i>

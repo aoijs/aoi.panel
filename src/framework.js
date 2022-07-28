@@ -30,7 +30,7 @@ module.exports = (app,params) => {
     }
   })
   var bot = params.bot
-  app.get('/panel', async (req,res) => {
+  app.get('/panel',isLoggedIn, async (req,res) => {
     var a = path.join(__dirname,"/pages/main.html")
     var b = path.join(__dirname,"/pages/boterr.html")
     if(!bot.user)return res.render(b,{desc:" Oops, looks like the bot has not yet been initialized. Try again in a Few minutes",ref:"10"});
