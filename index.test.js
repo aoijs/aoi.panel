@@ -13,7 +13,7 @@ const panel = new Panel({
   password:process.env.pass,//password for logging in
   secret:process.env.secret,//session secret
   port:3000,//port on which website is hosted
-  //bot:bot//your aoi.js client
+  bot:bot//your aoi.js client
 })
 panel.loadPanel()
 
