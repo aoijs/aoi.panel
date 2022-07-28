@@ -9,11 +9,11 @@ const bot = new Bot({
 })
 
 const panel = new Panel({
-  username:"NeverGonnaGiveYouUp",//username for logging in
-  password:"helloDarknessMyOldFriend",//password for logging in
-  secret:"AoijsOP",//session secret
+  username:process.env.uname,//username for logging in
+  password:process.env.pass,//password for logging in
+  secret:process.env.secret,//session secret
   port:3000,//port on which website is hosted
-  bot:bot//your aoi.js client
+  //bot:bot//your aoi.js client
 })
 panel.loadPanel()
 

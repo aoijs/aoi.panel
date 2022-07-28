@@ -16,8 +16,8 @@ class Panel {
       process.exit(0)
     }
     if(!params.port){
-      console.log("\x1b[33m%s\x1b[0m", "An port was not provided. Taking default as 8000.")
-      params.port = 8000
+      console.log("\x1b[33m%s\x1b[0m", "A port was not provided. Taking default as 3000.")
+      params.port = 3000
     }
     if(!params.username){
       console.log("\x1b[31m%s\x1b[0m", "Username was not provided. Exiting Code...")
