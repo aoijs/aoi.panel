@@ -1,4 +1,5 @@
 const aoijs = require("aoi.js")
+const fs = require("fs")
 
 module.exports = (app,params) => {
   const path = require('path')
@@ -31,10 +32,12 @@ module.exports = (app,params) => {
   })
   var bot = params.bot
   app.get('/panel',isLoggedIn, async (req,res) => {
+    var content = fs.readFileSync(path.join(process.cwd(),params.mainFile));
+    var file = content.toString()
     var a = path.join(__dirname,"/pages/main.html")
     var b = path.join(__dirname,"/pages/boterr.html")
     if(!bot.user)return res.render(b,{desc:" Oops, looks like the bot has not yet been initialized. Try again in a Few minutes",ref:"10"});
-    res.render(a,{ usertag:bot.user.tag })
+    res.render(a,{ usertag:bot.user.tag,data:file })
   })
   
 

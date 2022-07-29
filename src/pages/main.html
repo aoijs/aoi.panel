@@ -9,6 +9,24 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
+    <script src="/commands.js"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
+
+<link rel="stylesheet"
+
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+  <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
   
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -32,6 +50,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   background: #0373fc; 
 }
 
+</style>
+<style>
+  textarea::placeholder {
+    color: #FFFFFF;  
+  }
+  input::placeholder {
+    color: #FFFFFF;  
+  }
+  textarea {
+    color: #FFFFFF;
+    border:1px solid white;
+  }
+  input {
+    color: #FFFFFF;
+    border:1px solid white;
+  }
 </style>
 </head>
 <body>
@@ -64,10 +98,50 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <h1 class="w3-margin w3-jumbo">Aoi.js Panel</h1>
   <p class="w3-xlarge">Panel synced with : <%= usertag %> </p>
   <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-indigo w3-large"><i class='fas fa-plus'></i> Create a Command</button>
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom " style="max-width:600px;background-color:#2a2d32;">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        <img src="/bird.png" alt="Aoi.JS" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form class="w3-container" action="/new_command" method="POST">
+        <div class="w3-section">
+            <b style="color:#FFFFFF">
+              
+            Edit Main File
+            
+            </b><br>  
+          <pre><div class="w3-code jsHigh notranslate" style= "text-align:left;" id="code">
+    <%= data %>
+  </div></pre>
+
+
+          <!--<pre><code class="language-js" style= "text-align:left;"id="code">module.exports = {
+name:"ok",
+code:`no`,
+nonPrefixed: true
+}</code></pre>-->
+          
+            <!--<textarea id="node" rows="5" cols="60" required draggable="false" style="resize: none;"  spellcheck="false" readonly></textarea>-->
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Create</button>
+          
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-blue" align = "center">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+
+      </div>
+
+    </div>
+  </div>
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>Create / Edit Commands</h1>
@@ -122,6 +196,63 @@ function myFunction() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
+</script>
+<script>
+  var t = document.getElementById('name');
+t.style.backgroundColor='#444452';
+t = document.getElementById('res');
+t.style.backgroundColor='#444452';
+t = document.getElementById('code');
+t.style.backgroundColor='#444452';
+w3CodeColor();
+
+function getVal() {
+  w3CodeColor();
+
+  document.querySelectorAll('pre code').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+  const val = document.getElementById("name").value||"";
+  const val2 = document.getElementById("res").value;
+    const val3 = document.getElementById("np").checked;
+  var a;
+  if (val3==true){
+    a="true"
+  }
+  else{
+    a=false
+  }
+  if(!val2){
+    document.getElementById('code').innerHTML=`
+    module.exports = {
+      name:"${val}",
+      code:"",
+      nonPrefixed: ${a},
+    }
+    `;
+    
+    w3CodeColor();
+
+  }
+  else{
+    document.getElementById('code').innerHTML=`module.exports = {
+name:"${val}",
+code:\`${val2}\`,
+nonPrefixed: ${a}
+}`;
+    w3CodeColor();
+
+}
+  document.getElementById('code').style.height = ''; document.getElementById('code').style.height = document.getElementById('code').scrollHeight +'px'
+  
+  let n = val2.split(" ");
+  let lastword = n[n.length - 1];
+  if(lastword.startsWith("$")==true){
+    //document.getElementById("node").value=lastword
+  }
+}
+
+
 </script>
 
 </body>
