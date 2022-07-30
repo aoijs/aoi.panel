@@ -72,7 +72,22 @@ module.exports = (app,params) => {
     var rnew = file.replace("<!Add Guilds Here>",guild)
      res.send(rnew)
   })
-  
+  app.get('/guild/info',isLoggedIn , async (req,res) => {
+    if(!req.query.id) return res.send("Error. No guild provided!");
+    let guild = bot.guilds.cache.get(req.query.id);
+    
+    if(!guild) return res.send("Error. No guild with id "+req.query.id+" was found!");
+    let owner = bot.users.cache.get(guild.ownerId);
+    var a = path.join(__dirname,"/pages/guildinfo.html")
+    var content = fs.readFileSync(a);
+    var file = content.toString();
+    let info = `Guild ID: ${guild.id}<br>Guild Name: <b>${guild.name}</b><br>Guild Owner ID: ${guild.ownerId}<br>Guild Owner Username:${owner.tag} <br>Members count: ${guild.memberCount}<br>Features: ${guild.features.join(', ').replace("_"," ").toLowerCase()}`
+    var rnew = file.replace("<!Add Info Here>",info)
+    var rneww=rnew.replace("<!GUILDID>",guild.id)
+    var rrneww=rneww.replace("<!GUILDNAME>",guild.name)
+    res.send(rrneww)
+    
+  })
   function isLoggedIn(req,res,next) {
     if(req.session.pswd == params.password && req.session.uname == params.username){
       return next()
