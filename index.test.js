@@ -12,9 +12,9 @@ const panel = new Panel({
   username:process.env.uname,//username for logging in
   password:process.env.pass,//password for logging in
   secret:process.env.secret,//session secret
-  port:3000,//port on which website is hosted
+  port:3000,//port on which website is hosted,not required!
   bot:bot,//your aoi.js client
-  mainFile:"index.test.js"
+  mainFile:"index.test.js"//main file, not required!
 })
 panel.loadPanel()
 
