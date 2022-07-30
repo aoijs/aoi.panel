@@ -12,7 +12,7 @@ module.exports = (app,params) => {
   })
   app.post('/new_command', isLoggedIn, function(req,res) {
         
-    res.send(req)
+    res.send(req.body)
   })
 
   app.get('/', async (req,res) => {
@@ -81,19 +81,38 @@ module.exports = (app,params) => {
     var a = path.join(__dirname,"/pages/guildinfo.html")
     var content = fs.readFileSync(a);
     var file = content.toString();
+    var img = guild.iconURL({dynamic: true, size: 4096})
+    var im;
+    if (!img){
+      im = "https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png"
+    }
+    else{
+      im=img.replace(".webp",".png")
+    }
+    
     let info = `Guild ID: ${guild.id}<br>Guild Name: <b>${guild.name}</b><br>Guild Owner ID: ${guild.ownerId}<br>Guild Owner Username:${owner.tag} <br>Members count: ${guild.memberCount}<br>Features: ${guild.features.join(', ').replace("_"," ").toLowerCase()}`
     var rnew = file.replace("<!Add Info Here>",info)
     var rneww=rnew.replace("<!GUILDID>",guild.id)
     var rrneww=rneww.replace("<!GUILDNAME>",guild.name)
-    res.send(rrneww)
+    res.send(rrneww.replace("<!link>",im))
     
   })
+  app.get('/guild/leave',isLoggedIn , async (req,res) => {
+    if(!req.query.id) return res.send("Error. No guild provided!");
+    let guild = bot.guilds.cache.get(req.query.id);
+    
+    if(!guild) return res.send("Error. No guild with id "+req.query.id+" was found!");
+    guild.leave()
+    res.redirect("/guilds")
+    
+  })
+
   function isLoggedIn(req,res,next) {
     if(req.session.pswd == params.password && req.session.uname == params.username){
       return next()
     }
     else {
-      res.redirect('/')
+      res.redirect('/guilds')
     }
   }
 
