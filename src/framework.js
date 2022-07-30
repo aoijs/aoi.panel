@@ -56,7 +56,22 @@ module.exports = (app,params) => {
     var a = path.join(__dirname,"/assets/aoi-bird.png")
     res.sendFile(a)
   })
-  
+  app.get('/guilds',isLoggedIn , async (req,res) => {
+    var a = path.join(__dirname,"/pages/guilds.html")
+    var content = fs.readFileSync(a);
+    var file = content.toString();
+    let server = bot.guilds.cache.map(z=>z)
+    let guild = '';
+     for(let i = 0;i<server.length;i++){
+
+ guild += `<label><li>
+<a href="/guild/info?id=${server[i].id}"><input type="image" name="guild" value="${server[i].id}" src="${server[i].iconURL({dynamic: true, size: 4096})}" width="150px" height="150px" class="rounded-circle" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="margin: 70px;border: 5px solid #ff0000;"  required><br><b><p style="color:white;text-align: center;">${server[i].name}</p></b></a>
+              </li></label>`
+
+     }
+    var rnew = file.replace("<!Add Guilds Here>",guild)
+     res.send(rnew)
+  })
   
   function isLoggedIn(req,res,next) {
     if(req.session.pswd == params.password && req.session.uname == params.username){

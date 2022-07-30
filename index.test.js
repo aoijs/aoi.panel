@@ -14,7 +14,7 @@ const panel = new Panel({
   secret:process.env.secret,//session secret
   port:3000,//port on which website is hosted
   bot:bot,//your aoi.js client
-  //mainFile:"index.test.js"
+  mainFile:"index.test.js"
 })
 panel.loadPanel()
 

@@ -77,16 +77,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-plus"></i> Variables</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Servers</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a>
+    <a href="/guilds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-server"></i> Servers</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-user-doctor-message"></i> Support Server</a>
   </div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-plus"></i> Variables</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Servers</a>
+    <a href="/guilds" class="w3-bar-item w3-button w3-padding-large">Servers</a>
+    <a href="https://discord.gg/JDJgDMfTGS" class="w3-bar-item w3-button w3-padding-large">Support Server</a>
   </div>
 </div>
 
@@ -98,50 +98,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <h1 class="w3-margin w3-jumbo">Aoi.js Panel</h1>
   <p class="w3-xlarge">Panel synced with : <%= usertag %> </p>
   <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-indigo w3-large"><i class='fas fa-plus'></i> Create a Command</button>
+  
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom " style="max-width:600px;background-color:#2a2d32;">
-
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-        <img src="/bird.png" alt="Aoi.JS" style="width:30%" class="w3-circle w3-margin-top">
-      </div>
-
-      <form class="w3-container" action="/new_command" method="POST">
-        <div class="w3-section">
-            <b style="color:#FFFFFF">
-              
-            Edit Main File
-            
-            </b><br>  
-          <pre><div class="w3-code jsHigh notranslate" style= "text-align:left;" id="code">
-    <%= data %>
-  </div></pre>
-
-
-          <!--<pre><code class="language-js" style= "text-align:left;"id="code">module.exports = {
-name:"ok",
-code:`no`,
-nonPrefixed: true
-}</code></pre>-->
-          
-            <!--<textarea id="node" rows="5" cols="60" required draggable="false" style="resize: none;"  spellcheck="false" readonly></textarea>-->
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Create</button>
-          
-        </div>
-      </form>
-
-      <div class="w3-container w3-border-top w3-padding-16 w3-blue" align = "center">
-        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
-
-      </div>
-
-    </div>
-  </div>
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>Create / Edit Commands</h1>
@@ -174,7 +135,7 @@ nonPrefixed: true
 
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-indigo" style="background-color:#3f51b5;">  
+<footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
   <div class="w3-xlarge w3-padding-32 w3-indigo">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -187,7 +148,6 @@ nonPrefixed: true
 </footer>
 
 <script>
-// Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -197,63 +157,5 @@ function myFunction() {
   }
 }
 </script>
-<script>
-  var t = document.getElementById('name');
-t.style.backgroundColor='#444452';
-t = document.getElementById('res');
-t.style.backgroundColor='#444452';
-t = document.getElementById('code');
-t.style.backgroundColor='#444452';
-w3CodeColor();
-
-function getVal() {
-  w3CodeColor();
-
-  document.querySelectorAll('pre code').forEach((el) => {
-    hljs.highlightElement(el);
-  });
-  const val = document.getElementById("name").value||"";
-  const val2 = document.getElementById("res").value;
-    const val3 = document.getElementById("np").checked;
-  var a;
-  if (val3==true){
-    a="true"
-  }
-  else{
-    a=false
-  }
-  if(!val2){
-    document.getElementById('code').innerHTML=`
-    module.exports = {
-      name:"${val}",
-      code:"",
-      nonPrefixed: ${a},
-    }
-    `;
-    
-    w3CodeColor();
-
-  }
-  else{
-    document.getElementById('code').innerHTML=`module.exports = {
-name:"${val}",
-code:\`${val2}\`,
-nonPrefixed: ${a}
-}`;
-    w3CodeColor();
-
-}
-  document.getElementById('code').style.height = ''; document.getElementById('code').style.height = document.getElementById('code').scrollHeight +'px'
-  
-  let n = val2.split(" ");
-  let lastword = n[n.length - 1];
-  if(lastword.startsWith("$")==true){
-    //document.getElementById("node").value=lastword
-  }
-}
-
-
-</script>
-
 </body>
 </html>
