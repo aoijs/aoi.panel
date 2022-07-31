@@ -1,10 +1,59 @@
-const aoijs = require("aoi.js")
 const fs = require("fs")
+const path = require('path')
 
 module.exports = (app, params) => {
-  const path = require('path')
+  var command = params.commands
+  app.get('/reboot',  isLoggedIn, function(req,  res) {
+    res.send("Rebooting system. If the panel does not automatically start within 1-5 minutes see your hosting service' console!")
+    process.on("exit", () => {
+      require("child_process").spawn(process.argv.shift(), process.argv, {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: "inherit",
+      });
+    });
+    process.exit();
+    
+  })
+  app.get('/command/update',isLoggedIn, function(req,res) {
+    bot.loader?.update()
+    res.redirect('/commands')
+  })
+  app.get('/command/delete', isLoggedIn, function(req,res) {
+    let pathh = req.query.path;
+    pathh = pathh.replace(/%2F/g, path.sep)
+    console.log(pathh)
+    fs.unlinkSync(pathh)
+    res.redirect('/commands')
+  })
+  app.get('/command/edit', isLoggedIn, function(req, res) {
+    let pathh = req.query.path
+    let name = pathh.replace(/%2F/g, '/')
+    pathh = pathh.replace(/%2F/g, ',')
+    let code = fs.readFileSync(pathh)
+    var a = path.join(__dirname, "/pages/editcode.html")
+    var content = fs.readFileSync(a);
+    var file = content.toString();
+    var d1 = file.replace("<!val>", req.query.path)
+    var d2 = d1.replace("<!val2>", req.query.path)
+    var d3 = d2.replace("<!code>", code)
+    res.send(d3.replace("<!val3>",pathh))
 
-  app.get('/commands', function(req, res) {
+  })
+  app.post('/command/save', isLoggedIn, function(req, res) {
+    let name = req.body.path
+    name = name.replace(/\//g, path.sep)
+    fs.writeFileSync(name, req.body.code)
+    if (req.body.name == req.body.path) {
+      res.redirect(`/command/edit?path=${name}`)
+    }
+    else {
+      fs.renameSync(name, req.body.name)
+      res.redirect(`/command/edit?path=${req.body.name}`)
+    }
+  })
+  //COMMANDS 
+  app.get('/commands', isLoggedIn, function(req, res) {
     var a = path.join(__dirname, "/pages/commands.html")
     var content = fs.readFileSync(a);
     var file = content.toString();
@@ -21,7 +70,7 @@ module.exports = (app, params) => {
         }
       }
       let ff = []
-      for (const filePath of walkSync(path.join(process.cwd(),params.commands))) {
+      for (const filePath of walkSync(path.join(process.cwd(), params.commands))) {
         ff.push(filePath);
       }
 
@@ -29,7 +78,7 @@ module.exports = (app, params) => {
         let pathh = rr.replace(/\//g, "%2F")
         text += `<label style="background-color:#000000;" style="margin: 70px;border: 5px solid #FFFFFF;"><li style="background-color:#000000;"><a href="/command/edit?path=${pathh}">
 <button type="button" style="background-color:#000000;"> <img src="/bird.png" width="150" height="150" class="rounded-circle" style="margin: 70px;border: 5px solid #FFFFFF;"/><br>
-<b style="color:#FFFFFF;">${rr.replace("/home/runner","")}</b></button></a></li></label>`
+<b style="color:#FFFFFF;">${rr.replace("/home/runner", "")}</b></button></a></li></label>`
       }
     }
     catch (e) {
@@ -45,11 +94,17 @@ module.exports = (app, params) => {
 
     res.send(req.body)
   })
-
+  //login
   app.get('/', async (req, res) => {
     var a = path.join(__dirname, "/pages/login.html")
+    if (req.session.pswd == params.password && req.session.uname == params.username) {
+      return res.redirect("/panel");
+    }
+    else {
+      return res.sendFile(a);
+    }
 
-    res.sendFile(a)
+
   })
   app.get('/login', async (req, res) => {
     req.session.uname = req.query.uname;
@@ -61,6 +116,7 @@ module.exports = (app, params) => {
       res.redirect("/")
     }
   })
+  //panel
   var bot = params.bot
   app.get('/panel', isLoggedIn, async (req, res) => {
     var content = fs.readFileSync(path.join(process.cwd(), params.mainFile));
@@ -69,13 +125,6 @@ module.exports = (app, params) => {
     var b = path.join(__dirname, "/pages/boterr.html")
     if (!bot.user) return res.render(b, { desc: " Oops, looks like the bot has not yet been initialized. Try again in a Few minutes", ref: "10" });
     res.render(a, { usertag: bot.user.tag, data: file })
-  })
-
-
-  app.get('/data', isLoggedIn, async (req, res) => {
-    var b = req.session.uname;
-    var a = req.session.pswd;
-    res.send(a + "\n " + b)
   })
 
 
@@ -143,7 +192,7 @@ module.exports = (app, params) => {
       return next()
     }
     else {
-      res.redirect('/guilds')
+      res.redirect('/')
     }
   }
 

@@ -76,7 +76,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-plus"></i> Variables</a>
     <a href="/guilds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-server"></i> Servers</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-user-doctor-message"></i> Support Server</a>
   </div>
@@ -84,9 +83,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="/commands" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-plus"></i> Variables</a>
-    <a href="/guilds" class="w3-bar-item w3-button w3-padding-large">Servers</a>
-    <a href="https://discord.gg/JDJgDMfTGS" class="w3-bar-item w3-button w3-padding-large">Support Server</a>
+
+    <a href="/guilds" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-server"></i> Servers</a>
+    <a href="https://discord.gg/JDJgDMfTGS" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-user-doctor-message"></i> Support Server</a>
   </div>
 </div>
 
@@ -97,7 +96,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   
   <h1 class="w3-margin w3-jumbo">Aoi.js Panel</h1>
   <p class="w3-xlarge">Panel synced with : <%= usertag %> </p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+  <a href="/reboot"><button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Restart Server</button></a>
   
 </header>
 
@@ -108,7 +107,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h1>Create / Edit Commands</h1>
       <h5 class="w3-padding-32">Create or edit commands for your bots users to interact with the users.</h5>
       <p class="w3-text-grey">All types of commands can be created here including slash commands, interaction replies, e.t.c.</p>
-      <button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="/commands">Commands</button>
+      <a href="/commands"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" >Commands</button></a>
     </div>
 
     <div class="w3-third w3-center">
@@ -120,15 +119,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content">
     <div class="w3-twothird">
-      <h1>Create / Edit Variables</h1>
-      <h5 class="w3-padding-32">Create or edit variables here.</h5>
+      <h1>View / Edit Servers</h1>
+      <h5 class="w3-padding-32">Info about the servers the bot is in.</h5>
 
-      <p class="w3-text-grey">Variables can be used for different purposes. They can store global data, server data, channel data, user data, e.t.c.</p>
-      <button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Variables</button>
+      <p class="w3-text-grey">Get a list of all the servers the bot is in, Information about the server, and the option to leave the server.</p>
+      <a href="/guilds"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Servers</button></a>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-solid fa-plus w3-padding-64 w3-text-indigo fa-10x"></i>
+      <i class="fa fa-solid fa-server w3-padding-64 w3-text-indigo fa-10x"></i>
     </div>
   </div>
 </div>

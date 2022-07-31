@@ -2,6 +2,8 @@ const express = require("express")
 var session = require('express-session')
 const path = require('path')
 const fs = require('fs')
+const bodyParser = require("body-parser")
+
 
 
 
@@ -53,7 +55,8 @@ class Panel {
     const thirtyDays = 1000 * 60 * 60 * 24 * 30;
 
     const app = express()
-
+    app.use(bodyParser.urlencoded({extended : true}));
+    app.use(bodyParser.json());
     app.use(session({
       secret: params.secret,
       cookie: { maxAge: thirtyDays },

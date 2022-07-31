@@ -77,20 +77,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
-  <h1 class="w3-margin w3-jumbo">Commands</h1>
-  <p class="w3-xlarge">Edit/Create new commands!</p>
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a Command</button><br><br>
-  <a href="/command/update"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i>Update Commands</button></a><br><br>
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
+  <h1 class="w3-margin w3-jumbo">Edit File</h1>
+  <p class="w3-xlarge">Edit a commands file here.</p>
+
 
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content w3-center">
-    <ul id="myUL" style="list-style: none;">
-      <!data>
-    </ul>
+    <br>
+    <br>
+    <!Add Info Here>
+    <br><br>
+    <form action='/command/save' method='post' style="color:#FFFFFF;">
+      Name:
+            <input type="hidden" name="path" value="<!val>" class="w3-input"style="color:#000000;">
+            <input type="text" name="name" class="w3-indigo w3-input" placeholder="Command name" value="<!val2>" required style="color:#000000;">
+            <br>
+           Code:<br>
+<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false"><!code></textarea>
+			<br><br>
+<button class="w3-button w3-round-large w3-indigo" type="submit">Save</button><br><br>
+<a href="/command/delete?path=<!val3>" onclick="confirm('Are you sure you want to delete this file? This cannot be undone!');" target="_blank"><button class="w3-button w3-round-large w3-indigo">Delete</button></a>
+    </form>
   </div>
 </div>
 
@@ -120,26 +130,6 @@ function myFunction() {
   }
 }
 </script>
-<script>
-function search() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName('li');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
 </body>
 </html>
