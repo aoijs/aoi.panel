@@ -96,10 +96,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             <input type="text" name="name" class="w3-indigo w3-input" placeholder="Command name" value="<!val2>" required style="color:#000000;">
             <br>
            Code:<br>
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false"><!code></textarea>
+<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"><!code></textarea>
 			<br><br>
 <button class="w3-button w3-round-large w3-indigo" type="submit">Save</button><br><br>
-<a href="/command/delete?path=<!val3>" onclick="lol();" target="_blank"><button class="w3-button w3-round-large w3-indigo">Delete</button></a>
+
     </form>
   </div>
 </div>
@@ -121,9 +121,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <script>
 
 // Used to toggle the menu on small screens when clicking on the menu button
-function lol(){
-  confirm('Are you sure you want to delete this file? This cannot be undone!');
-}
+
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {

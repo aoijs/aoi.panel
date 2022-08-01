@@ -77,20 +77,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
-  <h1 class="w3-margin w3-jumbo">Commands</h1>
-  <p class="w3-xlarge">Edit/Create new commands!</p>
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a Command</button><br><br>
-  <a href="/command/update"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i>Update Commands</button></a><br><br>
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
+  <h1 class="w3-margin w3-jumbo">Edit Main File</h1>
+  <p class="w3-xlarge">Edit the main file of your code here.</p>
+
 
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content w3-center">
-    <ul id="myUL" style="list-style: none;">
-      <!data>
-    </ul>
+    <br>
+    <br>
+    <br><br>
+    <form action='/index/save' method='post' style="color:#FFFFFF;">
+            <br>
+           Code:<br>
+<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"><!code></textarea>
+			<br><br>
+<button class="w3-button w3-round-large w3-indigo" type="submit">Save</button><br><br>
+
+    </form>
   </div>
 </div>
 
@@ -111,6 +117,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <script>
 
 // Used to toggle the menu on small screens when clicking on the menu button
+
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -120,26 +127,6 @@ function myFunction() {
   }
 }
 </script>
-<script>
-function search() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName('li');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("h5")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
 </body>
 </html>

@@ -22,7 +22,6 @@ module.exports = (app, params) => {
   app.get('/command/delete', isLoggedIn, function(req,res) {
     let pathh = req.query.path;
     pathh = pathh.replace(/%2F/g, path.sep)
-    console.log(pathh)
     fs.unlinkSync(pathh)
     res.redirect('/commands')
   })
@@ -76,9 +75,23 @@ module.exports = (app, params) => {
 
       for (const rr of ff) {
         let pathh = rr.replace(/\//g, "%2F")
-        text += `<label style="background-color:#000000;" style="margin: 70px;border: 5px solid #FFFFFF;"><li style="background-color:#000000;"><a href="/command/edit?path=${pathh}">
+        /*text += `<label style="background-color:#000000;" style="margin: 70px;border: 5px solid #FFFFFF;"><li style="background-color:#000000;"><a href="/command/edit?path=${pathh}">
 <button type="button" style="background-color:#000000;"> <img src="/bird.png" width="150" height="150" class="rounded-circle" style="margin: 70px;border: 5px solid #FFFFFF;"/><br>
-<b style="color:#FFFFFF;">${rr.replace("/home/runner", "")}</b></button></a></li></label>`
+<b style="color:#FFFFFF;">${rr.replace("/home/runner", "")}</b></button></a></li></label>`*/
+        text += `
+        <label style="background-color:#000000;" style="margin: 70px;border: 5px solid #FFFFFF;"><li style="background-color:#000000;">
+        <div class="w3-card-4 w3-black">
+
+<div class="w3-container w3-center">
+  
+  <img src="/bird.png" width="150" height="150" class="rounded-circle" style="margin: 70px;border: 5px solid #FFFFFF;"/>
+  <h5>File: ${rr.replace("/home/runner", "")}</h5>
+
+  <a href="/command/edit?path=${pathh}"><button class="w3-button w3-green">Edit</button></a>
+  <a href="/command/delete?path=${pathh}"><button class="w3-button w3-red">Delete</button></a>
+</div>
+
+</div></li></label><br><br>`
       }
     }
     catch (e) {
