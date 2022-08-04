@@ -1,5 +1,5 @@
 {
-  "name": "@akarui/panel",
+  "name": "@akarui/aoi.panel",
   "version": "0.0.1-dev",
   "description": "Developer Panel for AOI.JS",
   "main": "index.js",
