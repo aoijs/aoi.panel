@@ -18,7 +18,8 @@ const panel = new Panel({
   secret:"AoijsOP",//session secret
   port:3000,//port on which website is hosted, Not required! Default 3000
   bot:bot,//your aoi.js client
-  mainFile:"index.js"//Main file where code is running.Not required, default taken from package.json
+  mainFile:"index.js",//Main file where code is running.Not required, default taken from package.json
+  commands:"commands"
 })
 panel.loadPanel()
 

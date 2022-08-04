@@ -120,7 +120,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <script>
 
-// Used to toggle the menu on small screens when clicking on the menu button
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementByID("code").style.height = '';
+    document.getElementByID("code").style.height = document.getElementByID("code").scrollHeight +'px';
+});
 
 function myFunction() {
   var x = document.getElementById("navDemo");

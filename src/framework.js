@@ -2,7 +2,23 @@ const fs = require("fs")
 const path = require('path')
 
 module.exports = (app, params) => {
-  var command = params.commands
+  var command = params.commands;
+  app.post('/index/save', isLoggedIn, function(req, res) {
+    let code = req.body.code
+    
+    fs.writeFileSync(   path.join(process.cwd(),params.mainFile), req.body.code)
+    res.redirect("/edit/mainfile")
+
+  })
+  app.get('/edit/mainfile',isLoggedIn, function(req,res){
+    var a = path.join(__dirname, "/pages/editindex.html")
+    var content = fs.readFileSync(a);
+    var file = content.toString();
+    var code= fs.readFileSync(path.join(process.cwd(),params.mainFile)).toString()
+    var d = file.replace("<!code>",code);
+    res.send(d)
+    
+  })
   app.get('/reboot',  isLoggedIn, function(req,  res) {
     res.send("Rebooting system. If the panel does not automatically start within 1-5 minutes see your hosting service' console!")
     process.on("exit", () => {
@@ -88,7 +104,7 @@ module.exports = (app, params) => {
   <h5>File: ${rr.replace("/home/runner", "")}</h5>
 
   <a href="/command/edit?path=${pathh}"><button class="w3-button w3-green">Edit</button></a>
-  <a href="/command/delete?path=${pathh}"><button class="w3-button w3-red">Delete</button></a>
+  <a href="/command/delete?path=${pathh}" onclick="alert("Are you sure you want to delete this file?");"><button class="w3-button w3-red">Delete</button></a>
 </div>
 
 </div></li></label><br><br>`
@@ -100,9 +116,7 @@ module.exports = (app, params) => {
 
     res.send(file.replace("<!data>", text))
   })
-  app.get('/commands.js', function(req, res) {
-    res.sendFile(path.join(__dirname, "/pages/dark-theme/commands-highlight.js"))
-  })
+
   app.post('/new_command', isLoggedIn, function(req, res) {
 
     res.send(req.body)
