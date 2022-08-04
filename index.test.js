@@ -8,14 +8,15 @@ const bot = new Bot({
   intents: "all"
 })
 const panel = new Panel({
-  username: process.env.uname,//username for logging in
-  password: process.env.pass,//password for logging in
-  secret: process.env.secret,//session secret
-  port: 3000,//port on which website is hosted,not required!
-  bot: bot,//your aoi.js client
-  mainFile: "index.test.js",//main file, not required!
-  commands: "commands"//Commands Folder
+  username: process.env.uname,
+  password: process.env.pass,
+  secret: process.env.secret,
+  port: 3000,
+  bot: bot,
+  mainFile: "index.test.js",
+  commands: "commands"
 })
+/**/
 panel.loadPanel()
 var app=panel.app;
 
