@@ -3,7 +3,7 @@ const { Panel } = require("./index.js")
 const { Bot } = require("aoi.js")
 
 const bot = new Bot({
-  token: process.env.token,
+  token: process.env.token,/*ok*/
   prefix: "!",
   intents: "all"
 })
@@ -18,7 +18,6 @@ const panel = new Panel({
 })
 /**/
 panel.loadPanel()
-var app=panel.app;
 
 bot.onMessage()
 bot.command({
@@ -29,13 +28,3 @@ bot.command({
 var aoi =require("aoi.js");
 const loader = new aoi.LoadCommands(bot)
 loader.load(bot.cmd,"./commands/")
-
-bot.command({
-name: "map",
-code: `$map[hi/hello/bye/goodbye;/;mapCmd;,]`
-})
-
-bot.awaitedCommand({
-name: "mapCmd",
-code: `Values: {value}`
-})

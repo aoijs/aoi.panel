@@ -1,5 +1,5 @@
-const fs = require("fs")
-const path = require('path')
+const fs = require("fs");
+const path = require('path');
 
 module.exports = (app, params) => {
   var command = params.commands;
@@ -31,9 +31,16 @@ module.exports = (app, params) => {
     process.exit();
     
   })
+  
   app.get('/command/update',isLoggedIn, function(req,res) {
     bot.loader?.update()
     res.redirect('/commands')
+  })
+  app.get('/command/new',isLoggedIn, function(req,res) {
+    var folder = path.join(process.cwd(),"/"+params.commands)
+    let pg = fs.readFileSync(path.join(__dirname,"/pages/newcmd.html")).toString();
+    res.send(pg.replace("<!val>",folder).replace("<!val>",folder))
+  
   })
   app.get('/command/delete', isLoggedIn, function(req,res) {
     let pathh = req.query.path;

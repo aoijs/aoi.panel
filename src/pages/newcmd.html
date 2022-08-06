@@ -11,7 +11,6 @@
 
 
 
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -77,31 +76,53 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
-  <h1 class="w3-margin w3-jumbo">Guilds</h1>
-  <p class="w3-xlarge">Click on the guild icon to get information on the guild.</p>
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for guilds..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
+  <h1 class="w3-margin w3-jumbo">Create Command</h1>
+  <p class="w3-xlarge">Create A New Command Here!</p>
+
 
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
   <div class="w3-content w3-center">
-    <ul id="myUL" style="list-style: none;">
-      <!Add Guilds Here>
-    </ul>
+    <br>
+    <br>
+    <br><br>
+    <form action='/command/save' method='post' style="color:#FFFFFF;">
+      File Name:
+      <input type="hidden" name="path" value="document.getElementByID(name).value" class="w3-input"style="color:#000000;">
+            <input type="text" name="name" class="w3-indigo w3-input" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
+            <br>
+           Code:<br>
+      <pre>
+<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'">
+module.exports = {
+  name:"",
+  aliases:[""],
+  code:``
+}
+</textarea>
+        <pre>
+			<br><br>
+<button class="w3-button w3-round-large w3-indigo" type="submit">Save</button><br><br>
+
+    </form>
   </div>
 </div>
 
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
- 
+  
  <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
 </footer>
-
 <script>
 
-// Used to toggle the menu on small screens when clicking on the menu button
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementByID("code").style.height = '';
+    document.getElementByID("code").style.height = document.getElementByID("code").scrollHeight +'px';
+});
+
 function myFunction() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -111,26 +132,6 @@ function myFunction() {
   }
 }
 </script>
-<script>
-function search() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('myInput');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName('li');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-</script>
 </body>
 </html>

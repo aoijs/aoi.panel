@@ -92,7 +92,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <form action='/index/save' method='post' style="color:#FFFFFF;">
             <br>
            Code:<br>
-      <div id="code1" contenteditable align="left" class="w3-grey">
+      <div id="code1" contenteditable align="left" class="w3-grey" onkeyup='' onkeydown="" spellcheck = "false">
         <pre><!code></pre>
       </div>
 <textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" hidden="true"><!code></textarea>
@@ -106,19 +106,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
-  <div class="w3-xlarge w3-padding-32 w3-indigo">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <a href="https://discord.gg/JDJgDMfTGS"><i class="fa-brands fa-discord w3-hover-opacity"></i></a>
- </div>
+
  <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
 </footer>
 
 <script>
-
 // Used to toggle the menu on small screens when clicking on the menu button
 
 function myFunction() {
@@ -134,6 +126,7 @@ function codeColor(elmnt, mode) {
   var lang = (mode || "html");
   var elmntObj = (document.getElementById(elmnt) || elmnt);
   var elmntTxt = elmntObj.innerHTML;
+  console.log(elmntTxt);
   var tagcolor = "mediumblue";
   var tagnamecolor = "brown";
   var attributecolor = "red";
@@ -155,6 +148,7 @@ function codeColor(elmnt, mode) {
   if (lang == "css") {elmntTxt = cssMode(elmntTxt);}
   if (lang == "js") {elmntTxt = jsMode(elmntTxt);}
   elmntObj.innerHTML = elmntTxt;
+  console.log(elmntTxt)
 
   function extract(str, start, end, func, repl) {
     var s, e, d = "", a = [];
@@ -460,6 +454,10 @@ function hey(){
   document.getElementById('code').value=document.getElementById('code1').innerText
   confirm("Are you sure you want to save the file?")
   console.log("hi")
+}
+function lol(){
+  document.getElementById('code1').value=document.getElementById('code1').innerText;
+ codeColor(document.getElementById('code1'),'js');
 }
 </script>
 

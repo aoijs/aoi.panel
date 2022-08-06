@@ -6,8 +6,6 @@ const bodyParser = require("body-parser")
 
 
 
-
-
 class Panel {
   constructor(params) {
     this.params = params;
