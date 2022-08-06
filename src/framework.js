@@ -44,15 +44,20 @@ module.exports = (app, params) => {
   })
   app.get('/command/delete', isLoggedIn, function(req,res) {
     let pathh = req.query.path;
+    var b = path.join(__dirname, "/pages/boterr.html")
+    if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     pathh = pathh.replace(/%2F/g, path.sep)
     fs.unlinkSync(pathh)
     res.redirect('/commands')
   })
   app.get('/command/edit', isLoggedIn, function(req, res) {
     let pathh = req.query.path
+    var b = path.join(__dirname, "/pages/boterr.html")
+    if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     let name = pathh.replace(/%2F/g, '/')
     pathh = pathh.replace(/%2F/g, ',')
     let code = fs.readFileSync(pathh)
+    if (!code) return res.render(b, { desc: "Error. No valid path was provided!", ref: "" });
     var a = path.join(__dirname, "/pages/editcode.html")
     var content = fs.readFileSync(a);
     var file = content.toString();
@@ -124,10 +129,6 @@ module.exports = (app, params) => {
     res.send(file.replace("<!data>", text))
   })
 
-  app.post('/new_command', isLoggedIn, function(req, res) {
-
-    res.send(req.body)
-  })
   //login
   app.get('/', async (req, res) => {
     var a = path.join(__dirname, "/pages/login.html")
@@ -187,10 +188,12 @@ module.exports = (app, params) => {
     res.send(rnew)
   })
   app.get('/guild/info', isLoggedIn, async (req, res) => {
-    if (!req.query.id) return res.send("Error. No guild provided!");
+    var b = path.join(__dirname, "/pages/boterr.html")
+    if (!req.query.id) return res.render(b, { desc: "Error. No guild id was provided!", ref: "" });
     let guild = bot.guilds.cache.get(req.query.id);
+    
+    if (!guild) return res.render(b, { desc: "Error. No guild with id " + req.query.id + " was found!", ref: "" });
 
-    if (!guild) return res.send("Error. No guild with id " + req.query.id + " was found!");
     let owner = bot.users.cache.get(guild.ownerId);
     var a = path.join(__dirname, "/pages/guildinfo.html")
     var content = fs.readFileSync(a);
