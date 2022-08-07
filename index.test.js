@@ -29,7 +29,8 @@ bot.command({
 var aoi = require("aoi.js");
 const loader = new aoi.LoadCommands(bot)
 loader.load(bot.cmd, "./commands/")
-/*//this is to check if the error system works
+/*
+//this is to check if the error system works
 let finalProcess = Promise.resolve();
 finalProcess = run()
 */

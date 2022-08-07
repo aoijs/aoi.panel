@@ -10,7 +10,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+  <script>
+window.onload = function () {
+    var editor = CodeMirror.fromTextArea($("#code")[0], {
+        lineNumbers: false,
+        lineWrapping: true,
+        mode: 'javascript',
+        theme: 'monokai'
+    });
+};
+</script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -84,7 +99,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
-  <div class="w3-content w3-center">
+  <div class="w3-content">
     <br>
     <br>
     <!Add Info Here>
