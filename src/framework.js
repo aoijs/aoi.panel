@@ -2,24 +2,96 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, params) => {
-  var command = params.commands;
+  app.get('/errors/delete', isLoggedIn, function(req, res) {
+    var b = path.join(__dirname, "/pages/boterr.html")
+    if (!req.query.data) return res.render(b, { desc: "Error. No data was provided!", ref: "" });
+
+    if (req.query.data == "all") {
+      try {
+        function* walkSync(dir) {
+          const files = fs.readdirSync(dir, { withFileTypes: true });
+          for (const file of files) {
+            if (file.isDirectory()) {
+              yield* walkSync(path.join(dir, file.name));
+            } else {
+              yield path.join(dir, file.name);
+            }
+          }
+        }
+        let ff = []
+        for (const filePath of walkSync(path.join(__dirname, "/errors"))) {
+          ff.push(filePath);
+        }
+
+        for (const rr of ff) {
+
+          fs.unlinkSync(rr);
+
+        }
+      }
+      catch (e) {
+        return res.render(b, { desc: "Error. "+e, ref: "" });
+      }
+    }
+    else{
+      fs.unlinkSync()
+    }
+    res.redirect("/errors")
+  })
+
+  app.get('/errors', isLoggedIn, function(req, res) {
+    var a = path.join(__dirname, "/pages/errors.html")
+    var content = fs.readFileSync(a);
+    var file = content.toString();
+    let text = ''
+    try {
+      function* walkSync(dir) {
+        const files = fs.readdirSync(dir, { withFileTypes: true });
+        for (const file of files) {
+          if (file.isDirectory()) {
+            yield* walkSync(path.join(dir, file.name));
+          } else {
+            yield path.join(dir, file.name);
+          }
+        }
+      }
+      let ff = []
+      for (const filePath of walkSync(path.join(__dirname, "/errors"))) {
+        ff.push(filePath);
+      }
+
+      for (const rr of ff) {
+        var err = fs.readFileSync(rr);
+        text += `<div align="left" class="w3-indigo"spellcheck = "false">
+        <pre style="color:#FFFFFF">${err}</pre>
+      </div>`
+      }
+    }
+    catch (e) {
+      text = "path is invalid or error occurred " + e
+    }
+    if (!text || text=="") {text="No Errors"};
+    res.send(file.replace("<!data>", text));
+    
+  })
+
   app.post('/index/save', isLoggedIn, function(req, res) {
     let code = req.body.code
-    
-    fs.writeFileSync(   path.join(process.cwd(),params.mainFile), req.body.code)
+
+    fs.writeFileSync(path.join(process.cwd(), params.mainFile), req.body.code)
     res.redirect("/edit/mainfile")
 
   })
-  app.get('/edit/mainfile',isLoggedIn, function(req,res){
+  app.get('/edit/mainfile', isLoggedIn, function(req, res) {
     var a = path.join(__dirname, "/pages/editindex.html")
     var content = fs.readFileSync(a);
     var file = content.toString();
-    var code= fs.readFileSync(path.join(process.cwd(),params.mainFile)).toString()
-    var d = file.replace("<!code>",code);
+    var code = fs.readFileSync(path.join(process.cwd(), params.mainFile)).toString()
+    var d = file.replace("<!code>", code);
     res.send(d)
-    
+
   })
-  app.get('/reboot',  isLoggedIn, function(req,  res) {
+  app.get('/reboot', isLoggedIn, function(req, res) {
     res.send("Rebooting system. If the panel does not automatically start within 1-5 minutes see your hosting service' console!")
     process.on("exit", () => {
       require("child_process").spawn(process.argv.shift(), process.argv, {
@@ -29,20 +101,20 @@ module.exports = (app, params) => {
       });
     });
     process.exit();
-    
+
   })
-  
-  app.get('/command/update',isLoggedIn, function(req,res) {
+
+  app.get('/command/update', isLoggedIn, function(req, res) {
     bot.loader?.update()
     res.redirect('/commands')
   })
-  app.get('/command/new',isLoggedIn, function(req,res) {
-    var folder = path.join(process.cwd(),"/"+params.commands)
-    let pg = fs.readFileSync(path.join(__dirname,"/pages/newcmd.html")).toString();
-    res.send(pg.replace("<!val>",folder).replace("<!val>",folder))
-  
+  app.get('/command/new', isLoggedIn, function(req, res) {
+    var folder = path.join(process.cwd(), "/" + params.commands)
+    let pg = fs.readFileSync(path.join(__dirname, "/pages/newcmd.html")).toString();
+    res.send(pg.replace("<!val>", folder).replace("<!val>", folder))
+
   })
-  app.get('/command/delete', isLoggedIn, function(req,res) {
+  app.get('/command/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
     var b = path.join(__dirname, "/pages/boterr.html")
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
@@ -64,7 +136,7 @@ module.exports = (app, params) => {
     var d1 = file.replace("<!val>", req.query.path)
     var d2 = d1.replace("<!val2>", req.query.path)
     var d3 = d2.replace("<!code>", code)
-    res.send(d3.replace("<!val3>",pathh))
+    res.send(d3.replace("<!val3>", pathh))
 
   })
   app.post('/command/save', isLoggedIn, function(req, res) {
@@ -191,7 +263,7 @@ module.exports = (app, params) => {
     var b = path.join(__dirname, "/pages/boterr.html")
     if (!req.query.id) return res.render(b, { desc: "Error. No guild id was provided!", ref: "" });
     let guild = bot.guilds.cache.get(req.query.id);
-    
+
     if (!guild) return res.render(b, { desc: "Error. No guild with id " + req.query.id + " was found!", ref: "" });
 
     let owner = bot.users.cache.get(guild.ownerId);
