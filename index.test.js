@@ -16,10 +16,9 @@ const panel = new Panel({
   mainFile: "index.test.js",
   commands: "commands"
 })
-//lmao
 /**/
 panel.loadPanel()
-panel.onError()
+//panel.onError()
 
 bot.onMessage()
 bot.command({
@@ -27,9 +26,9 @@ bot.command({
   code: `lol`
 })
 
-var aoi =require("aoi.js");
+var aoi = require("aoi.js");
 const loader = new aoi.LoadCommands(bot)
-loader.load(bot.cmd,"./commands/")
+loader.load(bot.cmd, "./commands/")
 /*//this is to check if the error system works
 let finalProcess = Promise.resolve();
 finalProcess = run()

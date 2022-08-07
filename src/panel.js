@@ -9,7 +9,7 @@ const bodyParser = require("body-parser")
 class Panel {
   constructor(params) {
     this.params = params;
-    
+
     console.log("\x1b[32m%s\x1b[0m", "Initializing Aoi.js Panel...")
 
     if (!params.bot) {
@@ -87,23 +87,23 @@ class Panel {
     process.on('unhandledRejection', (reason, p) => {
       console.log('Unhandled Rejection/Catch');
       console.log(reason, p);
-      fs.writeFileSync(path.join(__dirname, "/errors/"+random(8)+ ".txt"),"Error: Unhandled Rejection/Catch \n\n"+reason+" \n\n"+p);
+      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Unhandled Rejection/Catch \n\n" + reason + " \n\n" + p);
     });
     process.on("uncaughtException", (err, origin) => {
       console.log('Uncaught Exception/Catch');
       console.log(err, origin);
-      fs.writeFileSync(path.join(__dirname, "/errors/"+random(8)+ ".txt"),"Error: Uncaught Exception/Catch \n\n"+err+" \n\n"+origin);
-    }); 
+      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + err + " \n\n" + origin);
+    });
     process.on('uncaughtExceptionMonitor', (err, origin) => {
       console.log('Uncaught Exception/Catch ');
       console.log(err, origin);
-      fs.writeFileSync(path.join(__dirname, "/errors/"+random(8)+ ".txt"),"Error: Uncaught Exception/Catch \n\n"+err+" \n\n"+origin);
+      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + err + " \n\n" + origin);
 
     });
     process.on('multipleResolves', (type, promise, reason) => {
       console.log('Multiple Resolves');
-      console.log(reason,promise)
-      fs.writeFileSync(path.join(__dirname, "/errors/"+random(8)+ ".txt"),"Error: Uncaught Exception/Catch \n\n"+reason+" \n\n"+promise);
+      console.log(reason, promise)
+      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + reason + " \n\n" + promise);
     });
 
 

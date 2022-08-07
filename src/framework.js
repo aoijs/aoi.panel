@@ -30,10 +30,10 @@ module.exports = (app, params) => {
         }
       }
       catch (e) {
-        return res.render(b, { desc: "Error. "+e, ref: "" });
+        return res.render(b, { desc: "Error. " + e, ref: "" });
       }
     }
-    else{
+    else {
       fs.unlinkSync()
     }
     res.redirect("/errors")
@@ -70,9 +70,9 @@ module.exports = (app, params) => {
     catch (e) {
       text = "path is invalid or error occurred " + e
     }
-    if (!text || text=="") {text="No Errors"};
+    if (!text || text == "") { text = "No Errors. <br> <b>Note, this page will not work unless the callback 'onError()' is used.<b>" };
     res.send(file.replace("<!data>", text));
-    
+
   })
 
   app.post('/index/save', isLoggedIn, function(req, res) {
