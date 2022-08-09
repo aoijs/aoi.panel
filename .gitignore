@@ -1,7 +1,6 @@
 .replit
 node_modules
 replit.nix
-package-lock.json
 /database
 /commands
 /__tests__
