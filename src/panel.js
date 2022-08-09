@@ -1,5 +1,5 @@
 const express = require("express")
-var session = require('express-session')
+const session = require('express-session');
 const path = require('path')
 const fs = require('fs')
 const bodyParser = require("body-parser")
@@ -38,17 +38,17 @@ class Panel {
     }
     if (!params.mainFile) {
       const content = fs.readFileSync(path.join(process.cwd(), "package.json"));
-      var str = content.toString();
-      var json = JSON.parse(str);
-      var file = json.main;
-      console.log("\x1b[33m%s\x1b[0m", "Main file name (mainFile) was not provided. Taking mainfile as " + file)
+      const str = content.toString();
+      const json = JSON.parse(str);
+      const file = json.main;
+      console.log("\x1b[33m%s\x1b[0m", "Main file name (mainFile) was not provided. Taking main file as " + file)
       params.mainFile = file;
 
     }
 
   }
   loadPanel() {
-    var params = this.params;
+    const params = this.params;
 
     //console.log(params)
     const thirtyDays = 1000 * 60 * 60 * 24 * 30;
@@ -76,10 +76,10 @@ class Panel {
   }
   onError() {
     function random(length) {
-      var result = '';
-      var characters = 'abcdefghijklmnopqrstuvwxyz-_abcdefghijklmnopqrstuvwxyz';
-      var charactersLength = characters.length;
-      for (var i = 0; i < length; i++) {
+      let result = '';
+      const characters = 'abcdefghijklmnopqrstuvwxyz-_abcdefghijklmnopqrstuvwxyz';
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() *
           charactersLength));
       }
