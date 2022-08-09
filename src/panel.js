@@ -71,6 +71,7 @@ class Panel {
 
     require("./framework.js")(app, params)
     console.log("\x1b[32m%s\x1b[0m", "Aoi.js Panel ready on port: " + params.port)
+    
     this.app = app;
   }
   onError() {

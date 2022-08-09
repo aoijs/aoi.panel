@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, params) => {
+
   app.get('/errors/delete', isLoggedIn, function(req, res) {
     var b = path.join(__dirname, "/pages/boterr.html")
     if (!req.query.data) return res.render(b, { desc: "Error. No data was provided!", ref: "" });
@@ -227,6 +228,12 @@ module.exports = (app, params) => {
   var bot = params.bot
   app.get('/panel', isLoggedIn, async (req, res) => {
     var content = fs.readFileSync(path.join(process.cwd(), params.mainFile));
+    const os = require("os");
+
+    const freeMemory = os.freemem();
+    const totalMemory = os.totalmem();
+    const mem = freeMemory+"/"+totalMemory
+    console.log(mem)
     var file = content.toString()
     var a = path.join(__dirname, "/pages/main.html")
     var b = path.join(__dirname, "/pages/boterr.html")
