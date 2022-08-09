@@ -16,7 +16,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
   <script>
 window.onload = function () {
-    var editor = CodeMirror.fromTextArea($("#code")[0], {
+    const editor = CodeMirror.fromTextArea($("#code")[0], {
         lineNumbers: false,
         lineWrapping: true,
         mode: 'javascript',
@@ -143,13 +143,13 @@ module.exports = {
 <script>
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementByID("code").style.height = '';
-    document.getElementByID("code").style.height = document.getElementByID("code").scrollHeight +'px';
+    document.getElementById("code").style.height = '';
+    document.getElementById("code").style.height = document.getElementById("code").scrollHeight +'px';
 });
 
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
+    const x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");

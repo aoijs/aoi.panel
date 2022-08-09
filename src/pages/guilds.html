@@ -106,15 +106,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
  
- <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
+ <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
 </footer>
 
 <script>
 
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
+  const x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
@@ -124,7 +124,7 @@ function myFunction() {
 <script>
 function search() {
   // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
+  let input, filter, ul, li, a, i, txtValue;
   input = document.getElementById('myInput');
   filter = input.value.toUpperCase();
   ul = document.getElementById("myUL");

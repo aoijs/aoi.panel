@@ -2,9 +2,9 @@
   "name": "@akarui/aoi.panel",
   "version": "0.0.1-dev",
   "description": "The aoi.panel module provides a panel component for the aoi.js library.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "node __tests__/index.test.js"
+    "test": "node __tests__/client.js"
   },
   "keywords": [
     "discord",

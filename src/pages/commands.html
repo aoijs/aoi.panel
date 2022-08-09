@@ -88,7 +88,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <p class="w3-xlarge">Edit/Create new commands!</p>
   <a href="/command/new"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a Command</button></a><br><br>
   <a href="/command/update"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i>Update Commands</button></a><br><br>
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
+  <label for="myInput"></label><input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
 
 </header>
 
@@ -112,8 +112,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
+  const x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
@@ -123,7 +123,7 @@ function myFunction() {
 <script>
 function search() {
   // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
+  let input, filter, ul, li, a, i, txtValue;
   input = document.getElementById('myInput');
   filter = input.value.toUpperCase();
   ul = document.getElementById("myUL");

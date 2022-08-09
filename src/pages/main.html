@@ -79,7 +79,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="/guilds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-server"></i> Servers</a>
     <a href="/edit/mainfile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-brands fa-square-js"></i> Edit Main File</a>
     <a href="/errors" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-bug"></i> Errors</a>
-    <a href="https://discord.gg/JDJgDMfTGS" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-user-doctor-message"></i><i class="fa-solid fa-hand"></i> Support Server</a>
+    <a href="https://aoi.js.org/invite" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-user-doctor-message"></i><i class="fa-solid fa-hand"></i> Support Server</a>
   </div>
 
   <!-- Navbar on small screens -->
@@ -87,7 +87,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="/commands" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
 
     <a href="/guilds" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-server"></i> Servers</a>
-    <a href="https://discord.gg/JDJgDMfTGS" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-hand"></i> Support Server</a>
+    <a href="https://aoi.js.org/invite" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-hand"></i> Support Server</a>
     <a href="/edit/mainfile" class="w3-bar-item w3-button w3-padding-large"><i class="fa fa-brands fa-square-js"></i> Edit Main File</a>
     <a href="/errors" class="w3-bar-item w3-button w3-padding-large"><i class="fa-solid fa-bug"></i> Errors</a>
   </div>
@@ -170,15 +170,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
- 
- <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
+<footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">
+
+  <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
 </footer>
 
 <script>
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
+  const x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
