@@ -1,6 +1,3 @@
 index.test.js
 .gitignore
-.gitattributes
 package-lock.json
-/database/main/main_scheme_1.sql
-/commands/
