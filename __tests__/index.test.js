@@ -1,4 +1,4 @@
-const { Panel } = require("./index.js")
+const { Panel } = require("../index.js")
 
 const { Bot } = require("aoi.js")
 
