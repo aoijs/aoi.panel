@@ -1,6 +1,6 @@
 {
   "name": "@akarui/aoi.panel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
   "main": "src/index.js",
   "scripts": {
