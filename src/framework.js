@@ -234,7 +234,7 @@ module.exports = (app, params) => {
     const freeMemory = os.freemem();
     const totalMemory = os.totalmem();
     const mem = freeMemory+"/"+totalMemory
-    console.log(mem)
+   // console.log(mem)
     const file = content.toString();
     const a = path.join(__dirname, "/pages/main.html");
     const b = path.join(__dirname, "/pages/boterr.html");
