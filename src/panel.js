@@ -10,7 +10,7 @@ class Panel {
   constructor(params) {
     this.params = params;
 
-    console.log("\x1b[32m%s\x1b[0m", "Initializing Aoi.js Panel...")
+    console.log("\x1b[32m%s\x1b[0m", "Initializing aoi.js Panel.")
 
     if (!params.bot) {
       console.log("\x1b[31m%s\x1b[0m", "Aoi.js client was not provided. Exiting Code...")
@@ -70,7 +70,7 @@ class Panel {
     app.listen(params.port)
 
     require("./framework.js")(app, params)
-    console.log("\x1b[32m%s\x1b[0m", "Aoi.js Panel ready on port: " + params.port)
+    console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel ready on port: " + params.port)
     
     this.app = app;
   }
