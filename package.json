@@ -1,24 +1,23 @@
 {
   "name": "@akarui/aoi.panel",
   "version": "0.0.1-dev",
-  "description": "Developer Panel for AOI.JS",
-  "main": "index.js",
+  "description": "The aoi.panel module provides a panel component for the aoi.js library.",
+  "main": "__tests__/index.js",
   "scripts": {
-    "test": "node index.test.js"
+    "test": "node __tests__/index.test.js"
   },
   "keywords": [
     "discord",
     "discord bot panel",
     "aoi.js",
-    "leref",
-    "Bumblebee",
+    "aoi.js panel",
+    "aoi.panel",
+    "panel",
     "aoi",
     "dbdjs",
     "akarui",
     "akaruidevelopment",
-    "panel",
-    "dashboard",
-    "dev panel"
+    "dashboard"
   ],
   "author": "Bumblebee",
   "bugs": {

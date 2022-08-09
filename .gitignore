@@ -5,3 +5,6 @@ package-lock.json
 /database/main/main_scheme_1.sql
 /commands/
 .npmignore
+/__tests__
+.idea
+.vscode
