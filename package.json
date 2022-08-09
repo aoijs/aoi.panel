@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node __tests__/client.js"
   },
+  "engines": {
+    "node": ">=16.9.0"
+  },
   "keywords": [
     "discord",
     "discord bot panel",
