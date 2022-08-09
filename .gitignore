@@ -2,9 +2,8 @@
 node_modules
 replit.nix
 package-lock.json
-/database/main/main_scheme_1.sql
-/commands/
-.npmignore
+/database
+/commands
 /__tests__
 .idea
 .vscode
