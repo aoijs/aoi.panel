@@ -112,10 +112,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <br>
     <br>
     <br><br>
-    <form action='/command/save' method='post' style="color:#FFFFFF;">
+    <form action='/command/save' method='post' style="color:#FFFFFF;" onsubmit="return chkname();">
       File Name:
       <input type="hidden" name="path" value="document.getElementByID(name).value" class="w3-input"style="color:#000000;">
-            <input type="text" name="name" class="w3-indigo w3-input" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
+            <input type="text" name="name" class="w3-indigo w3-input" id="name" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
             <br>
            Code:<br>
       <pre>
@@ -141,6 +141,18 @@ module.exports = {
  <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
 </footer>
 <script>
+function chkname() {
+    var code = document.getElementById("name").value
+
+
+    if(code=="<!val>/") {
+        alert('No name was provided...');
+        return false;
+    }
+    else {
+        return confirm('Do you really want to create the command?');
+    }
+}
 
 window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("code").style.height = '';

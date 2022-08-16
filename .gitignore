@@ -6,3 +6,5 @@ replit.nix
 /__tests__
 .idea
 .vscode
+index.test.js
+package-lock.json

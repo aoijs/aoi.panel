@@ -117,7 +117,7 @@ module.exports = (app, params) => {
     app.get('/command/new', isLoggedIn, function (req, res) {
         const folder = path.join(process.cwd(), "/" + params.commands);
         let pg = fs.readFileSync(path.join(__dirname, "/pages/newcmd.html")).toString();
-        res.send(pg.replace("<!val>", folder).replace("<!val>", folder))
+        res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>",folder))
 
     })
     app.get('/command/delete', isLoggedIn, function (req, res) {
