@@ -26,5 +26,3 @@ panel.onError()//Will detect errors, and send it to aoi.panel's error page.
 
 bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
 ```
-
-```
