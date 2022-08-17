@@ -9,30 +9,30 @@ class Panel {
     constructor(params) {
         this.params = params;
 
-        console.log("\x1b[32m%s\x1b[0m", "Initializing aoi.js Panel.")
+        console.log("\x1b[32m%s\x1b[0m", "Initializing @akarui/aoi.panel.")
 
         if (!params.bot) {
-            console.log("\x1b[31m%s\x1b[0m", "Aoi.js client was not provided. Exiting Code...")
+            console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting Code...")
             process.exit(0)
         }
         if (!params.commands) {
-            console.log("\x1b[31m%s\x1b[0m", "Commands folder was not provided. Exiting Code...")
+            console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Commands folder was not provided. Exiting Code...")
             process.exit(0)
         }
         if (!params.port) {
-            console.log("\x1b[33m%s\x1b[0m", "A port was not provided. Taking default as 3000.")
+            console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] A port was not provided. Taking default as 3000.")
             params.port = 3000
         }
         if (!params.username) {
-            console.log("\x1b[31m%s\x1b[0m", "Username was not provided. Exiting Code...")
+            console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Username was not provided. Exiting Code...")
             process.exit(0)
         }
         if (!params.password) {
-            console.log("\x1b[31m%s\x1b[0m", "Password was not provided. Exiting Code...")
+            console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Password was not provided. Exiting Code...")
             process.exit(0)
         }
         if (!params.secret) {
-            console.log("\x1b[31m%s\x1b[0m", "Session secret (secret) was not provided. Exiting Code...")
+            console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Session secret (secret) was not provided. Exiting Code...")
             process.exit(0)
         }
         if (!params.mainFile) {
@@ -40,10 +40,16 @@ class Panel {
             const str = content.toString();
             const json = JSON.parse(str);
             const file = json.main;
-            console.log("\x1b[33m%s\x1b[0m", "Main file name (mainFile) was not provided. Taking main file as " + file)
+            console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Main file name (mainFile) was not provided. Taking main file as " + file)
             params.mainFile = file;
 
         }
+      if (Array.isArray(params.username) == true && Array.isArray(params.password)) {
+        if(params.username.length != params.password.length){
+          console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] The number of passwords provided is not equal to the number of usernames. Exiting code...")
+            process.exit(0)
+        }
+      }
 
     }
 
