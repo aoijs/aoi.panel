@@ -60,5 +60,19 @@ app.get("/somenewpagename_which_is_not_already_used", async (req,res)=>{
   res.send("<html><head><title>Aoi.panel</title></head><body>Aoi.panel is cool ngl.</body></html>")
 })
 ```
+### or 
+checking if user is logged in:
+```js
+var app =panel.app;
+app.get("/somenewpagename_which_is_not_already_used", (req,res)=>{
+  let a = panel.isLoggedIn(req, res);
+  if(a==false){
+    res.redirect("/")
+  }
+  else {
+    res.send("<html><head><title>Aoi.panel</title></head><body>Aoi.panel is cool ngl.</body></html>")
+  }
+})
+```
 **Note: *This is recommended to be used only by users acquainted with javascript, html and express. We will not be providing support for express/ html /custom javascript help.*** 
 ## Join our support server for help [here](https://aoi.js.org/invite)
