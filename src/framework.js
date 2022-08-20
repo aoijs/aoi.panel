@@ -2,6 +2,27 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, params) => {
+  app.get('/djseval', isLoggedIn, function(req, res) {
+    const b = path.join(__dirname, "/pages/djseval.html");
+    res.render(b);
+  })
+  app.post('/djseval', isLoggedIn, async(req, res) => {
+      let result;
+    const a = path.join(__dirname, "/pages/djsevalexec.html");
+    const content = fs.readFileSync(a);
+    const file = content.toString();
+        try {
+            const client = bot
+            result = await eval(req.body.execute)
+        
+            }
+        catch (e) {
+            result = e
+            }
+    res.send(file.replace("<!result>",require('util').inspect(result, {depth:0}).replace(/\n/g, '<br>')).replace("<!data>",req.body.execute))
+    
+    
+  })
   app.post('/shellexec', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname, "/pages/shellexec.html");
     const content = fs.readFileSync(a);
