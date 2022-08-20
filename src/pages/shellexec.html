@@ -9,13 +9,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/night.min.css">
-
 
 
 
@@ -67,7 +60,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </head>
 <body>
 
-<!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -90,35 +82,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   </div>
 </div>
 
-
 <!-- Header -->
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
-  <h1 class="w3-margin w3-jumbo">Edit Main File</h1>
-  <p class="w3-xlarge">Edit the main file of your code here.</p>
+  <h1 class="w3-margin w3-jumbo">Shell</h1>
+  <p class="w3-xlarge">Code executed!</p>
 
 
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black">
-  <div class="w3-content">
-    <br>
-    <br>
-    <br><br>
-    <form action='/index/save' method='post' style="color:#FFFFFF;">
-            <br>
-           Code:<br>
-      <!--
-      <div id="code1" contenteditable align="left" class="w3-grey" onkeyup='' onkeydown="" spellcheck = "false" hidden="true">
-        <pre></pre>
-      </div>-->
-      
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" align="left" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" ><!code></textarea>
-			<br><br>
-<button class="w3-button w3-round-large w3-indigo" type="submit" onclick="hey();">Save</button><br><br>
+  <div class="w3-content" style="color:#FFFFFF;border-radius: 25px;background: #1e1e1a;padding: 20px;width: 70%;height: 50%;"><!result></div><br><br>
+  <div class="w3-content w3-center">
+    <form action="shellexec" method='post' autocomplete='off'>
+<input autocomplete="false" type="textarea" name="hidden" style="display:none">
 
-    </form>
+<input type='text' name='execute' placeholder='Type command to execute in the shell' autocomplete='false' style="width:100"  class="w3-indigo" size="50" required>
+      <br><br>
+      <button class="w3-button w3-round-large w3-indigo" type="submit">Execute!</button>
+</form>
+    <br><br>
+
+
   </div>
 </div>
 
@@ -126,40 +112,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">
 
-    <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
+  <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
 </footer>
 
 <script>
-// Used to toggle the menu on small screens when clicking on the menu button
 
+// Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
-  var x = document.getElementById("navDemo");
+  const x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
   }
 }
-//codeColor(document.getElementById("code1"),"js");
-function hey(){
-  document.getElementById('code').value=document.getElementById('code1').innerText
-  confirm("Are you sure you want to save the file?")
-  console.log("hi")
-}
-
-</script>
-  <script>
-window.onload = function () {
-    var editor = CodeMirror.fromTextArea($("#code")[0], {
-        lineNumbers: false,
-        lineWrapping: true,
-        mode: 'javascript',
-        theme: 'night',
-        autoRefresh:true
-    });
-  editor.refresh();
-
-};
 </script>
 
 </body>

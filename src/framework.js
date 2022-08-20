@@ -2,9 +2,29 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, params) => {
-
+  app.post('/shellexec', isLoggedIn, async (req, res) => {
+    const a = path.join(__dirname, "/pages/shellexec.html");
+    const content = fs.readFileSync(a);
+    const file = content.toString();
+    const exec = require('child_process')
+    let result = '';
+    try {
+      result = await exec.execSync(req.body.execute).toString().replace(/\n/g, '<br>')
+    }
+    catch (e) {
+      result = e
+    }
+    const data = require('util').inspect(result, {depth:0}).replace(/\n/g, '<br>')
+    res.send(file.replace("<!result>",data.replace(/'/g,"")))
+    
+    
+  })
   app.get('/stats', isLoggedIn, function(req, res) {
     const b = path.join(__dirname, "/pages/stats.html");
+    res.render(b);
+  })
+  app.get('/shell', isLoggedIn, function(req, res) {
+    const b = path.join(__dirname, "/pages/shell.html");
     res.render(b);
   })
   //panel

@@ -28,11 +28,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "aoi.js": "^5.5.5",
     "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-    "uninstall": "^0.0.0",
-    "aoi.js": "^5.5.5"
+    "uninstall": "^0.0.0"
   }
 }
