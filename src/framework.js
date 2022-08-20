@@ -3,9 +3,33 @@ const path = require('path');
 
 module.exports = (app, params) => {
 
-
+  app.get('/stats', isLoggedIn, function(req, res) {
+    const b = path.join(__dirname, "/pages/stats.html");
+    res.render(b);
+  })
   //panel
   const bot = params.bot;
+  app.get('/stats/data', async (req, res) => {
+    let client = bot
+    let days = Math.floor(client.uptime / 86400000);
+
+    let hours = Math.floor(client.uptime / 3600000) % 24;
+
+    let minutes = Math.floor(client.uptime / 60000) % 60;
+
+    let seconds = Math.floor(client.uptime / 1000) % 60;
+    const initial = process.cpuUsage();
+    const start = Date.now();
+    while (Date.now() - start > 1);
+    const final = process.cpuUsage(initial);
+    let cpu = ((final.user + final.system) / 1000).toFixed(2);
+    res.json({
+      "ram": process.memoryUsage().rss / 1024 / 1024,
+      "uptime": days + "d " + hours + "h " + minutes + "m " + seconds + "s ",
+      "cpu": cpu
+
+    })
+  })
   app.get('/errors/delete', isLoggedIn, function(req, res) {
     const b = path.join(__dirname, "/pages/boterr.html");
     if (!req.query.data) return res.render(b, { desc: "Error. No data was provided!", ref: "" });
@@ -301,18 +325,18 @@ module.exports = (app, params) => {
   })
 
   function isLoggedIn(req, res, next) {
-    
+
     if (Array.isArray(params.username) == true && Array.isArray(params.password)) {
       for (let i = 0; i < params.username.length; i++) {
-        if(req.session.uname===params.username[i] && req.session.pswd===params.password[i]){
+        if (req.session.uname === params.username[i] && req.session.pswd === params.password[i]) {
           return next();
         }
-        else if ((i+1)==params.username.length){
+        else if ((i + 1) == params.username.length) {
           return res.redirect("/")
         }
-        
+
       }
-      
+
     }
     else if (req.session.pswd === params.password && req.session.uname === params.username) {
       return next()
