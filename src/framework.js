@@ -2,26 +2,58 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, params) => {
+  app.post('/aoieval', isLoggedIn, async (req, res) => {
+    const a = path.join(__dirname, "/pages/aoievalexec.html");
+    const content = fs.readFileSync(a);
+    const file = content.toString();
+    let result;
+    try {
+      const client = bot
+
+      result = await client.functionManager.interpreter(
+        client,
+        {},
+        [],
+        {
+          name: "aoi Eval",
+          code: `${req.body.execute}`,
+        },
+        client.db,
+        true,
+      )
+
+      result = result.code
+    }
+    catch (e) {
+      result = e
+    }
+    const data = require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')
+    res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
+  })
+  app.get('/aoieval', isLoggedIn, function(req, res) {
+    const b = path.join(__dirname, "/pages/aoieval.html");
+    res.render(b);
+  })
   app.get('/djseval', isLoggedIn, function(req, res) {
     const b = path.join(__dirname, "/pages/djseval.html");
     res.render(b);
   })
-  app.post('/djseval', isLoggedIn, async(req, res) => {
-      let result;
+  app.post('/djseval', isLoggedIn, async (req, res) => {
+    let result;
     const a = path.join(__dirname, "/pages/djsevalexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
-        try {
-            const client = bot
-            result = await eval(req.body.execute)
-        
-            }
-        catch (e) {
-            result = e
-            }
-    res.send(file.replace("<!result>",require('util').inspect(result, {depth:0}).replace(/\n/g, '<br>')).replace("<!data>",req.body.execute))
-    
-    
+    try {
+      const client = bot
+      result = await eval(req.body.execute)
+
+    }
+    catch (e) {
+      result = e
+    }
+    res.send(file.replace("<!result>", require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')).replace("<!data>", req.body.execute))
+
+
   })
   app.post('/shellexec', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname, "/pages/shellexec.html");
@@ -35,10 +67,10 @@ module.exports = (app, params) => {
     catch (e) {
       result = e
     }
-    const data = require('util').inspect(result, {depth:0}).replace(/\n/g, '<br>')
-    res.send(file.replace("<!result>",data.replace(/'/g,"")))
-    
-    
+    const data = require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')
+    res.send(file.replace("<!result>", data.replace(/'/g, "")))
+
+
   })
   app.get('/stats', isLoggedIn, function(req, res) {
     const b = path.join(__dirname, "/pages/stats.html");
