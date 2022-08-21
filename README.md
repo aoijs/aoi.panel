@@ -5,6 +5,10 @@
 ```
 npm i @akarui/aoi.panel@latest
 ```
+or 
+```
+npm i https://github.com/AkaruiDevelopment/panel#main
+```
 
 ### Basic Usage:
 ```js
@@ -21,7 +25,7 @@ const bot = new Bot({
 const panel = new Panel({
     username: "your-username",//username for logging in
     password: "password-here",//password for logging in
-    secret: "aoijs",//session secret
+    secret: require('crypto').randomBytes(16).toString("hex"),//session secret
     port: 3000,//port on which website is hosted, Not required! Default 3000
     bot: bot,//your aoi.js client
     mainFile: "index.js",//Main file where code is running.Not required, default taken from package.json
@@ -43,7 +47,7 @@ const {Panel} = require("@akarui/aoi.panel")
 const panel = new Panel({
     username: ["your-username-1","your-username-2","and so on"],
     password: ["password-1","password-2","and so on"],
-    secret: "aoijs",
+    secret: require('crypto').randomBytes(16).toString("hex"),
     port: 3000,
     bot: bot,
     mainFile: "index.js",
