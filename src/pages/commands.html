@@ -4,6 +4,9 @@
 <title>@akarui/aoi.panel</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -59,8 +62,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <body>
 
 <!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
+<div class="w3-top" style="word-wrap: break-word;overflow:hidden;">
+  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large"style="word-wrap: break-word;overflow:hidden;">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="/panel" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
@@ -82,10 +85,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
+<header class="w3-container w3-indigo w3-center" style="padding:128px 16px" style="word-wrap: break-word;overflow:hidden;">
 
-  <h1 class="w3-margin w3-jumbo">Commands</h1>
-  <p class="w3-xlarge">Edit/Create new commands!</p>
+  <h1 class="w3-margin w3-jumbo" style="word-wrap: break-word;overflow:hidden;" style="font-size:10vw">Commands</h1>
+  <p class="w3-xlarge" style="font-size:7vw">Edit/Create new commands!</p>
   <a href="/command/new"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a Command</button></a><br><br>
   <a href="/command/update"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i>Update Commands</button></a><br><br>
   <label for="myInput"></label><input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
@@ -93,8 +96,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </header>
 
 <!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container w3-black">
-  <div class="w3-content w3-center">
+<div class="w3-row-padding w3-padding-64 w3-container w3-black w3-center" style="word-wrap: break-word;overflow:hidden;" id="data">
+  <div class="w3-content" style="word-wrap: break-word;overflow:hidden;">
     <ul id="myUL" style="list-style: none;">
       <!data>
     </ul>
@@ -108,8 +111,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
 </footer>
 
-<script>
+<script>/*
+if (typeof screen.orientation !== 'undefined') {
+  document.getElementById("data").className = "w3-left w3-row-padding w3-padding-64 w3-container w3-black"
+}
+  else{
+    document.getElementById("data").className = "w3-center w3-row-padding w3-padding-64 w3-container w3-black"
+  }*/
 
+if (typeof screen.orientation !== 'undefined') {
+  //document.getElementById("data").classList.add("w3-left");
+}
+else{
+  //document.getElementById("data").classList.add("w3-center");
+}
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
   const x = document.getElementById("navDemo");

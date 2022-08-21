@@ -28,7 +28,7 @@ module.exports = (app, params) => {
       result = e
     }
     const data = require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')
-    res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
+    res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>",req.body.execute))
   })
   app.get('/aoieval', isLoggedIn, function(req, res) {
     const b = path.join(__dirname, "/pages/aoieval.html");
