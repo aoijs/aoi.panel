@@ -5,10 +5,6 @@
 ```
 npm i @akarui/aoi.panel@latest
 ```
-or 
-```
-npm i https://github.com/AkaruiDevelopment/panel#main
-```
 
 ### Basic Usage:
 ```js
