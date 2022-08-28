@@ -17,8 +17,10 @@ class Panel {
       process.exit(0)
     }
     if (!params.commands) {
-      console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Commands folder was not provided. Exiting Code...")
-      process.exit(0)
+      console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Commands folder was not provided. You will not be able to access the commands editor...")
+    }
+    if (!params.interaction) {
+      console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Interaction commands folder was not provided. You will not be able to access the interaction commands editor...")
     }
     if (!params.port) {
       console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] A port was not provided. Taking default as 3000.")

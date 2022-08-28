@@ -29,6 +29,7 @@ module.exports = (app, params) => {
   require("./framework/misc.js")(app,isLoggedIn,params)
   require("./framework/guilds.js")(app,isLoggedIn,params)
   require("./framework/commands.js")(app,isLoggedIn,params)
+  require("./framework/interaction.js")(app,isLoggedIn,params)
   require("./framework/errors.js")(app,isLoggedIn,params)
   
   app.get('/', async (req, res) => {

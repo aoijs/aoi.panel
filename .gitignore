@@ -3,6 +3,7 @@ node_modules
 replit.nix
 /database
 /commands
+/interaction
 /__tests__
 .idea
 .vscode
