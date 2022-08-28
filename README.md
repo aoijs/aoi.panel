@@ -1,18 +1,20 @@
 # @akarui/aoi.panel
+
 ## A developer panel for aoi.js
 
-### Installing:
-```
-npm i @akarui/aoi.panel@latest
+## Installation
+
+```bash
+npm i @akarui/aoi.panel
 ```
 
-### Basic Usage:
-```js
+## Usage
+```javascript
 const {Panel} = require("@akarui/aoi.panel")
 
-const {Bot} = require("aoi.js")
+const {AoiClient} = require("aoi.js")
 
-const bot = new Bot({
+const bot = new AoiClient({
     token: "DISCORD BOT TOKEN",
     prefix: "DISCORD BOT PREFIX",
     intents: ["GUILDS", "GUILD_MESSAGES"]
@@ -35,10 +37,11 @@ panel.onError()//Will detect errors, and send it to aoi.panel's error page.
 bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
 ```
 
-### Advanced Usage
+## Advanced Usage
 
-1) Multiple users:
-```js
+### Multiple users
+
+```javascript
 const {Panel} = require("@akarui/aoi.panel")
 
 const panel = new Panel({
@@ -52,20 +55,28 @@ const panel = new Panel({
 })
 panel.loadPanel()
 ```
-**Note:** ***While using multiple users, you need the number of usernames equal to the number of passwords. If position of username is one, that user's password position should also be one! The more the number of username passwords inputted, the longer the panel will take to load, so do not use unless necessary!***
 
-2) Custom pages with express:
-```js
-var app =panel.app;
-app.get("/somenewpagename_which_is_not_already_used", async (req,res)=>{
+While using multiple users, you need the number of usernames equal to the number of passwords. 
+
+If position of username is one, that user's password position should also be one.
+
+The more the number of username passwords inputted, the longer the panel will take to load, so do not use unless necessary.
+
+
+### Custom pages with express
+
+```javascript
+const app = panel.app;
+app.get("/somenewpagename_which_is_not_already_used", async (req,res)=> {
   res.send("<html><head><title>Aoi.panel</title></head><body>Aoi.panel is cool ngl.</body></html>")
 })
 ```
-### or 
-checking if user is logged in:
-```js
-var app =panel.app;
-app.get("/somenewpagename_which_is_not_already_used", (req,res)=>{
+
+### Checking if user is logged in
+
+```javascript
+const app = panel.app;
+app.get("/somenewpagename_which_is_not_already_used", (req,res) =>{
   let a = panel.isLoggedIn(req, res);
   if(a==false){
     res.redirect("/")
@@ -75,5 +86,9 @@ app.get("/somenewpagename_which_is_not_already_used", (req,res)=>{
   }
 })
 ```
-**Note: *This is recommended to be used only by users acquainted with javascript, html and express. We will not be providing support for express/ html /custom javascript help.*** 
-## Join our support server for help [here](https://aoi.js.org/invite)
+
+This is recommended to be used only by users who have prior knowledge with javascript, html and express. 
+
+We will not be providing support for express / html / custom javascript help. 
+
+## Join our [Support Server](https://aoi.js.org/invite) for support

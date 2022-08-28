@@ -5,12 +5,12 @@ module.exports = (app, params) => {
   
   function isLoggedIn(req, res, next) {
 
-    if (Array.isArray(params.username) == true && Array.isArray(params.password)) {
+    if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
       for (let i = 0; i < params.username.length; i++) {
         if (req.session.uname === params.username[i] && req.session.pswd === params.password[i]) {
           return next();
         }
-        else if ((i + 1) == params.username.length) {
+        else if ((i + 1) === params.username.length) {
           return res.redirect("/")
         }
 
