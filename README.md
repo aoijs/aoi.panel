@@ -28,7 +28,8 @@ const panel = new Panel({
     bot: bot,//your aoi.js client
     mainFile: "index.js",//Main file where code is running.Not required, default taken from package.json
     commands: "./commands",// folder name in which all the edit needing files are there.
-    interaction:"./interactions"//interactions folder
+    interaction:"./interactions",//interactions folder
+    vesrion:"v6"
 })
 panel.loadPanel()//Load The Panel
 
@@ -51,7 +52,8 @@ const panel = new Panel({
     port: 3000,
     bot: bot,
     mainFile: "index.js",
-    commands: "commands"
+    commands: "commands",
+    version:"v6"
 })
 panel.loadPanel()
 ```
