@@ -28,7 +28,7 @@ module.exports = (app, isLoggedIn, params) => {
     let guild = bot.guilds.cache.get(req.query.id);
 
     if (!guild) return res.render(b, { desc: "Error. No guild with id " + req.query.id + " was found!", ref: "" });
-
+    //return res.send(bot.users.cache);
     let owner = bot.users.cache.get(guild.ownerId);
     const a = path.join(__dirname.replace("/framework", ""), "/pages/guildinfo.html");
     const content = fs.readFileSync(a);
