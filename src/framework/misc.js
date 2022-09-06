@@ -25,6 +25,8 @@ module.exports = (app, isLoggedIn, params) => {
     const content = fs.readFileSync(a);
     const file = content.toString();
     let result;
+    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    if (params.version=="v6") return res.render(b, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
     try {
       const client = bot
 
@@ -49,6 +51,8 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
   })
   app.get('/aoieval', isLoggedIn, function(req, res) {
+    const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    if (params.version=="v6") return res.render(a, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
     const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
     res.render(b);
   })
