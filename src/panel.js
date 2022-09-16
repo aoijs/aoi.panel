@@ -50,8 +50,8 @@ class Panel {
       params.mainFile = file;
 
     }
-    if (Array.isArray(params.username) == true && Array.isArray(params.password)) {
-      if (params.username.length != params.password.length) {
+    if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
+      if (params.username.length !== params.password.length) {
         console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] The number of passwords provided is not equal to the number of usernames. Exiting code...")
         process.exit(0)
       }
@@ -126,12 +126,12 @@ class Panel {
   isLoggedIn(req, res, next) {
     const params = this.params;
     
-    if (Array.isArray(params.username) == true && Array.isArray(params.password)) {
+    if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
       for (let i = 0; i < params.username.length; i++) {
         if (req.session.uname === params.username[i] && req.session.pswd === params.password[i]) {
           return true;
         }
-        else if ((i + 1) == params.username.length) {
+        else if ((i + 1) === params.username.length) {
           return false;
         }
 
