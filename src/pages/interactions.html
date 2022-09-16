@@ -89,7 +89,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
   <h1 class="w3-margin w3-jumbo" style="word-wrap: break-word;overflow:hidden;" style="font-size:10vw">Interactions</h1>
   <p class="w3-xlarge" style="font-size:7vw">Edit/Create new interaction commands!</p>
-  <a href="/interaction/new"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a Command</button></a><br><br>
+  <a href="/interaction/new"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a interaction file</button></a><br><br>
+  <a onclick="document.getElementById('id01').style.display='block'"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i> Create a slash Command</button></a><br><br>
   <a href="/commands/update"><button class="w3-button w3-black w3-large w3-round-large"><i class='fas fa-plus'></i>Update Commands</button></a><br><br>
   <label for="myInput"></label><input type="text" id="myInput" onkeyup="search()" placeholder="Search for commands..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
 
@@ -103,6 +104,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     </ul>
   </div>
 </div>
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>Modal Header</h2>
+      </header>
+      <div class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal Footer</p>
+      </footer>
+    </div>
+  </div>
 
 
 <!-- Footer -->

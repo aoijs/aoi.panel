@@ -22,6 +22,8 @@ module.exports = (app, isLoggedIn, params) => {
 
   app.post('/aoieval', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/aoievalexec.html");
+    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    if(params.type=="djs") return res.render(b, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
     const content = fs.readFileSync(a);
     const file = content.toString();
     let result;
@@ -49,10 +51,14 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
   })
   app.get('/aoieval', isLoggedIn, function(req, res) {
+    const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    if(params.type=="djs") return res.render(a, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
     const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
     res.render(b);
   })
   app.get('/djseval', isLoggedIn, function(req, res) {
+    
+    
     const b = path.join(__dirname.replace("/framework", ""), "/pages/djseval.html");
     res.render(b);
   })
