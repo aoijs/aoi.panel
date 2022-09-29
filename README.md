@@ -89,6 +89,6 @@ app.get("/somenewpagename_which_is_not_already_used", (req,res) =>{
 
 This is recommended to be used only by users who have prior knowledge with javascript, html and express. 
 
-We will not be providing support for express / html / custom javascript support. 
+We will not be providing support for express / html / custom javascript support.
 
 ## Join our [Support Server](https://aoi.js.org/invite) for support

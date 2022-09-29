@@ -3,25 +3,25 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
-  app.get('/interaction/update', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/interaction/update', isLoggedIn, function(req, res) {
     bot.loader?.update()
-    res.redirect('/interactions')
+    res.redirect(params.subDriectory+'/interactions')
   })
-  app.get('/interaction/new', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/interaction/new', isLoggedIn, function(req, res) {
     const folder = path.join(process.cwd(), "/" + params.interaction);
     let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newint.html")).toString();
     res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>", folder))
 
   })
-  app.get('/interaction/delete', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/interaction/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     pathh = pathh.replace(/%2F/g, path.sep)
     fs.unlinkSync(pathh)
-    res.redirect('/interactions')
+    res.redirect(params.subDriectory+'/interactions')
   })
-  app.get('/interaction/edit', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/interaction/edit', isLoggedIn, function(req, res) {
     let pathh = req.query.path
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
@@ -38,18 +38,18 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(d3.replace("<!val3>", pathh))
 
   })
-  app.post('/interaction/save', isLoggedIn, function(req, res) {
+  app.post(params.subDriectory+'/interaction/save', isLoggedIn, function(req, res) {
     let name = req.body.path
     name = name.replace(/\//g, path.sep)
     fs.writeFileSync(name, req.body.code)
     if (req.body.name === req.body.path) {
-      res.redirect(`/interaction/edit?path=${name}`)
+      res.redirect(params.subDriectory+`/interaction/edit?path=${name}`)
     } else {
       fs.renameSync(name, req.body.name)
-      res.redirect(`/interaction/edit?path=${req.body.name}`)
+      res.redirect(params.subDriectory+`/interaction/edit?path=${req.body.name}`)
     }
   })
-  app.get('/interactions', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/interactions', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/interactions.html");
     const content = fs.readFileSync(a);
     const file = content.toString();

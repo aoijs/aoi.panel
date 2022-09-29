@@ -3,14 +3,14 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
-  app.post('/index/save', isLoggedIn, function(req, res) {
+  app.post(params.subDriectory+'/index/save', isLoggedIn, function(req, res) {
     let code = req.body.code
 
     fs.writeFileSync(path.join(process.cwd(), params.mainFile), req.body.code)
     res.redirect("/edit/mainfile")
 
   })
-  app.get('/edit/mainfile', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/edit/mainfile', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/editindex.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
@@ -20,7 +20,7 @@ module.exports = (app, isLoggedIn, params) => {
 
   })
 
-  app.post('/aoieval', isLoggedIn, async (req, res) => {
+  app.post(params.subDriectory+'/aoieval', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/aoievalexec.html");
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if(params.type=="djs") return res.render(b, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
@@ -50,19 +50,19 @@ module.exports = (app, isLoggedIn, params) => {
     const data = require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')
     res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
   })
-  app.get('/aoieval', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/aoieval', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if(params.type=="djs") return res.render(a, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
     const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
     res.render(b);
   })
-  app.get('/djseval', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/djseval', isLoggedIn, function(req, res) {
     
     
     const b = path.join(__dirname.replace("/framework", ""), "/pages/djseval.html");
     res.render(b);
   })
-  app.post('/djseval', isLoggedIn, async (req, res) => {
+  app.post(params.subDriectory+'/djseval', isLoggedIn, async (req, res) => {
     let result;
     const a = path.join(__dirname.replace("/framework", ""), "/pages/djsevalexec.html");
     const content = fs.readFileSync(a);
@@ -79,7 +79,7 @@ module.exports = (app, isLoggedIn, params) => {
 
 
   })
-  app.post('/shellexec', isLoggedIn, async (req, res) => {
+  app.post(params.subDriectory+'/shellexec', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/shellexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
@@ -96,15 +96,15 @@ module.exports = (app, isLoggedIn, params) => {
 
 
   })
-  app.get('/stats', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/stats', isLoggedIn, function(req, res) {
     const b = path.join(__dirname.replace("/framework", ""), "/pages/stats.html");
     res.render(b);
   })
-  app.get('/shell', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/shell', isLoggedIn, function(req, res) {
     const b = path.join(__dirname.replace("/framework", ""), "/pages/shell.html");
     res.render(b);
   })
-  app.get('/stats/data', async (req, res) => {
+  app.get(params.subDriectory+'/stats/data', async (req, res) => {
     let client = bot
     let days = Math.floor(client.uptime / 86400000);
 
@@ -125,7 +125,7 @@ module.exports = (app, isLoggedIn, params) => {
 
     })
   })
-  app.get('/reboot', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/reboot', isLoggedIn, function(req, res) {
     res.send("Rebooting system. If the panel does not automatically start within 1-5 minutes see your hosting service' console!")
     process.on("exit", () => {
       require("child_process").spawn(process.argv.shift(), process.argv, {

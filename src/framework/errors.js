@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
-  app.get('/errors/delete', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/errors/delete', isLoggedIn, function(req, res) {
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.data) return res.render(b, { desc: "Error. No data was provided!", ref: "" });
 
@@ -35,10 +35,10 @@ module.exports = (app, isLoggedIn, params) => {
     } else {
       fs.unlinkSync()
     }
-    res.redirect("/errors")
+    res.redirect(params.subDriectory+"/errors")
   })
 
-  app.get('/errors', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/errors', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/errors.html");
     const content = fs.readFileSync(a);
     const file = content.toString();

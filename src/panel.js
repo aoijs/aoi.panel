@@ -16,6 +16,9 @@ class Panel {
       console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting Code...")
       process.exit(0)
     }
+    if(!params.subDriectory){
+      params.subDriectory="";
+    }
     if(params.type=="djs"){
       console.log("\x1b[32m%s\x1b[0m", "Discord.js version of panel is loading.")
     }

@@ -3,25 +3,25 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
-  app.get('/command/update', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/command/update', isLoggedIn, function(req, res) {
     bot.loader?.update()
-    res.redirect('/commands')
+    res.redirect(params.subDriectory+'/commands')
   })
-  app.get('/command/new', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/command/new', isLoggedIn, function(req, res) {
     const folder = path.join(process.cwd(), "/" + params.commands);
     let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newcmd.html")).toString();
     res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>", folder))
 
   })
-  app.get('/command/delete', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/command/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     pathh = pathh.replace(/%2F/g, path.sep)
     fs.unlinkSync(pathh)
-    res.redirect('/commands')
+    res.redirect(params.subDriectory+'/commands')
   })
-  app.get('/command/edit', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/command/edit', isLoggedIn, function(req, res) {
     let pathh = req.query.path
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
@@ -38,19 +38,19 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(d3.replace("<!val3>", pathh))
 
   })
-  app.post('/command/save', isLoggedIn, function(req, res) {
+  app.post(params.subDriectory+'/command/save', isLoggedIn, function(req, res) {
     let name = req.body.path
     name = name.replace(/\//g, path.sep)
     fs.writeFileSync(name, req.body.code)
     if (req.body.name === req.body.path) {
-      res.redirect(`/command/edit?path=${name}`)
+      res.redirect(params.subDriectory+`/command/edit?path=${name}`)
     } else {
       fs.renameSync(name, req.body.name)
-      res.redirect(`/command/edit?path=${req.body.name}`)
+      res.redirect(params.subDriectory+`/command/edit?path=${req.body.name}`)
     }
   })
   //COMMANDS
-  app.get('/commands', isLoggedIn, function(req, res) {
+  app.get(params.subDriectory+'/commands', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/commands.html");
     const content = fs.readFileSync(a);
     const file = content.toString();

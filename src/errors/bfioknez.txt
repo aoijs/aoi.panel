@@ -1,0 +1,7 @@
+Error: Uncaught Exception/Catch 
+
+Error: Cannot find module '../commands/customfuncs/cf.js'
+Require stack:
+- /home/runner/panel/index.test.js 
+
+uncaughtException

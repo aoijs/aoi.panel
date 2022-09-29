@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
-  app.get('/guilds', isLoggedIn, async (req, res) => {
+  app.get(params.subDriectory+'/guilds', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/guilds.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
@@ -22,7 +22,7 @@ module.exports = (app, isLoggedIn, params) => {
     const rnew = file.replace("<!Add Guilds Here>", guild);
     res.send(rnew)
   })
-  app.get('/guild/info', isLoggedIn, async (req, res) => {
+  app.get(params.subDriectory+'/guild/info', isLoggedIn, async (req, res) => {
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if (!req.query.id) return res.render(b, { desc: "Error. No guild id was provided!", ref: "" });
     let guild = bot.guilds.cache.get(req.query.id);
@@ -48,13 +48,13 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(rrneww.replace("<!link>", im))
 
   })
-  app.get('/guild/leave', isLoggedIn, async (req, res) => {
+  app.get(params.subDriectory+'/guild/leave', isLoggedIn, async (req, res) => {
     if (!req.query.id) return res.send("Error. No guild provided!");
     let guild = bot.guilds.cache.get(req.query.id);
 
     if (!guild) return res.send("Error. No guild with id " + req.query.id + " was found!");
     await guild.leave()
-    res.redirect("/guilds")
+    res.redirect(params.subDriectory+"/guilds")
 
   })
 }

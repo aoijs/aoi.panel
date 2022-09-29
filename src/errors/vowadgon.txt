@@ -1,0 +1,5 @@
+Error: Uncaught Exception/Catch 
+
+Error: ENOENT: no such file or directory, scandir './commands/customfuncs' 
+
+uncaughtException

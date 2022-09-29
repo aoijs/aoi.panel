@@ -11,7 +11,7 @@ module.exports = (app, params) => {
           return next();
         }
         else if ((i + 1) === params.username.length) {
-          return res.redirect("/")
+          return res.redirect(params.subDriectory+"/")
         }
 
       }
@@ -21,7 +21,7 @@ module.exports = (app, params) => {
       return next()
     }
     else {
-      res.redirect('/')
+      res.redirect(params.subDriectory+'/')
     }
   }
   
@@ -32,16 +32,16 @@ module.exports = (app, params) => {
   require("./framework/interaction.js")(app,isLoggedIn,params)
   require("./framework/errors.js")(app,isLoggedIn,params)
   
-  app.get('/', async (req, res) => {
+  app.get(params.subDriectory+'/', async (req, res) => {
     const a = path.join(__dirname, "/pages/login.html");
     res.sendFile(a);
   })
-  app.get('/login', async (req, res) => {
+  app.get(params.subDriectory+'/login', async (req, res) => {
     req.session.uname = req.query.uname;
     req.session.pswd = req.query.pswd;
     res.redirect("/panel")
   })
-  app.get('/panel', isLoggedIn, async (req, res) => {
+  app.get(params.subDriectory+'/panel', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname, "/pages/main.html");
     const b = path.join(__dirname, "/pages/boterr.html");
     if (!bot.user) return res.render(b, {
@@ -61,9 +61,9 @@ module.exports = (app, params) => {
     res.sendFile(a)
   })
 
-  app.get('*', function(req, res) {
+  /*app.get('*', function(req, res) {
     const b = path.join(__dirname, "/pages/boterr.html");
     res.status(404).render(b, { desc: "Oops. This page was not found.", ref: "" });
-  });
+  });*/
 
 }
