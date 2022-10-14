@@ -1,0 +1,6 @@
+Error: Unhandled Rejection/Catch 
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /home/runner/panel-4/node_modules/node-fetch/src/index.js from /home/runner/panel-4/src/panel.js not supported.
+Instead change the require of index.js in /home/runner/panel-4/src/panel.js to a dynamic import() which is available in all CommonJS modules. 
+
+[object Promise]

@@ -21,12 +21,16 @@ module.exports = (app, isLoggedIn, params) => {
   })
 
   app.post('/aoieval', isLoggedIn, async (req, res) => {
+
+    
     const a = path.join(__dirname.replace("/framework", ""), "/pages/aoievalexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let result;
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    
     if (params.version=="v6") return res.render(b, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
+    if (params.type=="djs") return res.render(b, { desc: "This feature is not available for discord.js panel!", ref: "" });
     try {
       const client = bot
 
@@ -52,7 +56,9 @@ module.exports = (app, isLoggedIn, params) => {
   })
   app.get('/aoieval', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    
     if (params.version=="v6") return res.render(a, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
+    if (params.type=="djs") return res.render(a, { desc: "This feature is not available for discord.js panel!", ref: "" });
     const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
     res.render(b);
   })

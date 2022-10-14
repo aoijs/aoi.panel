@@ -4,11 +4,15 @@ const path = require('path')
 const fs = require('fs')
 const bodyParser = require("body-parser")
 
+const util = require("./utilFuncs.js");
+
 
 class Panel {
   constructor(params) {
     this.params = params;
-    
+
+    util.checkVersion();
+    util.checkPackage();
 
     console.log("\x1b[32m%s\x1b[0m", "Initializing @akarui/aoi.panel.")
 
@@ -16,7 +20,12 @@ class Panel {
       console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting Code...")
       process.exit(0)
     }
-    if (params.version=="v6"){
+    if(params.type=="djs"||params.type=="discord.js"||params.type=="discordjs"){
+      params.type="djs";
+      console.log("You are using discord.js version of @akarui/aoi.panel!");
+    }
+    
+    if (params.version == "v6") {
       const a = params.bot;
       params.bot = a.client;
       console.log("\x1b[32m%s\x1b[0m", "Panel ready for aoi.js version v6-dev")
@@ -52,6 +61,9 @@ class Panel {
       params.mainFile = file;
 
     }
+
+
+
     if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
       if (params.username.length !== params.password.length) {
         console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] The number of passwords provided is not equal to the number of usernames. Exiting code...")
@@ -79,7 +91,7 @@ class Panel {
 
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
-    app.set('views', __dirname);
+    app.set('views', __dirname + "/pages");
 
     app.listen(params.port)
 
@@ -127,7 +139,7 @@ class Panel {
   }
   isLoggedIn(req, res, next) {
     const params = this.params;
-    
+
     if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
       for (let i = 0; i < params.username.length; i++) {
         if (req.session.uname === params.username[i] && req.session.pswd === params.password[i]) {

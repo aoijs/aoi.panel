@@ -1,6 +1,6 @@
 # @akarui/aoi.panel
 
-## A developer panel for aoi.js
+## Akarui's Official Developer Panel for [aoi.js](https://aoi.js.org)
 
 ## Installation
 
@@ -8,7 +8,9 @@
 npm i @akarui/aoi.panel
 ```
 
-## Usage
+## Usage 
+
+### aoi.js - v5
 ```javascript
 const {Panel} = require("@akarui/aoi.panel")
 
@@ -28,14 +30,54 @@ const panel = new Panel({
     bot: bot,//your aoi.js client
     mainFile: "index.js",//Main file where code is running.Not required, default taken from package.json
     commands: "./commands",// folder name in which all the edit needing files are there.
-    interaction:"./interactions",//interactions folder
-    vesrion:"v6"
+    interaction:"./interactions"//interactions folder
 })
 panel.loadPanel()//Load The Panel
 
 panel.onError()//Will detect errors, and send it to aoi.panel's error page.
 
 bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
+```
+
+### aoi.js - v6
+
+```javascript
+const { AoiClient } = require("aoi.js");
+const { Panel } = require("@akarui/aoi.panel")
+
+
+const bot = new AoiClient({
+    token: process.env.token,
+    intents: ["Guilds", "GuildMessages", "MessageContent"],
+    prefix: "n!"
+})
+
+bot.addEvent("onMessage")
+
+bot.commands.add("basicCommand", {
+    name: "ping",
+    code: `Pong! $pingms`
+})
+
+bot.start()
+
+bot.commands.load("./commands/")
+
+const panel = new Panel({
+    username: process.env["uname"],
+    password: process.env["pass"],
+    secret: require('crypto').randomBytes(16).toString("hex")
+    port: 3000,
+    bot: bot,
+    mainFile: "index.test.js",
+    commands: "./commands",
+    interaction:"./interactions",
+  version:"v6"
+})
+panel.loadPanel()
+
+panel.onError()
+
 ```
 
 ## Advanced Usage
@@ -52,8 +94,7 @@ const panel = new Panel({
     port: 3000,
     bot: bot,
     mainFile: "index.js",
-    commands: "commands",
-    version:"v6"
+    commands: "commands"
 })
 panel.loadPanel()
 ```
@@ -74,7 +115,7 @@ app.get("/somenewpagename_which_is_not_already_used", async (req,res)=> {
 })
 ```
 
-### Checking if user is logged in
+#### Checking if user is logged in
 
 ```javascript
 const app = panel.app;
@@ -91,6 +132,6 @@ app.get("/somenewpagename_which_is_not_already_used", (req,res) =>{
 
 This is recommended to be used only by users who have prior knowledge with javascript, html and express. 
 
-We will not be providing support for express / html / custom javascript support. 
+We will not be providing support for express / html / custom javascript support.
 
 ## Join our [Support Server](https://aoi.js.org/invite) for support

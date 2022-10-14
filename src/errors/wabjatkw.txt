@@ -1,0 +1,5 @@
+Error: Unhandled Rejection/Catch 
+
+ReferenceError: fetch is not defined 
+
+[object Promise]
