@@ -38,6 +38,6 @@ bot.onMessage() //Will detect messages, and send it to aoi.js core to send messa
 ```
 ## We also support aoi.js v6 and discord.js v13.
 
-## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/aoiv6/documentation/index.md)
+## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/aoiv6/documentation/README.md)
 
 ## Join our [Support Server](https://aoi.js.org/invite) for support
