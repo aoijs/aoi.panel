@@ -41,7 +41,7 @@ module.exports = (app, isLoggedIn, params) => {
       im = img.replace(".webp", ".png")
     }
 
-    let info = `Guild ID: ${guild.id}<br>Guild Name: <b><xmp>${guild.name}</xmp></b><br>Guild Owner ID: ${guild.ownerId}<br>Guild Owner Username:${owner.tag} <br>Members count: ${guild.memberCount}<br>Features: ${guild.features.join(', ').replace("_", " ").toLowerCase()}`
+    let info = `Guild ID: ${guild.id}<br>Guild Name: <b><pre>${guild.name}</pre></b><br>Guild Owner ID: ${guild.ownerId}<br>Guild Owner Username:${owner.tag} <br>Members count: ${guild.memberCount}<br>Features: ${guild.features.join(', ').replace("_", " ").toLowerCase()}`
     const rnew = file.replace("<!Add Info Here>", info);
     const rneww = rnew.replace("<!GUILDID>", guild.id);
     const rrneww = rneww.replace("<!GUILDNAME>", guild.name);
