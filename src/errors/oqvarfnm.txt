@@ -1,5 +1,0 @@
-Error: Unhandled Rejection/Catch 
-
-TypeError: fetch is not a function 
-
-[object Promise]
