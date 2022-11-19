@@ -2,6 +2,13 @@
 <html>
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    input
+{
+  box-shadow:inset 0 0 5px 5px #999;
+  background: #fff;
+}
+    </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body style="background-color:#000000;overflow: hidden;">
 
@@ -12,8 +19,8 @@
 
 
 
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-indigo" style="max-width:600px">
+  <div id="id01" class="w3-modal w3-round-xxlarge">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-indigo w3-round-xxlarge" style="max-width:600px">
 
       <div class="w3-center"><br>
 
@@ -21,21 +28,20 @@
       </div>
 
       <form class="w3-container" action="/login">
-        <div class="w3-section">
+        <div class="w3-section w3-round-xlarge">
           <label><b>Username</b></label>
-          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="uname" required>
+          <input class="w3-input w3-border w3-margin-bottom w3-round-xlarge w3-hover-grey" type="text" placeholder="Enter Username" name="uname" required>
           <label><b>Password</b></label>
-          <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="pswd" required>
-          <button class="w3-button w3-block w3-blue w3-section w3-padding" type="submit">Login</button>
+          <input class="w3-input w3-border w3-round-xlarge w3-hover-grey" type="password" placeholder="Enter Password" name="pswd" required>
+          <br>____________________________________________________________
+          <button class="w3-button w3-block w3-blue w3-section w3-padding w3-round-xlarge" type="submit">Login</button>
           <!--<input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me-->
         </div>
       </form>
 
-      <div class="w3-container w3-border-top w3-padding-16 w3-indigo">
-
-        <span class="w3-right w3-padding w3-hide-small"><a href="#" onclick="return confirm_alert(this);">Forgot password?</a></span>
-      </div>
-
+      <!--<div class="w3-container w3-padding-16 w3-indigo w3-round-xlarge">
+        <span class="w3-right w3-padding w3-hide-small w3-round-xlarge"><a href="#" onclick="return confirm_alert(this);">Forgot password?</a></span>
+      </div>-->
     </div>
   </div>
 </div>

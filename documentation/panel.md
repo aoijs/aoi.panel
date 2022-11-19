@@ -20,5 +20,5 @@ const panel = new Panel({
 | `mainFile` | Name of the main file where the code is running. | string | `true` | `"index.js"`
 | `commands` | Commands Folder Where all message commands are handled. | string | `false` | `"./commands/"`|
 | `interactions` | Interactitons Folder Where all slash commands are handled. | string | `false` | `"./interactions/"` |
-|`version`| Version Of aoi.js: `v5` or `v6` | string | `false`. Defauit:`v5`| `"v6"` or `"v6"`|
+|`version`| Version Of aoi.js: `v5` or `v6` | string | `false`. Defauit:`v5`| `"v6"` or `"v5"`|
 |`type`| Type of panel. aoi.js or discord.js | string | `false`. Default: `aoi.js` | `"djs"` or `"aoi"`|
