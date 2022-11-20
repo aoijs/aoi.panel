@@ -96,7 +96,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
   <h1 class="w3-margin w3-jumbo">Guilds</h1>
-  <p class="w3-xlarge">Click on the guild icon to get information on the guild.</p>
+  <p class="w3-xlarge">Click on the "view" to get information on the guild.</p>
   <input type="text" id="myInput" onkeyup="search()" placeholder="Search for guilds..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
 
 </header>
@@ -140,7 +140,7 @@ function search() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
+    a = li[i].getElementsByTagName("pre")[0];
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";

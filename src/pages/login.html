@@ -10,6 +10,8 @@
 }
     </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
 <body style="background-color:#000000;overflow: hidden;">
 
 <div class="w3-container" >
@@ -27,14 +29,15 @@
         <img src="/bird.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
       </div>
 
-      <form class="w3-container" action="/login">
+      <form class="w3-container" action="#">
         <div class="w3-section w3-round-xlarge">
           <label><b>Username</b></label>
-          <input class="w3-input w3-border w3-margin-bottom w3-round-xlarge w3-hover-grey" type="text" placeholder="Enter Username" name="uname" required>
-          <label><b>Password</b></label>
-          <input class="w3-input w3-border w3-round-xlarge w3-hover-grey" type="password" placeholder="Enter Password" name="pswd" required>
+          <input class="w3-input w3-border w3-margin-bottom w3-round-xlarge w3-hover-grey" type="text" placeholder="Enter Username" id = "uname" name="uname" required>
+          <label><b>Password </b></label>
+          <input class="w3-input w3-border w3-round-xlarge w3-hover-grey" type="password" placeholder="Enter Password  " name="pswd" id="pswd" required>
+          <div onmouseover="a()" onmouseout="a()" class=" w3-round-xxlarge w3-center" id="sp" width="20px"><i class='fa fa-eye-slash'></i> Show Password</div>
           <br>____________________________________________________________
-          <button class="w3-button w3-block w3-blue w3-section w3-padding w3-round-xlarge" type="submit">Login</button>
+          <div class="w3-button w3-block w3-blue w3-section w3-padding w3-round-xlarge" onclick="validate()">Login</div>
           <!--<input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me-->
         </div>
       </form>
@@ -47,9 +50,33 @@
 </div>
   <script>
     document.getElementById('id01').style.display='block'
-    function confirm_alert(node) {
-    return confirm("If you have forgotten your password, please go to your hosting site and see the inputted password.");
+    const input = document.getElementById("pswd")
+    function a(){
+      
+      if (input.getAttribute("type") === "password") {
+  input.setAttribute("type", "text");
+        document.getElementById( "sp" ).innerHTML = "<i class='fa fa-eye-slash'></i> Hide Password"
+} else {
+  input.setAttribute("type", "password");
+        document.getElementById( "sp" ).innerHTML = "<i class='fa fa-eye'></i> Show Password"
 }
+    }
+
+    function validate(){
+      var uname = document.getElementById("uname").value;
+      var pswd = document.getElementById("pswd").value;
+
+      fetch(`/validate/?uname=${uname}&pswd=${pswd}`)
+    .then(result => result.json())
+    .then((output) => {
+      if(output.data=="false"){
+        window.location.href="/"
+      }
+      else{
+        window.location.href=`/login/?uname=${uname}&pswd=${pswd}`
+      }
+    })
+    }
   </script>
             
 </body>
