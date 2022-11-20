@@ -20,13 +20,19 @@ module.exports = (app, isLoggedIn, params) => {
 
   })
 
-  app.post(params.subDriectory+'/aoieval', isLoggedIn, async (req, res) => {
+  app.post('/aoieval', isLoggedIn, async (req, res) => {
+
+    
     const a = path.join(__dirname.replace("/framework", ""), "/pages/aoievalexec.html");
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     if(params.type=="djs") return res.render(b, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
     const content = fs.readFileSync(a);
     const file = content.toString();
     let result;
+    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    
+    if (params.version=="v6") return res.render(b, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
+    if (params.type=="djs") return res.render(b, { desc: "This feature is not available for discord.js panel!", ref: "" });
     try {
       const client = bot
 
@@ -50,9 +56,11 @@ module.exports = (app, isLoggedIn, params) => {
     const data = require('util').inspect(result, { depth: 0 }).replace(/\n/g, '<br>')
     res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
   })
-  app.get(params.subDriectory+'/aoieval', isLoggedIn, function(req, res) {
+  app.get('/aoieval', isLoggedIn, function(req, res) {
     const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
-    if(params.type=="djs") return res.render(a, { desc: "Error. This Feature is not accessable with discord.js!", ref: "" })
+    
+    if (params.version=="v6") return res.render(a, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
+    if (params.type=="djs") return res.render(a, { desc: "This feature is not available for discord.js panel!", ref: "" });
     const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
     res.render(b);
   })

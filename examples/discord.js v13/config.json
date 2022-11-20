@@ -1,0 +1,10 @@
+{
+  "token":"",
+  "prefix":"djs!",
+  "commandsfolder":"commands",
+  "status":"Made By Bumblebee",
+  "username":"",
+  "password":""
+  
+  "intents":32767
+}

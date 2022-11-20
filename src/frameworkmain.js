@@ -36,7 +36,29 @@ module.exports = (app, params) => {
     const a = path.join(__dirname, "/pages/login.html");
     res.sendFile(a);
   })
-  app.get(params.subDriectory+'/login', async (req, res) => {
+
+  app.get('/validate',async(req,res)=>{
+    if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
+      for (let i = 0; i < params.username.length; i++) {
+        if (req.query.uname === params.username[i] && req.query.pswd === params.password[i]) {
+          return next();
+        }
+        else if ((i + 1) === params.username.length) {
+          return res.json({data:"false"})
+        }
+
+      }
+
+    }
+    else if (req.query.pswd === params.password && req.query.uname === params.username) {
+      return res.json({data:"true"})
+    }
+    else {
+      return res.json({data:"false"})
+    }
+  })
+  
+  app.get('/login', async (req, res) => {
     req.session.uname = req.query.uname;
     req.session.pswd = req.query.pswd;
     res.redirect("/panel")

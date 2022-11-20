@@ -1,6 +1,15 @@
-# @akarui/aoi.panel
+# @akarui/aoi.panel Documentation
 
-## Akarui's Official Developer Panel for [aoi.js](https://aoi.js.org) 
+## Table Of Contents
+
+| Name | Description | Link |
+| -------- | -------- | -------- |
+| The panel Class | The panel Class and its parameters | [link](https://github.com/AkaruiDevelopment/panel/blob/aoiv6/documentation/panel.md) | 
+| Functions | loadPanel and onError | [link](https://github.com/AkaruiDevelopment/panel/blob/aoiv6/documentation/funcs.md) | 
+| Advanced Features | Multiple accounts, custom pages, etc. | [link](https://github.com/AkaruiDevelopment/panel/blob/aoiv6/documentation/advanced.md) | 
+
+## To View Examples Click [here](https://github.com/AkaruiDevelopment/panel/blob/aoiv6/examples/)
+
 
 ## Installation
 
@@ -8,7 +17,7 @@
 npm i @akarui/aoi.panel
 ```
 
-## Basic Usage:
+## Basic Usage (aoi.js v5):
 ```javascript
 const {Panel} = require("@akarui/aoi.panel")
 
@@ -36,8 +45,4 @@ panel.onError()//Will detect errors, and send it to aoi.panel's error page.
 
 bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
 ```
-## We also support aoi.js v6 and discord.js v13.
 
-## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/aoiv6/documentation/README.md)
-
-## Join our [Support Server](https://aoi.js.org/invite) for support
