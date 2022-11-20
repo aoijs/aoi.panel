@@ -13,7 +13,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://kit.fontawesome.com/dc1278f4ea.js' crossorigin='anonymous'></script>
 <body style="background-color:#000000;overflow: hidden;">
+<div id="myProgress">
+  <div id="myBar" class="w3-indigo"></div>
+</div>
+  
+  <style>
+  #myProgress {
+  width: 100%;
+  background-color: grey;
+}
 
+#myBar {
+  width: 1%;
+  height: 20px;
+}
+  </style>
 <div class="w3-container" >
   <br><br><br><br><br><br><br>
 <img src="/logo.png" alt="aoi.js" style="max-width:350px;max-height:350px"> <!--style="max-width:200px;max-height:200px"-->
@@ -23,7 +37,12 @@
 
   <div id="id01" class="w3-modal w3-round-xxlarge">
     <div class="w3-modal-content w3-card-4 w3-animate-zoom w3-indigo w3-round-xxlarge" style="max-width:600px">
-
+      <div class="w3-panel w3-red w3-display-container w3-round-xxlarge" id="err">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-large w3-display-topright w3-round-xxlarge">&times;</span>
+  <h3>Oops!</h3>
+  <p>Invalid username or password was provided.</p>
+</div>
       <div class="w3-center"><br>
 
         <img src="/bird.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
@@ -49,7 +68,15 @@
   </div>
 </div>
   <script>
-    document.getElementById('id01').style.display='block'
+    document.getElementById('id01').style.display='block';
+    document.getElementById('myBar').style.display='none';
+    if(window.location.href.includes("?error=true")){
+      document.getElementById('err').style.display='block';
+    }
+    else{
+      document.getElementById('err').style.display='none';
+    }
+    
     const input = document.getElementById("pswd")
     function a(){
       
@@ -63,6 +90,26 @@
     }
 
     function validate(){
+      document.getElementById("myBar").style.display="block";
+      var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+      move()
       var uname = document.getElementById("uname").value;
       var pswd = document.getElementById("pswd").value;
 
@@ -70,7 +117,7 @@
     .then(result => result.json())
     .then((output) => {
       if(output.data=="false"){
-        window.location.href="/"
+        window.location.href="/?error=true"
       }
       else{
         window.location.href=`/login/?uname=${uname}&pswd=${pswd}`

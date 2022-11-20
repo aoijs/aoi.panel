@@ -1,5 +1,0 @@
-Error: Uncaught Exception/Catch 
-
-undefined 
-
-[object Promise]
