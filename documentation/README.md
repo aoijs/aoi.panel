@@ -45,4 +45,12 @@ panel.onError()//Will detect errors, and send it to aoi.panel's error page.
 
 bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
 ```
+LOGIN PAGE
+![image](https://user-images.githubusercontent.com/85351846/203999818-50ff6898-fdee-49c8-8ade-0f94df4c0248.png)
+
+MAIN PANEL PAGE
+![image](https://user-images.githubusercontent.com/85351846/204000002-d2de03e3-d4cd-4791-80b3-afbbc8225863.png)
+
+GUILDS PAGE
+![image](https://user-images.githubusercontent.com/85351846/204000224-d1ff27f2-ed6d-4da4-8f93-27ece09d09a4.png)
 
