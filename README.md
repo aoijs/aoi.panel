@@ -1,7 +1,5 @@
 # @akarui/aoi.panel
 
-## Akarui's Official Developer Panel for [aoi.js](https://aoi.js.org) 
-
 ## Installation
 
 ```bash
