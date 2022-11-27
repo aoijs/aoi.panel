@@ -27,8 +27,13 @@ class Panel {
     
     if (params.version == "v6") {
       const a = params.bot;
+      //params.bot = a.client;
+      console.log("\x1b[32m%s\x1b[0m", "Panel ready for aoi.js version v6")
+    }
+    if (params.version == "v7") {
+      const a = params.bot;
       params.bot = a.client;
-      console.log("\x1b[32m%s\x1b[0m", "Panel ready for aoi.js version v6-dev")
+      console.log("\x1b[32m%s\x1b[0m", "Panel ready for aoi.js version v7")
     }
     if (!params.commands) {
       console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Commands folder was not provided. You will not be able to access the commands editor...")
