@@ -10,18 +10,6 @@ module.exports = (app, isLoggedIn, params) => {
   app.get(params.subDriectory+'/command/new', isLoggedIn, function(req, res) {
     const folder = path.join(process.cwd(), "/" + params.commands);
     let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newcmd.html")).toString();
-    if (params.version=="v6") {pg=pg.replace("<!code>",`
-module.exports = {
-  type: "basicCommand",
-  name: "command-name",
-  code: \`code\`
-}`)}
-    else {pg=pg.replace("<!code>",`
-module.exports = {
-  name: "command-name",
-  //aliases:[],
-  code: \`code\`
-}`)}
     res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>", folder))
 
   })

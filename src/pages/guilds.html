@@ -40,14 +40,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   background: #0373fc; 
 }
 
-  .grid {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(4, 1fr);
-    display: flex;                       /* establish flex container */
-  flex-wrap: wrap;                     /* enable flex items to wrap */
-  justify-content: space-around;
-}
 </style>
 <style>
   textarea::placeholder {
@@ -69,7 +61,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <body>
 
 <!-- Navbar -->
-<div >
+<div class="w3-top">
   <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="/panel" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
@@ -96,14 +88,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
 
   <h1 class="w3-margin w3-jumbo">Guilds</h1>
-  <p class="w3-xlarge">Click on the "view" to get information on the guild.</p>
+  <p class="w3-xlarge">Click on the guild icon to get information on the guild.</p>
   <input type="text" id="myInput" onkeyup="search()" placeholder="Search for guilds..." class="w3-input w3-border w3-round-large w3-indigo" size="30">
 
 </header>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container w3-black"style="word-wrap: break-word;overflow:hidden;">
-  <div class="w3-content w3-center grid">
+  <div class="w3-content w3-center">
     <ul id="myUL" style="list-style: none;" style="word-wrap: break-word;overflow:hidden;">
       <!Add Guilds Here>
     </ul>
@@ -140,7 +132,7 @@ function search() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("pre")[0];
+    a = li[i].getElementsByTagName("a")[0];
     txtValue = a.textContent || a.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";

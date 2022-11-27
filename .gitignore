@@ -5,10 +5,7 @@ replit.nix
 /commands
 /interaction
 /__tests__
-/.upm/store.json
 .idea
 .vscode
 index.test.js
 package-lock.json
-.git
-.config
