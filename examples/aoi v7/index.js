@@ -36,7 +36,7 @@ const panel = new Panel({
   mainFile: "index.js",//Main file where code is running.Not required, default taken from package.json
   commands: "./commands",// folder name in which all the edit needing files are there.
   //interaction:"./interactions",//interactions folder
-  version: "v6"
+  version: "v7"
 })
 panel.loadPanel()//Load The Panel
 

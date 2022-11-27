@@ -29,7 +29,7 @@ module.exports = (app, isLoggedIn, params) => {
     let result;
     const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
     
-    if (params.version=="v6") return res.render(b, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
+    if (params.version=="v7") return res.render(b, { desc: "This feature is not yet ready in V7 Panel!", ref: "" });
     if (params.type=="djs") return res.render(b, { desc: "This feature is not available for discord.js panel!", ref: "" });
     try {
       const client = bot

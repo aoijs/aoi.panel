@@ -11,7 +11,6 @@ module.exports = (app, isLoggedIn, params) => {
     const folder = path.join(process.cwd(), "/" + params.interaction);
     let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newint.html")).toString();
     res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>", folder))
-
   })
   app.get('/interaction/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
