@@ -9,12 +9,12 @@ module.exports = (app, isLoggedIn, params) => {
   })
   app.get('/interaction/new', isLoggedIn, function(req, res) {
     const folder = path.join(process.cwd(), "/" + params.interaction);
-    let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newint.html")).toString();
+    let pg = fs.readFileSync(path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/newint.html")).toString();
     res.send(pg.replace("<!val>", folder).replace("<!val>", folder).replace("<!val>", folder))
   })
   app.get('/interaction/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     pathh = pathh.replace(/%2F/g, path.sep)
     fs.unlinkSync(pathh)
@@ -22,13 +22,13 @@ module.exports = (app, isLoggedIn, params) => {
   })
   app.get('/interaction/edit', isLoggedIn, function(req, res) {
     let pathh = req.query.path
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     let name = pathh.replace(/%2F/g, '/')
     pathh = pathh.replace(/%2F/g, ',')
     let code = fs.readFileSync(pathh)
     if (!code) return res.render(b, { desc: "Error. No valid path was provided!", ref: "" });
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/editcode.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/editcode.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     const d1 = file.replace("<!val>", req.query.path);
@@ -49,7 +49,7 @@ module.exports = (app, isLoggedIn, params) => {
     }
   })
   app.get('/interactions', isLoggedIn, function(req, res) {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/interactions.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/interactions.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let text = ''
