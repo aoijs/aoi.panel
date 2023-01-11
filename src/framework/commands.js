@@ -9,7 +9,7 @@ module.exports = (app, isLoggedIn, params) => {
   })
   app.get('/command/new', isLoggedIn, function(req, res) {
     const folder = path.join(process.cwd(), "/" + params.commands);
-    let pg = fs.readFileSync(path.join(__dirname.replace("/framework", ""), "/pages/newcmd.html")).toString();
+    let pg = fs.readFileSync(path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/newcmd.html")).toString();
     pg=pg.replace("<!code>",`
 module.exports = {
   name: "command-name",
@@ -21,7 +21,7 @@ module.exports = {
   })
   app.get('/command/delete', isLoggedIn, function(req, res) {
     let pathh = req.query.path;
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     pathh = pathh.replace(/%2F/g, path.sep)
     fs.unlinkSync(pathh)
@@ -29,13 +29,13 @@ module.exports = {
   })
   app.get('/command/edit', isLoggedIn, function(req, res) {
     let pathh = req.query.path
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.path) return res.render(b, { desc: "Error. No path was provided!", ref: "" });
     let name = pathh.replace(/%2F/g, '/')
     pathh = pathh.replace(/%2F/g, ',')
     let code = fs.readFileSync(pathh)
     if (!code) return res.render(b, { desc: "Error. No valid path was provided!", ref: "" });
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/editcode.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/editcode.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     const d1 = file.replace("<!val>", req.query.path);
@@ -57,7 +57,7 @@ module.exports = {
   })
   //COMMANDS
   app.get('/commands', isLoggedIn, function(req, res) {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/commands.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/commands.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let text = ''
