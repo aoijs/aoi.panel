@@ -11,7 +11,7 @@ module.exports = (app, isLoggedIn, params) => {
 
   })
   app.get('/edit/mainfile', isLoggedIn, function(req, res) {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/editindex.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/editindex.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     const code = fs.readFileSync(path.join(process.cwd(), params.mainFile)).toString();
@@ -23,11 +23,11 @@ module.exports = (app, isLoggedIn, params) => {
   app.post('/aoieval', isLoggedIn, async (req, res) => {
 
     
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/aoievalexec.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/aoievalexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let result;
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     
     if (params.version=="v7") return res.render(b, { desc: "This feature is not yet ready in V7 Panel!", ref: "" });
     if (params.type=="djs") return res.render(b, { desc: "This feature is not available for discord.js panel!", ref: "" });
@@ -55,20 +55,20 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(file.replace("<!result>", data.replace(/'/g, "")).replace("<!data>", req.body.execute))
   })
   app.get('/aoieval', isLoggedIn, function(req, res) {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     
     if (params.version=="v6") return res.render(a, { desc: "This feature is not yet ready in V6 Panel!", ref: "" });
     if (params.type=="djs") return res.render(a, { desc: "This feature is not available for discord.js panel!", ref: "" });
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/aoieval.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/aoieval.html");
     res.render(b);
   })
   app.get('/djseval', isLoggedIn, function(req, res) {
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/djseval.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/djseval.html");
     res.render(b);
   })
   app.post('/djseval', isLoggedIn, async (req, res) => {
     let result;
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/djsevalexec.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/djsevalexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     try {
@@ -84,7 +84,7 @@ module.exports = (app, isLoggedIn, params) => {
 
   })
   app.post('/shellexec', isLoggedIn, async (req, res) => {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/shellexec.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/shellexec.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     const exec = require('child_process')
@@ -101,11 +101,11 @@ module.exports = (app, isLoggedIn, params) => {
 
   })
   app.get('/stats', isLoggedIn, function(req, res) {
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/stats.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/stats.html");
     res.render(b);
   })
   app.get('/shell', isLoggedIn, function(req, res) {
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/shell.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/shell.html");
     res.render(b);
   })
   app.get('/stats/data', async (req, res) => {
