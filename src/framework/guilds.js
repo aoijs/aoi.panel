@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
   app.get('/guilds', isLoggedIn, async (req, res) => {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/guilds.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/guilds.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let server = bot.guilds.cache.map(z => z)
@@ -40,14 +40,14 @@ module.exports = (app, isLoggedIn, params) => {
     res.send(rnew)
   })
   app.get('/guild/info', isLoggedIn, async (req, res) => {
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.id) return res.render(b, { desc: "Error. No guild id was provided!", ref: "" });
     let guild = bot.guilds.cache.get(req.query.id);
 
     if (!guild) return res.render(b, { desc: "Error. No guild with id " + req.query.id + " was found!", ref: "" });
     //return res.send(bot.users.cache);
     let owner = bot.users.cache.get(guild.ownerId);
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/guildinfo.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/guildinfo.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     const img = guild.iconURL({ dynamic: true, size: 4096 });
