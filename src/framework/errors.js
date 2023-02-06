@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   app.get('/errors/delete', isLoggedIn, function(req, res) {
-    const b = path.join(__dirname.replace("/framework", ""), "/pages/boterr.html");
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/boterr.html");
     if (!req.query.data) return res.render(b, { desc: "Error. No data was provided!", ref: "" });
 
     if (req.query.data === "all") {
@@ -20,7 +20,7 @@ module.exports = (app, isLoggedIn, params) => {
         }
 
         let ff = []
-        for (const filePath of walkSync(path.join(__dirname.replace("/framework", ""), "/errors"))) {
+        for (const filePath of walkSync(path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/errors"))) {
           ff.push(filePath);
         }
 
@@ -39,7 +39,7 @@ module.exports = (app, isLoggedIn, params) => {
   })
 
   app.get('/errors', isLoggedIn, function(req, res) {
-    const a = path.join(__dirname.replace("/framework", ""), "/pages/errors.html");
+    const a = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/errors.html");
     const content = fs.readFileSync(a);
     const file = content.toString();
     let text = ''
@@ -56,7 +56,7 @@ module.exports = (app, isLoggedIn, params) => {
       }
 
       let ff = []
-      for (const filePath of walkSync(path.join(__dirname.replace("/framework", ""), "/errors"))) {
+      for (const filePath of walkSync(path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/errors"))) {
         ff.push(filePath);
       }
 
