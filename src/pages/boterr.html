@@ -25,4 +25,21 @@
 
 
 </body>
+  <script>
+    async function theme(){
+      await fetch('/themedata')
+    .then((response) => response.json())
+    .then((data) => {
+      var colour=data.theme.toLowerCase();
+		  var head = document.getElementsByTagName('head')[0];
+		  var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
+      head.appendChild(link);
+    });
+      
+    }
+    theme()
+  </script>
 </html>

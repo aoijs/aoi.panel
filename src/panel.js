@@ -24,6 +24,10 @@ class Panel {
       params.type="djs";
       console.log("You are using discord.js version of @akarui/aoi.panel!");
     }
+    if(!params.theme){
+      console.log("Theme: Indigo [Default]")
+      params.theme="indigo"
+    }
     
     if (params.version == "v6") {
       const a = params.bot;

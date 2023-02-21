@@ -62,7 +62,7 @@ module.exports = (app, isLoggedIn, params) => {
 
       for (const rr of ff) {
         const err = fs.readFileSync(rr);
-        text += `<div align="left" class="w3-indigo"spellcheck = "false">
+        text += `<div align="left" class="w3-theme"spellcheck = "false">
         <pre style="color:#FFFFFF">${err}</pre>
       </div>`
       }

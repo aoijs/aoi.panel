@@ -38,15 +38,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 }
 
 ::-webkit-scrollbar-track {
-  background: grey; 
+  background: darkgray; 
 }
  
 ::-webkit-scrollbar-thumb {
-  background: #0373fc; 
+  background: #555; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0373fc; 
+  background: #888; 
 }
 
 </style>
@@ -71,8 +71,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Navbar -->
 <div >
-  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  <div class="w3-bar w3-theme w3-hover-shadow w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large"><img src="https://aoi.js.org/img/akarui-development.png" alt="Logo" height="30" width="30"> AkaruiDevelopment</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white w3-hide-small"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
@@ -94,7 +94,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
+<header class="w3-container w3-theme w3-center" style="padding:128px 16px">
 
   <!--<img src="/bird.png" alt="Avatar" style="width:20%" class="w3-circle w3-margin-top">-->
   
@@ -117,11 +117,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h1>Create / Edit Commands</h1>
       <h5 class="w3-padding-32">Create or edit commands for your bots users to interact with the users.</h5>
       <p class="w3-text-grey">All types of commands can be created here including slash commands, interaction replies, e.t.c.</p>
-      <a href="/commands"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" >Commands</button></a>
+      <a href="/commands"><button class="w3-button w3-theme w3-padding-large w3-large w3-margin-top" >Commands</button></a>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-solid fa-clipboard-list w3-padding-64 w3-text-indigo fa-10x"></i>
+      <i class="fa fa-solid fa-clipboard-list w3-padding-64 w3-text-theme fa-10x"></i>
     </div>
   </div>
 </div>
@@ -133,11 +133,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h5 class="w3-padding-32">Info about the servers the bot is in.</h5>
 
       <p class="w3-text-grey">Get a list of all the servers the bot is in, Information about the server, and the option to leave the server.</p>
-      <a href="/guilds"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Servers</button></a>
+      <a href="/guilds"><button class="w3-button w3-theme w3-padding-large w3-large w3-margin-top" href="#">Servers</button></a>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-solid fa-server w3-padding-64 w3-text-indigo fa-10x"></i>
+      <i class="fa fa-solid fa-server w3-padding-64 w3-text-theme fa-10x"></i>
     </div>
   </div>
 </div>
@@ -149,11 +149,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h5 class="w3-padding-32">View/Edit the main file of the bot's code.</h5>
 
       <p class="w3-text-grey">You can add callbacks here, variables, custom functions, e.t.c.</p>
-      <a href="/edit/mainfile"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Main File</button></a>
+      <a href="/edit/mainfile"><button class="w3-button w3-theme w3-padding-large w3-large w3-margin-top" href="#">Main File</button></a>
     </div>
 
     <div class="w3-third w3-center">
-<i class="fa fa-brands fa-square-js w3-padding-64 w3-text-indigo fa-10x"></i>
+<i class="fa fa-brands fa-square-js w3-padding-64 w3-text-theme fa-10x"></i>
 
     </div>
   </div>
@@ -166,17 +166,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h5 class="w3-padding-32">Scroll through the errors in the code.</h5>
 
       <p class="w3-text-grey">See code errors here (If any) and delete them, if not important.</p>
-      <a href="/errors"><button class="w3-button w3-indigo w3-padding-large w3-large w3-margin-top" href="#">Errors</button></a>
+      <a href="/errors"><button class="w3-button w3-theme w3-padding-large w3-large w3-margin-top" href="#">Errors</button></a>
     </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-solid fa-bug w3-padding-64 w3-text-indigo fa-10x"></i>
+      <i class="fa fa-solid fa-bug w3-padding-64 w3-text-theme fa-10x"></i>
     </div>
   </div>
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">
+<footer class="w3-container w3-padding-64 w3-center w3-theme" style="background-color:#3f51b5;">
 
   <p><a href="https://github.com/AkaruiDevelopment" target="_blank">Copyright © 2022 Akarui Development Team.</a></p>
 </footer>
@@ -192,4 +192,21 @@ function myFunction() {
 }
 </script>
 </body>
+  <script>
+    async function theme(){
+      await fetch('/themedata')
+    .then((response) => response.json())
+    .then((data) => {
+      var colour=data.theme.toLowerCase();
+		  var head = document.getElementsByTagName('head')[0];
+		  var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
+      head.appendChild(link);
+    });
+      
+    }
+    theme()
+  </script>
 </html>

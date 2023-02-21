@@ -36,24 +36,22 @@ window.onload = function () {
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
-
 /* CUSTOM SCROLL BAR */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: grey; 
+  background: darkgray; 
 }
  
 ::-webkit-scrollbar-thumb {
-  background: #0373fc; 
+  background: #555; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0373fc; 
+  background: #888; 
 }
-
 </style>
 <style>
   textarea::placeholder {
@@ -76,8 +74,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Navbar -->
 <div >
-  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-indigo" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  <div class="w3-bar w3-theme w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="/panel" class="w3-bar-item w3-button w3-padding-large "><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-grey w3-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
     <a href="/guilds" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-server"></i> Servers</a>
@@ -98,7 +96,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Header -->
-<header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
+<header class="w3-container w3-theme w3-center" style="padding:128px 16px">
 
   <h1 class="w3-margin w3-jumbo">Create Interaction Command</h1>
   <p class="w3-xlarge">Create A New Interaction Command Here!</p>
@@ -115,11 +113,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <form action='/interaction/save' method='post' style="color:#FFFFFF;" onsubmit="return chkname();">
       File Name:
       <input type="hidden" name="path" value="document.getElementByID(name).value" class="w3-input"style="color:#000000;">
-            <input type="text" name="name" class="w3-indigo w3-input" id="name" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
+            <input type="text" name="name" class="w3-theme w3-input" id="name" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
             <br>
            Code:<br>
       <pre>
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-indigo" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'">
+<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'">
 module.exports = ({
 name: "",
 type: "interaction",
@@ -129,7 +127,7 @@ code: ``
 </textarea>
         <pre>
 			<br><br>
-<button class="w3-button w3-round-large w3-indigo" type="submit">Save</button><br><br>
+<button class="w3-button w3-round-large w3-theme" type="submit">Save</button><br><br>
 
     </form>
   </div>
@@ -137,7 +135,7 @@ code: ``
 
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-indigo" style="background-color:#3f51b5;">  
+<footer class="w3-container w3-padding-64 w3-center w3-theme" style="background-color:#3f51b5;">  
   
  <p>Made By <a href="https://github.com/AkaruiDevelopment" target="_blank">Akarui Development</a></p>
 </footer>
@@ -169,6 +167,22 @@ function myFunction() {
   }
 }
 </script>
-
+<script>
+    async function theme(){
+      await fetch('/themedata')
+    .then((response) => response.json())
+    .then((data) => {
+      var colour=data.theme.toLowerCase();
+		  var head = document.getElementsByTagName('head')[0];
+		  var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
+      head.appendChild(link);
+    });
+      
+    }
+    theme()
+  </script>
 </body>
 </html>
