@@ -1,4 +1,12 @@
 # @akarui/aoi.panel
+![npm](https://img.shields.io/npm/dt/@akarui/aoi.panel?color=blue&label=NPM%20Downloads&logo=npm&logoColor=Green)
+![GitHub](https://img.shields.io/github/license/AkaruiDevelopment/panel?color=blue&logo=github)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/AkaruiDevelopment/panel?color=blue&label=Git%20Version)
+![GitHub last commit](https://img.shields.io/github/last-commit/AkaruiDevelopment/panel?color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/AkaruiDevelopment/panel)
+![GitHub forks](https://img.shields.io/github/forks/AkaruiDevelopment/panel?color=blue&style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/AkaruiDevelopment/panel?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/AkaruiDevelopment/panel?style=social)
 
 ## Installation
 
