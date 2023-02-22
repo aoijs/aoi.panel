@@ -9,15 +9,13 @@ npm i @akarui/aoi.panel
 ## Basic Usage:
 ```javascript
 const {Panel} = require("@akarui/aoi.panel")
-
 const {AoiClient} = require("aoi.js")
-
 const bot = new AoiClient({
-    token: "DISCORD BOT TOKEN",
-    prefix: "DISCORD BOT PREFIX",
-    intents: ["GUILDS", "GUILD_MESSAGES"]
-})
-
+  token: "Discord Bot Token",
+  prefix: "Discord Bot Prefix",
+  intents: ["MessageContent", "Guilds", "GuildMessages"],
+  events: ["onMessage"]
+});
 const panel = new Panel({
     username: "your-username",//username for logging in
     password: "password-here",//password for logging in
@@ -29,10 +27,7 @@ const panel = new Panel({
     interaction:"./interactions"//interactions folder
 })
 panel.loadPanel()//Load The Panel
-
 panel.onError()//Will detect errors, and send it to aoi.panel's error page.
-
-bot.onMessage() //Will detect messages, and send it to aoi.js core to send messages.
 ```
 ## We also support aoi.js v6 and discord.js v13.
 

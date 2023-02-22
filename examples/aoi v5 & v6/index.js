@@ -6,7 +6,7 @@ const bot = new AoiClient({
   token: "DISCORD BOT TOKEN",
   prefix: "DISCORD BOT PREFIX",
   intents: ["GUILDS", "GUILD_MESSAGES"]
-})
+})/* NOTE THIS IS V5 USAGE */
 
 const panel = new Panel({
   username: "your-username",//username for logging in
