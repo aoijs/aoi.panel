@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = (app, isLoggedIn, params) => {
   const bot = params.bot;
-  app.get("/themedata", function(req,res){res.json({theme:params.theme});})
+  app.get("/themedata", function(req,res){res.json({theme:params.theme,codetheme:params.codetheme});})
   app.post('/index/save', isLoggedIn, function(req, res) {
     let code = req.body.code
 
