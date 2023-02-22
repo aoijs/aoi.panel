@@ -14,16 +14,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/night.min.css">
-  <script>
-window.onload = function () {
-    const editor = CodeMirror.fromTextArea($("#code")[0], {
-        lineNumbers: false,
-        lineWrapping: true,
-        mode: 'javascript',
-        theme: 'night'
-    });
-};
-</script>
 
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -170,12 +160,30 @@ function myFunction() {
     .then((response) => response.json())
     .then((data) => {
       var colour=data.theme.toLowerCase();
+      var theme=data.codetheme.toLowerCase();
 		  var head = document.getElementsByTagName('head')[0];
 		  var link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
+      var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
+      head.appendChild(link);
+      var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;
+      head.appendChild(link);
+      
+  const editor = CodeMirror.fromTextArea($("#code")[0], {
+    lineNumbers: false,
+    lineWrapping: true,
+    mode: 'javascript',
+    theme: theme
+  });
     });
       
     }

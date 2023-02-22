@@ -146,33 +146,38 @@ function hey(){
 }
 
 </script>
-  <script>
-window.onload = function () {
-    var editor = CodeMirror.fromTextArea($("#code")[0], {
-        lineNumbers: false,
-        lineWrapping: true,
-        mode: 'javascript',
-        theme: 'night',
-        autoRefresh:true
-    });
-  editor.refresh();
 
-};
-</script>
-
-</body>
-  <script>
+</body><script>
     async function theme(){
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
       var colour=data.theme.toLowerCase();
+      var theme=data.codetheme.toLowerCase();
 		  var head = document.getElementsByTagName('head')[0];
 		  var link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
+      var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
+      head.appendChild(link);
+      var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;
+      head.appendChild(link);
+      
+  const editor = CodeMirror.fromTextArea($("#code")[0], {
+    lineNumbers: false,
+    lineWrapping: true,
+    mode: 'javascript',
+    theme: theme
+  });
+      editor.refresh()
     });
       
     }

@@ -28,6 +28,10 @@ class Panel {
       console.log("Theme: Indigo [Default]")
       params.theme="indigo"
     }
+    if(!params.codetheme){
+      console.log("Code Theme: Night [Default]")
+      params.codetheme="night"
+    }
     
     if (params.version == "v6") {
       const a = params.bot;

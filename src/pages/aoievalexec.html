@@ -150,18 +150,21 @@ function myFunction() {
 		  link.type = 'text/css';
 		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
       head.appendChild(link);
-      window.onload = function () {
+      var link = document.createElement('link');
+		  link.rel = 'stylesheet';
+		  link.type = 'text/css';
+		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;
+      head.appendChild(link);
+      
   const editor = CodeMirror.fromTextArea($("#execute")[0], {
     lineNumbers: false,
     lineWrapping: true,
     mode: 'javascript',
     theme: theme
   });
-};
     });
       
     }
     theme()
-  </script>
-</body>
+  </script></body>
 </html>
