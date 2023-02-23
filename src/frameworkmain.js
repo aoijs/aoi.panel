@@ -82,10 +82,10 @@ module.exports = (app, params) => {
     const a = path.join(__dirname, "/assets/aoi-bird.png");
     res.sendFile(a)
   })
-
+  /*
   app.get('*', function(req, res) {
     const b = path.join(__dirname, "/pages/boterr.html");
     res.status(404).render(b, { desc: "Oops. This page was not found.", ref: "" });
   });
-
+  */
 }
