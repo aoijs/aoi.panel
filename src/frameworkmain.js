@@ -32,7 +32,7 @@ module.exports = (app, params) => {
   require("./framework/interaction.js")(app,isLoggedIn,params)
   require("./framework/errors.js")(app,isLoggedIn,params)
   
-  app.get('/', async (req, res) => {
+  app.get('/'+params.customIndex, async (req, res) => {
     const a = path.join(__dirname, "/pages/login.html");
     res.sendFile(a);
   })
