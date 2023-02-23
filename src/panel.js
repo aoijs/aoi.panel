@@ -15,6 +15,9 @@ class Panel {
     util.checkPackage();
 
     console.log("\x1b[32m%s\x1b[0m", "Initializing @akarui/aoi.panel.")
+    if(!params.customIndex){
+      params.customIndex="";
+    }
 
     if (!params.bot) {
       console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting Code...")
