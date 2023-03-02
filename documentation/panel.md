@@ -19,7 +19,7 @@ const panel = new Panel({
 | `bot` | Your aoi.js or discord.js client. | object | `true` | `bot`
 | `mainFile` | Name of the main file where the code is running. | string | `true` | `"index.js"`
 | `commands` | Commands Folder Where all message commands are handled. | string | `false` | `"./commands/"`|
-| `interactions` | Interactitons Folder Where all slash commands are handled. | string | `false` | `"./interactions/"` |
+| `interaction` | Interactitons Folder Where all slash commands are handled. | string | `false` | `"./interactions/"` |
 |`version`| Version Of aoi.js: `v5` or `v6` | string | `false`. Default:`v5`| `"v6"` or `"v5"`|
 |`type`| Type of panel. aoi.js or discord.js | string | `false`. Default: `aoi.js` | `"djs"` or `"aoi"`|
 |`theme`| The colour theme of the panel | string | `false`. Default: `indigo` | All colour themes are listed below. |
