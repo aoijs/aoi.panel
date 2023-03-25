@@ -96,12 +96,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
   <h1 class="w3-margin w3-jumbo">Guilds</h1>
   <p class="w3-xlarge">Click on the "view" to get information on the guild.</p>
-  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for guilds..." class="w3-input w3-border w3-round-large w3-theme" size="30">
+  <label for="myInput"></label><input type="text" id="myInput" onkeyup="search()" placeholder="Search for guilds..." class="w3-input w3-border w3-round-large w3-theme" size="30">
 
 </header>
 
 <!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container w3-black"style="word-wrap: break-word;overflow:hidden;">
+<div class="w3-row-padding w3-padding-64 w3-container w3-black"
+     style="word-wrap: break-word;overflow:hidden;">
   <div class="w3-content w3-center grid">
     <ul id="myUL" style="list-style: none;" style="word-wrap: break-word;overflow:hidden;">
       <!Add Guilds Here>
@@ -155,10 +156,10 @@ function search() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      const colour = data.theme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);

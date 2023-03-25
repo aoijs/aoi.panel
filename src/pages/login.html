@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -31,7 +31,7 @@
 <div class="w3-container" >
   <br><br><br><br><br><br><br>
 <img src="/logo.png" alt="aoi.js" style="max-width:350px;max-height:350px"> <!--style="max-width:200px;max-height:200px"-->
-<img src="/logo.png" alt="aoi.js" align="right" style="max-width:350px;max-height:350px"><!--style="max-width:200px;max-height:200px"-->
+<img src="/logo.png" alt="aoi.js" float="right" style="max-width:350px;max-height:350px"><!--style="max-width:200px;max-height:200px"-->
 
 
 
@@ -51,9 +51,9 @@
       <form class="w3-container" action="#">
         <div class="w3-section w3-round-xlarge">
           <label><b>Username</b></label>
-          <input class="w3-input w3-border w3-margin-bottom w3-round-xlarge w3-hover-grey" type="text" placeholder="Enter Username" id = "uname" name="uname" required>
+          <label for="uname"></label><input class="w3-input w3-border w3-margin-bottom w3-round-xlarge w3-hover-grey" type="text" placeholder="Enter Username" id = "uname" name="uname" required>
           <label><b>Password </b></label>
-          <input class="w3-input w3-border w3-round-xlarge w3-hover-grey" type="password" placeholder="Enter Password  " name="pswd" id="pswd" required>
+          <label for="pswd"></label><input class="w3-input w3-border w3-round-xlarge w3-hover-grey" type="password" placeholder="Enter Password  " name="pswd" id="pswd" required>
           <div onmouseover="a()" onmouseout="a()" class=" w3-round-xxlarge w3-center" id="sp" width="20px"><i class='fa fa-eye-slash'></i> Show Password</div>
           <br>____________________________________________________________
           <div class="w3-button w3-block w3-theme-l2 w3-section w3-padding w3-round-xlarge" onclick="validate()">Login</div>
@@ -91,13 +91,15 @@
 
     function validate(){
       document.getElementById("myBar").style.display="block";
-      var i = 0;
-function move() {
-  if (i == 0) {
+      let i = 0;
+
+      function move() {
+  if (i === 0) {
     i = 1;
-    var elem = document.getElementById("myBar");
-    var width = 1;
-    var id = setInterval(frame, 10);
+    const elem = document.getElementById("myBar");
+    let width = 1;
+    const id = setInterval(frame, 10);
+
     function frame() {
       if (width >= 100) {
         clearInterval(id);
@@ -110,13 +112,13 @@ function move() {
   }
 }
       move()
-      var uname = document.getElementById("uname").value;
-      var pswd = document.getElementById("pswd").value;
+      const uname = document.getElementById("uname").value;
+      const pswd = document.getElementById("pswd").value;
 
       fetch(`/validate/?uname=${uname}&pswd=${pswd}`)
     .then(result => result.json())
     .then((output) => {
-      if(output.data=="false"){
+      if(output.data==="false"){
         window.location.href="/?error=true"
       }
       else{
@@ -130,10 +132,10 @@ function move() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      const colour = data.theme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);

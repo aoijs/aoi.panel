@@ -146,7 +146,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>View / Edit Main File</h1>
-      <h5 class="w3-padding-32">View/Edit the main file of the bot's code.</h5>
+      <h5 class="w3-padding-32">View/Edit the main file of the Bot code.</h5>
 
       <p class="w3-text-grey">You can add callbacks here, variables, custom functions, e.t.c.</p>
       <a href="/edit/mainfile"><button class="w3-button w3-theme w3-padding-large w3-large w3-margin-top" href="#">Main File</button></a>
@@ -197,10 +197,10 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      const colour = data.theme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);

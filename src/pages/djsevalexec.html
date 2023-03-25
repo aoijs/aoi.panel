@@ -101,7 +101,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content" style="color:#FFFFFF;border-radius: 25px;background: #1e1e1a;padding: 20px;width: 70%;height: 50%;word-wrap: break-word;overflow:hidden;"><!result></div><br><br>
   <div class="w3-content">
     <form action='/djseval' method='post' style="color:#FFFFFF;">
-            <textarea name='execute' id='execute' placeholder='Your node js code here' autocomplete='false' align="left" class="w3-left"><!data></textarea>
+      <label for='execute'></label><textarea name='execute' id='execute' placeholder='Your node js code here' autocomplete='false' align="left" class="w3-left"><!data></textarea>
 			<br><br>
 <button class="w3-button w3-round-large w3-theme" type="submit">Eval!</button><br><br>
 
@@ -137,20 +137,20 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-      var theme=data.codetheme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
+      const colour = data.theme.toLowerCase();
+      const theme = data.codetheme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      let link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
+      link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;

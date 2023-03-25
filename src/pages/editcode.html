@@ -105,11 +105,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <br><br>
     <form action='/command/save' method='post' style="color:#FFFFFF;">
       Name:
-            <input type="hidden" name="path" value="<!val>" class="w3-input"style="color:#000000;">
+            <input type="hidden" name="path" value="<!val>" class="w3-input"
+                   style="color:#000000;">
+        <label>
             <input type="text" name="name" class="w3-theme w3-input" placeholder="Command name" value="<!val2>" required style="color:#000000;">
-            <br>
+        </label>
+        <br>
            Code:<br>
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"><!code></textarea>
+        <label for="code"></label><textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"><!code></textarea>
 			<br><br>
 <button class="w3-button w3-round-large w3-theme" type="submit">Save</button><br><br>
 
@@ -131,8 +134,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") === -1) {
+    const x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
@@ -145,16 +148,16 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-      var theme=data.codetheme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
+        const colour = data.theme.toLowerCase();
+        const theme = data.codetheme.toLowerCase();
+        const head = document.getElementsByTagName('head')[0];
+        let link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
       head.appendChild(link);

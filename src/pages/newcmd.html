@@ -102,12 +102,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <br><br>
     <form action='/command/save' method='post' style="color:#FFFFFF;" onsubmit="return chkname();">
       File Name:
-      <input type="hidden" name="path" value="document.getElementByID(name).value" class="w3-input"style="color:#000000;">
-            <input type="text" name="name" class="w3-theme w3-input" id="name" placeholder="File Name"  required style="color:#000000;" value="<!val>/">
+      <input type="hidden" name="path" value="document.getElementByID(name).value" class="w3-input"
+             style="color:#000000;">
+        <label for="name"></label><input type="text" name="name" class="w3-theme w3-input" id="name" placeholder="File Name" required style="color:#000000;" value="<!val>/">
             <br>
            Code:<br>
       <pre>
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'">
+<label for="code"></label><textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" style="color:#000000;" spellcheck="false" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'">
 <!code>
 </textarea>
         <pre>
@@ -126,10 +127,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </footer>
 <script>
 function chkname() {
-    var code = document.getElementById("name").value
+    const code = document.getElementById("name").value;
 
 
-    if(code=="<!val>/") {
+    if(code==="<!val>/") {
         alert('No name was provided...');
         return false;
     }
@@ -159,20 +160,20 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-      var theme=data.codetheme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
+        const colour = data.theme.toLowerCase();
+        const theme = data.codetheme.toLowerCase();
+        const head = document.getElementsByTagName('head')[0];
+        let link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
+      link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;

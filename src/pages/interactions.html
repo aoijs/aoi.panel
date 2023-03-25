@@ -62,7 +62,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Navbar -->
 <div  style="word-wrap: break-word;overflow:hidden;">
-  <div class="w3-bar w3-theme w3-card w3-left-align w3-large"style="word-wrap: break-word;overflow:hidden;">
+  <div class="w3-bar w3-theme w3-card w3-left-align w3-large"
+       style="word-wrap: break-word;overflow:hidden;">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="/panel" class="w3-bar-item w3-button w3-padding-large w3-white"><i class="fa-solid fa-house-chimney"></i> Home</a>
     <a href="/commands" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa-solid fa-clipboard-list"></i> Commands</a>
@@ -147,10 +148,10 @@ function search() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      const colour = data.theme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);

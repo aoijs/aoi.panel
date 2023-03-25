@@ -95,9 +95,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content" style="color:#FFFFFF;border-radius: 25px;background: #1e1e1a;padding: 20px;width: 70%;height: 50%;word-wrap: break-word;overflow:hidden;"><!result></div><br><br>
   <div class="w3-content w3-center">
     <form action="shellexec" method='post' autocomplete='off'>
-<input autocomplete="false" type="textarea" name="hidden" style="display:none">
+      <label>
+        <input autocomplete="false" type="text" name="hidden" style="display:none">
+      </label>
 
-<input type='text' name='execute' placeholder='Type command to execute in the shell' autocomplete='false' style="width:100"  class="w3-theme w3-input" size="50" required>
+      <label>
+        <input type='text' name='execute' placeholder='Type command to execute in the shell' autocomplete='false' style="width:100"  class="w3-theme w3-input" size="50" required>
+      </label>
       <br><br>
       <button class="w3-button w3-round-large w3-theme" type="submit">Execute!</button>
 </form>
@@ -133,10 +137,10 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+      const colour = data.theme.toLowerCase();
+      const head = document.getElementsByTagName('head')[0];
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);

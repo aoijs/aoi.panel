@@ -111,8 +111,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div id="code1" contenteditable align="left" class="w3-grey" onkeyup='' onkeydown="" spellcheck = "false" hidden="true">
         <pre></pre>
       </div>-->
-      
-<textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" align="left" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" ><!code></textarea>
+
+        <label for="code"></label><textarea name="code" id="code" placeholder="your aoi.js code" class="w3-input w3-theme" align="left" onfocus="this.style.height = ''; this.style.height = this.scrollHeight +'px'" ><!code></textarea>
 			<br><br>
 <button class="w3-button w3-round-large w3-theme" type="submit" onclick="hey();">Save</button><br><br>
 
@@ -131,8 +131,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 // Used to toggle the menu on small screens when clicking on the menu button
 
 function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") === -1) {
+    const x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") === -1) {
     x.className += " w3-show";
   } else { 
     x.className = x.className.replace(" w3-show", "");
@@ -152,20 +152,20 @@ function hey(){
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      var colour=data.theme.toLowerCase();
-      var theme=data.codetheme.toLowerCase();
-		  var head = document.getElementsByTagName('head')[0];
-		  var link = document.createElement('link');
+        const colour = data.theme.toLowerCase();
+        const theme = data.codetheme.toLowerCase();
+        const head = document.getElementsByTagName('head')[0];
+        let link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
-		  link.rel = 'stylesheet';
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/${theme}.min.css`;
       head.appendChild(link);
-      var link = document.createElement('link');
+      link = document.createElement('link');
 		  link.rel = 'stylesheet';
 		  link.type = 'text/css';
 		  link.href = `https://highlightjs.org/static/demo/styles/${theme}.css`;
