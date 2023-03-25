@@ -1,6 +1,6 @@
 {
     "name": "@akarui/aoi.panel",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
     "main": "src/index.js",
     "scripts": {
@@ -35,7 +35,7 @@
         "node-fetch": "^2.6.1"
     },
     "devDependencies": {
-        "aoi.js": "^6.0.0",
+        "aoi.js": "^6.1.1",
         "node": "^17.9.1"
     },
     "repository": {
