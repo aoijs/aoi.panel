@@ -12,3 +12,5 @@ index.test.js
 package-lock.json
 .git
 .config
+
+src/errors

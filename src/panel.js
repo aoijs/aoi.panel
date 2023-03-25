@@ -146,8 +146,8 @@ class Panel {
 
     });
     process.on('multipleResolves', (type, promise, reason) => {
-      console.log('Multiple Resolves');
-      console.log(reason, promise)
+     // console.log('Multiple Resolves');
+      //console.log(reason, promise)
       fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + reason + " \n\n" + promise);
     });
 
