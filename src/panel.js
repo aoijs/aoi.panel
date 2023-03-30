@@ -3,14 +3,17 @@ const session = require('express-session');
 const path = require('path')
 const fs = require('fs')
 const bodyParser = require("body-parser")
-
+var os = require('os');
+var pty = require('node-pty');
 const util = require("./utilFuncs.js");
-
+const http = require('http');
+const socketio = require('socket.io');
+const shell = __dirname.replace("/src", "").replace("\src", "") + `/bin/choose${os.platform() === 'win32' ? '.bat' : '.sh'}`;
 
 class Panel {
   constructor(params) {
     this.params = params;
-
+this.enabled = {};
     util.checkVersion();
     util.checkPackage();
 
@@ -79,7 +82,7 @@ class Panel {
     }
 
 
-
+this.allStdout = ""
     if (Array.isArray(params.username) === true && Array.isArray(params.password)) {
       if (params.username.length !== params.password.length) {
         console.log("\x1b[31m%s\x1b[0m", "[@akarui/aoi.panel] The number of passwords provided is not equal to the number of usernames. Exiting code...")
@@ -108,16 +111,50 @@ class Panel {
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
     app.set('views', __dirname + "/pages");
-
-    app.listen(params.port)
+    const server = http.createServer(app);
+    const io = socketio(server);
+    server.listen(params.port, () => {
+    console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel ready on port: " + params.port)
+    })
 
     require("./frameworkmain.js")(app, params)
-    console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel ready on port: " + params.port)
-
+    app.get("/enabledFeatures", (req, res) => {
+      res.json(this.enabled)
+    })
     this.app = app;
-  }
+  this.io = io
+  io.on('connection', (socket) => {
+    const ptyProcess = pty.spawn(shell, [], {
+        name: 'Aoi.js Panel',
+        env: process.env,
+        cwd: process.cwd(),
+    });
+    
 
+    socket.on('message', (message) => {
+        ptyProcess.write(message);
+    })
+    ptyProcess.onData(function (data) {
+        socket.emit("data", data)
+    }); 
+  
+   socket.emit("stdout", this.allStdout);
+    socket.on('disconnect', () => {  ptyProcess.kill(); });
+})
+}
+onLogs() {
+  const stdoutWrite0 = process.stdout.write;
+this.enabled.logs = true;
+process.stdout.write = (args) => { // On stdout write
+ // CustomLogger.writeToLogFile('log', args); // Write to local log file
+this.allStdout += args
+ this.io.sockets.emit("stdout", args.toString() + "\r");
+  args = Array.isArray(args) ? args : [args]; // Pass only as array to prevent internal TypeError for arguments
+  return stdoutWrite0.apply(process.stdout, args);
+};
+}
   onError() {
+    this.enabled.error = true;
     function random(length) {
       let result = '';
       const characters = 'abcdefghijklmnopqrstuvwxyz-_abcdefghijklmnopqrstuvwxyz';

@@ -41,6 +41,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 }
 </style>
 <style>
+     @font-face {
+        font-family: "Fura Code";
+        src: url("Fura Code Light Nerd Font Complete Mono Windows Compatible.otf");
+     }
   textarea::placeholder {
     color: #FFFFFF;  
   }
@@ -137,12 +141,12 @@ function myFunction() {
       await fetch('/themedata')
     .then((response) => response.json())
     .then((data) => {
-      const colour = data.theme.toLowerCase();
+      const color = data.theme.toLowerCase();
       const head = document.getElementsByTagName('head')[0];
       const link = document.createElement('link');
       link.rel = 'stylesheet';
 		  link.type = 'text/css';
-		  link.href = `https://www.w3schools.com/lib/w3-theme-${colour}.css`;
+		  link.href = `https://www.w3schools.com/lib/w3-theme-${color}.css`;
       head.appendChild(link);
     });
       

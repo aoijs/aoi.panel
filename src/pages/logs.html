@@ -91,8 +91,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-theme w3-center" style="padding:128px 16px">
 
-  <h1 class="w3-margin w3-jumbo">Shell</h1>
-  <p class="w3-xlarge">Code to be executed in shell.</p>
+  <h1 class="w3-margin w3-jumbo">Logs</h1>
+  <p class="w3-xlarge">The console logs</p>
 
 
 </header>
@@ -112,6 +112,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <button class="w3-button w3-round-large w3-theme" type="submit">Execute!</button>
 </form> -->
 <div id="terminal"></div>
+<div id="no-logs" style="font-size: 30px;padding: 5px;background-color: rgba(187,128,9,0.45);">
+Logs are not being recorded
+<br />
+to enable logs add <code>panel.onLogs()</code> to your <a href="/edit/mainfile">main file</a>
+</div>
     <br><br>
 
 
@@ -126,7 +131,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </footer>
 
 <script>
-  const socket = io()
+
  // Used to toggle the menu on small screens when clicking on the menu button
  function myFunction() {
    const x = document.getElementById("navDemo");
@@ -136,95 +141,55 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
      x.className = x.className.replace(" w3-show", "");
    }
  }
- var term = new window.Terminal({
-     cursorBlink: true,
-     fontFamily: 'Fura Code',
-     width: "100%"
- });
- // const fitAddon = new FitAddon.FitAddon();
- // term.loadAddon(fitAddon);
- term.open(document.getElementById('terminal'));
- window.onload = () => {
+ 
+ </script>
+<script>
+  const socket = io()
+  // const socket = new WebSocket("ws://localhost:6060");
+
+var term = new window.Terminal({
+  cursorBlink: true,
+  fontFamily: 'Fura Code',
+});
+// const fitAddon = new FitAddon.FitAddon();
+// term.loadAddon(fitAddon);
+term.open(document.getElementById('terminal'));
+window.onload = () => {
  init();
   // term.resize(term.cols+100, term.rows+100)
   term.resize(term.cols, term.rows - 1)
 }
- function init() {
-     if (term._initialized) {
-         return;
-     }
- 
-     term._initialized = true;
-     // fitAddon.fit();
-     term.prompt = () => {
-      console.log("prompt ")
-         term.write('\r\n');
-     };
-     prompt(term);
- 
-     term.onData(e => {
-         switch (e) {
-             case '\u0003': // Ctrl+C
-                 term.write('^C');
-                 prompt(term);
-                 break;
-             case '\r': // Enter
-                 runCommand(term, command);
-                 command = '';
-                 break;
-             case '\u007F': // Backspace (DEL)
-                 // Do not delete the prompt
-                 if (term._core.buffer.x > 2) {
-                     term.write('\b \b');
-                     if (command.length > 0) {
-                         command = command.substr(0, command.length - 1);
-                     }
-                 }
-                 break;
-             case '\u0009':
-                 console.log('tabbed', output, ["dd", "ls"]);
-                 break;
-             default:
-                 if (e >= String.fromCharCode(0x20) && e <= String.fromCharCode(0x7E) || e >= '\u00a0') {
-                     command += e;
-                     term.write(e);
-                 }
-         }
-     });
- }
- 
- function clearInput(command) {
-     console.log("clearInput#")
- 
-     var inputLength = command.length;
-     for (var i = 0; i < inputLength; i++) {
-         term.write('\b \b');
-     }
- }
- function prompt(term) {
-     command = '';
-     term.write('\r\n');
- }
- socket.on("data", (data) => {
-  // console.log(data);
-     term.write(data);
- })
- 
- function runCommand(term, command) {
-     console.log("runCommand#")
-     if (command.length > 0) {
-     console.log("runCommand#", 1)
-         clearInput(command);
-         socket.emit("message",command + '\r\n');
-         return;
-     } else {
-     console.log("runCommand#", 2)
-         socket.emit("message",'\r\n');
-     }
- }
- 
- </script>
+function init() {
+  if (term._initialized) {
+      return;
+  }
 
+  // term.fit();
+  term._initialized = true;
+//   term.refresh = (...args) => {
+//     console.log("refresh debug", args)
+//     oldRefreash(...args)
+// }
+// term.resize = (...args) => {
+//     console.log("resize debug", args)
+//     oldResize(...args)
+// }
+  term.write(`${new Array(100).join("=")}START${new Array(100).join("=")}\r\r\n\n `)
+  // fitAddon.fit();
+  term.prompt = () => {
+      term.write('\r\n');
+  };
+}
+
+socket.on("stdout", (data) => {
+  console.log("stdout#", data)
+  term.write(data.split(/\n/g).join("\n\r"));
+})
+
+
+// init();
+
+</script>
 </body>
   <script>
     async function theme(){
@@ -241,6 +206,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     });
       
     }
+    async function enabledfeatures(){
+      await fetch('/enabledfeatures')
+    .then((response) => response.json())
+    .then((data) => {
+    if(!data["logs"]) {
+      term.dispose()
+
+      document.getElementById("no-logs").style.display = "block";
+    } 
+    });
+      
+    }
     theme()
+    enabledfeatures()
   </script>
 </html>

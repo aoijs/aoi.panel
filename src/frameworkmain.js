@@ -63,6 +63,7 @@ module.exports = (app, params) => {
     req.session.pswd = req.query.pswd;
     res.redirect("/panel")
   })
+ 
   app.get('/panel', isLoggedIn, async (req, res) => {
     const a = path.join(__dirname, "/pages/main.html");
     const b = path.join(__dirname, "/pages/boterr.html");
@@ -80,6 +81,10 @@ module.exports = (app, params) => {
   })
   app.get('/bird.png', async (req, res) => {
     const a = path.join(__dirname, "/assets/aoi-bird.png");
+    res.sendFile(a)
+  })
+  app.get("/termfont.otf", async (req, res) => { 
+    const a = path.join(__dirname, "/assets/Fura Code Light Nerd Font Complete Mono Windows Compatible.otf");
     res.sendFile(a)
   })
   /*

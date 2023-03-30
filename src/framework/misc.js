@@ -109,6 +109,10 @@ module.exports = (app, isLoggedIn, params) => {
     const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/shell.html");
     res.render(b);
   })
+  app.get('/logs', isLoggedIn, function(req, res) {
+    const b = path.join(__dirname.replace("/framework", "").replace("\framework", "").replace("framework", ""), "/pages/logs.html");
+    res.render(b);
+  })
   app.get('/stats/data', async (req, res) => {
     let client = bot
     let days = Math.floor(client.uptime / 86400000);
