@@ -13,6 +13,10 @@ const shell = __dirname.replace("/src", "").replace("\src", "") + `/bin/choose${
 class Panel {
   constructor(params) {
     this.params = params;
+    this.getStore = params.getStore || function (session) {
+     let sql =  require('connect-sqlite3')(session);
+     return new sql({ db: "sessions.db", dir: process.cwd() });
+    }
 this.enabled = {};
     util.checkVersion();
     util.checkPackage();
@@ -105,7 +109,8 @@ this.allStdout = ""
       secret: params.secret,
       cookie: { maxAge: thirtyDays },
       resave: true,
-      saveUninitialized: true
+      saveUninitialized: true,
+      store: this.getStore(session)
     }))
 
     app.engine('html', require('ejs').renderFile);

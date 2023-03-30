@@ -14,3 +14,4 @@ package-lock.json
 .config
 
 src/errors
+*.db
