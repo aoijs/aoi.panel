@@ -3,7 +3,7 @@ const session = require('express-session');
 const path = require('path')
 const fs = require('fs')
 const bodyParser = require("body-parser")
-
+const ejs = require('ejs')
 const util = require("./utilFuncs.js");
 
 
@@ -91,8 +91,6 @@ class Panel {
 
   loadPanel() {
     const params = this.params;
-
-    //console.log(params)
     const thirtyDays = 1000 * 60 * 60 * 24 * 30;
 
     const app = express()
@@ -100,9 +98,9 @@ class Panel {
     app.use(bodyParser.json());
     app.use(session({
       secret: params.secret,
-      cookie: { maxAge: thirtyDays },
-      resave: true,
-      saveUninitialized: true
+      cookie: { maxAge: thirtyDays }, 
+      resave: true, // To insure the data is not corrupted
+      saveUninitialized: false // False so theres no errors
     }))
 
     app.engine('html', require('ejs').renderFile);
@@ -129,28 +127,7 @@ class Panel {
       return result;
     }
 
-    process.on('unhandledRejection', (reason, p) => {
-      console.log('Unhandled Rejection/Catch');
-      console.log(reason, p);
-      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Unhandled Rejection/Catch \n\n" + reason + " \n\n" + p);
-    });
-    process.on("uncaughtException", (err, origin) => {
-      console.log('Uncaught Exception/Catch');
-      console.log(err, origin);
-      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + err + " \n\n" + origin);
-    });
-    process.on('uncaughtExceptionMonitor', (err, origin) => {
-      console.log('Uncaught Exception/Catch ');
-      console.log(err, origin);
-      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + err + " \n\n" + origin);
-
-    });
-    process.on('multipleResolves', (type, promise, reason) => {
-     // console.log('Multiple Resolves');
-      //console.log(reason, promise)
-      fs.writeFileSync(path.join(__dirname, "/errors/" + random(8) + ".txt"), "Error: Uncaught Exception/Catch \n\n" + reason + " \n\n" + promise);
-    });
-
+ require('error_handler.js')
 
   }
   isLoggedIn(req, res, next) {
