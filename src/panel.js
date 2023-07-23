@@ -100,21 +100,21 @@ class Panel {
     
     console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel GUI ready on port: " + params.port)
   }
-  isLoggedIn(req,res,next){
+  isLoggedIn(req,res){
     const data = this.data;
     if(Array.isArray(data.username)){
       for(let i=0;i<data.username.length;i++){
         if(req.session.username==data.username[i] && req.session.password==data.password[i]){
-          return next();
+          return true;
         }
       }
-      return res.redirect("/")
+      return false;
     }
     else {
       if(req.session.username==data.username&&req.session.password==data.password){
-        return next();
+        return true;
       }
-      return res.redirect("/")
+      return false;
     }
   }
 
