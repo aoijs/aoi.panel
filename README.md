@@ -35,7 +35,7 @@ const panel = new Panel({
 })
 
 panel.loadAPI({
-  auth:" Authentication key here (random string), keep it safe, and no special charecters"
+  auth:" Authentication key here (random string)"//no spaces, keep it only alphanumeric...
 })
 
 panel.loadGUI({
@@ -44,6 +44,6 @@ panel.loadGUI({
 })
 ```
 
-## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/aoiv6/documentation/README.md)
+## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/README.md)
 
 ## Join our [Support Server](https://aoi.js.org/invite) for support
