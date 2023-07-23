@@ -1,28 +1,69 @@
-const misc = require("./miscRoutes.js");
-const file = require("./fileRoutes.js");
+const fs = require("fs")
 
-function loadAPIRoutes(data){
-  let app = data.app;
-  let auth=data.auth;
-  function checkAuth(req, res, next) {
-    
-    if(!req.params.auth){
-      return res.status(401).json({"error":"No auth was provided."})
+function loadFramework(data,params,app,thisD){
+  function isLoggedIn(req,res,next){
+    if(Array.isArray(data.username)){
+      for(let i=0;i<data.username.length;i++){
+        if(req.session.username==data.username[i] && req.session.password==data.password[i]){
+          return next();
+        }
+      }
+      return res.redirect("/")
     }
-    if(req.params.auth!=auth){
-      return res.status(401).json({"error":"Invalid auth key!"})
-    }
-    if(!data.params.client){
-      return res.status(503).json({"error":"bot has not yet been initialized!"})
-    }
-    if(req.params.auth==auth){
-      return next();
+    else {
+      if(req.session.username==data.username&&req.session.password==data.password){
+        return next();
+      }
+      return res.redirect("/")
     }
   }
-  misc.miscRoutes(data,checkAuth);
-  file.fileRoutes(data,checkAuth);
+    app.get("/pass/validate/",async (req,res)=>{
+        let uname= req.query.username;
+        let pass = req.query.password;
+        if(Array.isArray(data.username)){
+          for(let i=0;i<data.username.length;i++){
+            if(uname==data.username[i] && pass==data.password[i]){
+              return res.json({"data":true});
+            }
+          }
+          return res.json({"data":false})
+        }
+        else {
+          if(uname==data.username&&pass==data.password){
+            return res.json({"data":true})
+          }
+          return res.json({"data":false})
+        }
+    })
+    app.get('/login',  (req, res) => {
+      req.session.username = req.query.username;
+      req.session.password = req.query.password;
+      res.redirect("/panel")
+    })
+    app.get('/logout',  (req, res) => {
+      req.session.username = "";
+      req.session.password = "";
+      res.redirect("/?loggedout=true")
+    })
+    app.get('/panel',isLoggedIn,  (req, res) => {
+        const bot = params.client;
+        if (!bot.user) return res.redirect("/error?query=initialization")
+        const data = fs.readFileSync(__dirname.replace("/gui","").replace("\\gui","")+"/views/panel.html").toString()
+
+        res.send(data.replace(/(\!bot)/g,params.client.user.tag).replace(/(\!auth)/g,thisD.auth))
+    })
+    app.get('/error',(req,res)=>{
+      res.sendFile(__dirname.replace("/gui","").replace("\\gui","")+"/views/error.html")
+  })
   
+  app.get('/editor',isLoggedIn,  (req, res) => {
+  const data = fs.readFileSync(__dirname.replace("/gui","").replace("\\gui","")+"/views/editor.html").toString()
+
+    res.send(data.replace(/(\!bot)/g,params.client.user.tag).replace(/(\!auth)/g,thisD.auth))
+})
+
+    
+    
 }
-module.exports = {
-  loadAPIRoutes
-}
+
+module.exports = loadFramework;
