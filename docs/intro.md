@@ -16,7 +16,6 @@
 | -------- | -------- | -------- |
 | Installation & Basic Setup | The basic usage of aoi.panel | (scroll down) |
 | The Panel Class | The panel class, its parameters and functions | [link](https://github.com/AkaruiDevelopment/panel/blob/v0.0.5/docs/panel.md) | 
-| Advanced Features | Multiple accounts, custom pages, etc. | [link](https://github.com/AkaruiDevelopment/panel/blob/v0.0.5/docs/advanced.md) | 
 | The Panel API | Endpoints of the panel api | [link](https://github.com/AkaruiDevelopment/panel/blob/v0.0.5/docs/api.md)
 
 
