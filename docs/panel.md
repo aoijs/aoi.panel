@@ -53,3 +53,12 @@ app.get("/somePathWhichDoesNotExist",(req,res)=>{
   res.send("Aoi.panel is sooo cool");
 })
 ```
+### Checking if user is logged in:
+```js
+const app = panel.app;
+app.get("/somePathWhichDoesNotExist",(req,res)=>{
+  var check = panel.isLoggedIn(req,res);
+  if(a==true){res.send("Logged in")}
+  else{res.send("Not logged in")}
+})
+```
