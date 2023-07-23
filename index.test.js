@@ -7,10 +7,10 @@ const bot = new AoiClient({
     intents: ["Guilds", "GuildMessages", "MessageContent"],
     events: ["onMessage", "onInteractionCreate"]
 });
-
+/*
 const loader = new LoadCommands(bot);
 loader.load(bot.cmd, "./commands/");
-
+*/
 const panel = new Panel({
   port:3000,//port
   client:bot//aoi.js client
