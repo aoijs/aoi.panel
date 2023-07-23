@@ -7,6 +7,8 @@
 ![GitHub forks](https://img.shields.io/github/forks/AkaruiDevelopment/panel?color=blue&style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/AkaruiDevelopment/panel?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AkaruiDevelopment/panel?style=social)
+![img](https://raw.githubusercontent.com/aoijs/website/main/assets/images/aoipanel-banner.png)
+
 
 ## Installation
 
@@ -44,6 +46,6 @@ panel.loadGUI({
 })
 ```
 
-## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/README.md)
+## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/intro.md)
 
 ## Join our [Support Server](https://aoi.js.org/invite) for support
