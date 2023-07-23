@@ -12,7 +12,7 @@ class Panel {
     console.log("\x1b[32m%s\x1b[0m", "Initializing @akarui/aoi.panel.")
     if (!params.port) {
       console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] A port was not provided. Taking default as 3000.")
-      params.port = 3002;
+      params.port = 3000;
     }
     if (!params.client) {
       console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting code.")
