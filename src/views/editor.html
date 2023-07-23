@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>@akarui/aoi.panel</title>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/css/uikit.min.css" />
+
+  <style>
+    @media (max-width:600px){.hide-smallsc{display:none!important}}
+@media (min-width:993px){.hide-largesc{display:none!important}}
+@media (max-width:992px) and (min-width:601px){.hide-mediumsc{display:none!important}}
+
+    html, body {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	/*overflow: hidden;*/
+  background-color: #1e1e1e;
+}
+#container{
+  position: absolute;
+	/*overflow: hidden;*/
+  height:100%;
+  background-color: #1e1e1e;
+  width:100%;
+}
+#diff{
+  position: absolute;
+	overflow: hidden;
+  height:100%;
+  width:100%;
+}
+  </style>
+  <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+
+
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/css/uikit.min.css" />
+
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
+</head>
+
+<body>
+  <nav class="uk-navbar-container" style="background-color:#000000;border-radius: 30px;margin: 20px;padding: 10px;">
+    <div class="uk-container">
+      <div uk-navbar>
+
+        <div class="uk-navbar-left hide-smallsc">
+
+          <a class="uk-navbar-item uk-logo" href="#" aria-label="Back to Home"
+            style="color:#FFFFFF;">AkaruiDevelopment</a>
+          
+        </div>
+        <div class="uk-navbar-right" >
+          
+          <div class="uk-navbar-item" id="home">
+            <a href="/panel"><span uk-icon="home"></span><span class="hide-smallsc"> Home</span></a>
+          </div>
+          <div class="uk-navbar-item" id="pret" style="top: 200px;">
+            <a onclick="pret()"><span uk-icon="bolt"></span><span class="hide-smallsc"> Prettify</span></a>
+          </div>
+          <div class="uk-navbar-item" id="save">
+            <a onclick="save1()"><span uk-icon="download"></span><span class="hide-smallsc"> Save</span></a>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+  <br>
+  <div id="container"></div>
+  <div id="diff" style="display:none;"></div>
+  <script >
+    
+require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' } });
+window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+function xhr(url) {
+  var req = null;
+  return new Promise(function(c, e) {
+    req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+      if (req._canceled) {
+        return;
+      }
+
+      if (req.readyState === 4) {
+        if (
+          (req.status >= 200 && req.status < 300) ||
+          req.status === 1223
+        ) {
+          c(req);
+        } else {
+          e(req);
+        }
+        req.onreadystatechange = function() { };
+      }
+    };
+
+    req.open("GET", url, true);
+    req.responseType = "";
+
+    req.send(null);
+  }).catch(function() {
+    req._canceled = true;
+    req.abort();
+  });
+}
+
+
+
+let proxy = URL.createObjectURL(new Blob([`
+	self.MonacoEnvironment = {
+		baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+	};
+	importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+`], { type: 'text/javascript' }));
+
+require(["vs/editor/editor.main"], async function() {
+  let keywords = await fetch("https://aoi-api.bumblebeerox1.repl.co/api/getArrayFunctionList")
+    .then(data => data.json())
+    .then((json) => { return json.data })
+  console.log(keywords)
+  monaco.languages.registerCompletionItemProvider('javascript', {
+    provideCompletionItems: (model, position) => {
+      const suggestions = [
+        ...keywords.map( k => {
+          /*let d = await fetch("https://aoi-api.bumblebeerox1.repl.co/api/panelfunction?function="+k)
+    .then(data=>data.json())
+    .then((json) => {return json})*/
+
+
+          return {
+            label: k,
+            kind: monaco.languages.CompletionItemKind.Keyword,
+            insertText: k,
+          };
+        })
+      ];
+      console.log(suggestions)
+      return { suggestions: suggestions };
+    }
+  });
+
+
+
+  monaco.languages.registerHoverProvider("javascript", {
+    provideHover: function(model, position) {
+      return xhr("https://aoi-api.bumblebeerox1.repl.co/api/function?function=" + model.getWordAtPosition(position).word).then(function(res) {
+        let d = JSON.parse(res.responseText);
+        if(d.name=="function not found") return;
+        if (d.err == "" || !d.err||d.name!="function not found") {
+          return {
+            range: new monaco.Range(
+              model.getWordAtPosition(position).startColumn,
+              model.getWordAtPosition(position).endColumn,
+              model.getLineCount(),
+              model.getLineMaxColumn(model.getLineCount())
+            ),
+            contents: [
+              { value: "**Function : " + model.getWordAtPosition(position).word + "**" },
+              {
+                value: "**Usage :** " + d.usage.replace("php", "")
+              },
+              {
+                value: "**Description :** " + d.desc
+              }, {
+                value: "**Example :** " + d.example
+              },
+              {
+                value: "**Docs :** " + d.docs
+              },
+            ],
+          };
+        }
+      });
+    },
+  });
+  var value = [
+    'module.exports = [{',
+    '\t"name":"some name",',
+    '\t"code":`$authorId $messageid`',
+    '}]'
+  ].join('\n')
+  //console.log(getParameterByName("file"))
+
+  
+  let editor = monaco.editor.create(document.getElementById('container'), {
+    value: value,
+    language: "javascript",
+    minimap: { enabled: false },
+    theme: 'vs-dark',
+    /*wordWrap: "wordWrapColumn",
+  wordWrapColumn: 40,
+  // try "same", "indent" or "none"
+  wrappingIndent: "none",*/
+  lineNumbers: 'off',
+  glyphMargin: false,
+  folding: false,
+  // Undocumented see https://github.com/Microsoft/vscode/issues/30795#issuecomment-410998882
+  lineDecorationsWidth: 10,
+  lineNumbersMinChars: 0,
+    roundedSelection: false,
+    scrollBeyondLastLine: true,
+    autoIndent: true,
+    formatOnPaste: true,
+    formatOnType: true,
+    bracketPairColorization: { enabled: true }
+
+  });
+  window.value = value;
+  window.editor = editor;
+
+  async function getJson(file) {
+    let myObject = await fetch(file);
+    let myJson = await myObject.json();
+    var type = getParameterByName("file").split(".")[getParameterByName("file").split(".").length-1]
+    console.log(type)
+    if (type == "js") {
+      type = "javascript";
+    }
+    else if (type == "ts") {
+      type = "typescript"
+    }
+    //type="text/"+type
+
+    await editor.getModel().setValue(myJson.data.join("\n"));
+    await monaco.editor.setModelLanguage(editor.getModel(), type);
+    window.value = myJson.data.join("\n")
+    window.type = type
+  }
+  if (!getParameterByName("file")) {
+    console.log("do nothing")
+  } else {
+    console.log("fetch " + getParameterByName("file"))
+    getJson("/api/!auth/file?file=" + getParameterByName("file"))
+  }
+
+
+
+  window.monaco = monaco;
+  monaco.languages.html.htmlDefaults.setDiagnosticsOptions({
+    noSemanticValidation: true,
+    noSyntaxValidation: true,
+  });
+
+
+
+});
+
+
+/*
+
+  monaco.languages.setMonarchTokensProvider('javascript', {
+    keywords,
+    tokenizer: {
+      root: [
+        [/@?2[a-zA-Z][\w]\*/ /*, {
+cases: {
+'@keywords': 'keyword',
+'@default': 'variable',
+}
+}],
+[/".*?"/, 'string'],
+[/`.*?`/, 'code'],
+[/\/\//, 'comment'],
+[/\$[a-z-A-Z]/, 'aoiK'],
+[/\$.*?\[.*?\]/, 'aoiK'],
+[/module/,"m"],
+[/exports/,"e"]
+]
+}
+})
+*/
+
+function pret() {
+  //let code = window.editor.getValue()
+  //const options = { indent_size: 4, space_in_empty_paren: true }
+  window.editor.getAction('editor.action.formatDocument').run()
+  //window.editor.getModel().setValue(prettified);
+
+}
+var diffEditor;
+
+
+function save1() {
+  document.getElementById("container").style.display = "none";
+  document.getElementById("diff").style.display = "block";
+  var originalModel = monaco.editor.createModel(
+    window.value,
+    window.type
+  );
+  var modifiedModel = monaco.editor.createModel(
+    editor.getValue(),
+    window.type
+  );
+
+
+  diffEditor = monaco.editor.createDiffEditor(
+    document.getElementById("diff"),
+    {
+      // You can optionally disable the resizing
+      enableSplitViewResizing: true,
+
+    }
+  );
+  diffEditor.setModel({
+    original: originalModel,
+    modified: modifiedModel,
+  });
+  document.getElementById("save").onclick = save2;
+  
+}
+async function save2() {
+  let file = getParameterByName("file");
+  let code = diffEditor.getModifiedEditor().getValue();
+  console.log(code)
+  console.log(`/api/!auth/setFile?file=${file}&code=${escape(code)}`)
+  const fetched = await fetch(`/api/!auth/setFile?file=${file}&code=${escape(code)}`);
+  const datat = await fetched.json();
+  console.log(datat);
+  UIkit.notification({
+    message: 'Saved!',
+    status: 'success',
+    pos: 'top-center',
+    timeout: 5000
+});
+}
+
+  </script>
+
+</body>
+
+</html>
