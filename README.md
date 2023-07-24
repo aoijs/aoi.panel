@@ -46,6 +46,6 @@ panel.loadGUI({
 })
 ```
 
-## View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/intro.md)
+View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/intro.md)
 
-## Join our [Support Server](https://aoi.js.org/invite) for support
+Join our [Support Server](https://aoi.js.org/invite) for support
