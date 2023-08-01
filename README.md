@@ -22,10 +22,19 @@ const {Panel} = require("@akarui/aoi.panel")
 const { AoiClient, LoadCommands } = require("aoi.js");
 
 const bot = new AoiClient({
-    token: "Bot token",
-    prefix: "p!",
-    intents: ["Guilds", "GuildMessages", "MessageContent"],
-    events: ["onMessage", "onInteractionCreate"]
+    token: "DISCORD BOT TOKEN",
+    prefix: "DISCORD BOT PREFIX",
+    intents: ["MessageContent", "Guilds", "GuildMessages"],
+    events: ["onMessage"],
+    database: {
+        type: "aoi.db",
+        db: require("@akarui/aoi.db"),
+        tables: ["main"],
+        path: "./database/",
+        extraOptions: {
+            dbType: "KeyValue"
+        }
+    }
 });
 
 const loader = new LoadCommands(bot);
