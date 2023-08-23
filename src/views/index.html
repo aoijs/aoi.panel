@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -18,23 +18,23 @@
 		::-webkit-scrollbar {
 		  width: 10px;
 		}
-		
+
 		/* Track */
 		::-webkit-scrollbar-track {
-		  background: #f1f1f1; 
+		  background: #f1f1f1;
 		}
-		 
+
 		/* Handle */
 		::-webkit-scrollbar-thumb {
-		  background: #888; 
+		  background: #888;
 		}
-		
+
 		/* Handle on hover */
 		::-webkit-scrollbar-thumb:hover {
-		  background: #555; 
+		  background: #555;
 		}
 		</style>
-		
+
     <style>
 		@import url("https://fonts.googleapis.com/css?family=Dosis:300,400,700,800");
 		:root {
@@ -85,10 +85,8 @@
         #overlay {
 			font-family: "Dosis",sans-serif;
 			font-weight: 1000;
-			position: fixed;
 			display: none;
-			width: 0%;
-			height: 0%;
+			height: 0;
 			background-color: rgba(0,0,0,0.5);
 			z-index: 2;
 			cursor: pointer;
@@ -181,15 +179,14 @@ button:focus {
 
 		.line-1{
 			position: relative;
-			top: 50%;  
+			top: 50%;
 			width: 24em;
 			margin: 0 auto;
 			border-right: 2px solid rgba(255,255,255,.75);
 			font-size: 180%;
 			text-align: center;
-			white-space: nowrap;
 			overflow: hidden;
-			transform: translateY(-50%);    
+			transform: translateY(-50%);
 			white-space: pre-wrap;
 		}
 
@@ -214,14 +211,14 @@ button:focus {
 		}
 
     </style>
-	
+
 </head>
 <body>
 	<div id="offcanvas-reveal" uk-offcanvas="mode: reveal; overlay: true">
 		<div class="uk-offcanvas-bar" style='font-family: "Dosis",sans-serif;font-weight: 1000;'>
-	
+
 			<button class="uk-offcanvas-close" type="button" uk-close></button>
-	
+
 			<strong style="font-size: 5vw;">Login</strong>
 			<br><br>
 			<form action="javascript:validate()">
@@ -233,7 +230,7 @@ button:focus {
 						<input class="uk-input" type="text" id="username" name="username" aria-label="Not clickable icon" required>
 					</div>
 				</div>
-			
+
 				<div class="uk-margin">
 					Password:<br>
 					<div class="uk-inline">
@@ -242,22 +239,21 @@ button:focus {
 					</div>
 				</div>
 				<button class="uk-button uk-button-default">Next!</button>
-			</form>	
+			</form>
 		</div>
 	</div>
-	
-	
+
+
     <nav class="uk-navbar-container" style="background-color:#000000;border-radius: 30px;margin: 20px;padding: 10px;">
         <div class="uk-container">
             <div uk-navbar>
                 <div class="uk-navbar-left">
-                    <img src="/images/aoibanner.png" height="20%" width="20%" style="border-radius: 5px;margin: -24px;padding: 10px;" class="hide-mediumsc hide-smallsc"></img><a class="uk-navbar-item uk-logo " href="#" aria-label="Back to Home" style="color:#FFFFFF;"></a><br><br>
-                    <img src="/images/aoibanner.png" height="20%" width="80%" style="border-radius: 5px;margin: -24px;padding: 10px;" class="hide-largesc"></img><a class="uk-navbar-item uk-logo " href="#" aria-label="Back to Home" style="color:#FFFFFF;"></a><br><br>
-                </div>
+					<img src="/images/aoibanner.png" height="20%" width="20%" style="border-radius: 5px;margin: -24px;padding: 10px;" class="hide-mediumsc hide-smallsc" alt="aoijs">
+					<img src="/images/aoibanner.png" height="730" width="2134" style="border-radius: 5px;margin: -24px;padding: 10px;" class="hide-largesc" alt="aoijs">
+				</div>
                 <div class="uk-navbar-right" >
                     <!--Add more elements (Links/social media etc. Ask leref.) here -->
                 </div>
-
             </div>
         </div>
     </nav>
@@ -271,10 +267,11 @@ button:focus {
 
 			</div>
 			<div id="loginbutton">
-				<button type="button" class="button btn-primary flexbox hide-mediumsc hide-smallsc" style="width: 10%;" type="button" uk-toggle="target: #offcanvas-reveal">
+				<button type="button" class="button btn-primary flexbox hide-mediumsc hide-smallsc" style="width: 10%;"
+						uk-toggle="target: #offcanvas-reveal">
 					<ion-icon name="folder-open-outline"></ion-icon> Login <div class="btn-secondary" ></div>
 				</button>
-				<button type="button" class="button btn-primary flexbox hide-largesc" style="width: 40%;" type="button" uk-toggle="target: #offcanvas-reveal">
+				<button type="button" class="button btn-primary flexbox hide-largesc" style="width: 40%;" uk-toggle="target: #offcanvas-reveal">
 					<ion-icon name="folder-open-outline"></ion-icon> Login <div class="btn-secondary" ></div>
 				</button>
 			</div>
@@ -286,11 +283,11 @@ button:focus {
             on()
             </script>
 			<script>
-				
-				var i = 0;
-				var txt = 'Aoi.js Panel is now FASTER, SMOOTHER & MORE ELEGANT!!';
-				var speed = 100;
-		
+
+				let i = 0;
+				const txt = 'Aoi.js Panel is now FASTER, SMOOTHER & MORE ELEGANT!!';
+				const speed = 100;
+
 				function typeWriter() {
 				if (i < txt.length) {
 					document.getElementById("test").innerHTML += txt.charAt(i);
@@ -317,7 +314,7 @@ button:focus {
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
-      
+
 		</div>
 		<div class="row altline2">
 			<div class="hexagon"></div>
@@ -336,7 +333,7 @@ button:focus {
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
-      
+
 		</div>
 		<div class="row line2">
 			<div class="hexagon"></div>
@@ -356,7 +353,7 @@ button:focus {
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
 		</div>
-        
+
 		<div class="row altline3">
 			<div class="hexagon"></div>
 			<div class="hexagon"></div>
@@ -520,7 +517,7 @@ button:focus {
 			<div class="hexagon"></div>
 		</div>
     </div>
-	<div style='background-color: #000000;width: 100%;height: 5%;color: #f1f1f1;font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;' align="center" >
+	<div style='background-color: #000000;width: 100%;height: 5%;font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;' >
 		Copyright 2023 AkaruiDevelopment
 	</div>
   <style>
@@ -586,15 +583,15 @@ button:focus {
 <script>
 	function getParameterByName(name, url = window.location.href) {
 name = name.replace(/[\[\]]/g, '\\$&');
-var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-results = regex.exec(url);
-if (!results) return null;
+		const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+				results = regex.exec(url);
+		if (!results) return null;
 if (!results[2]) return '';
 return decodeURIComponent(results[2].replace(/\+/g, ' '));
 
 }
 
-if(getParameterByName("loggedout")=="true"){localStorage.setItem("login","false")}
+if(getParameterByName("loggedout")==="true"){localStorage.setItem("login","false")}
 /*if(localStorage.getItem("login")=="true"){
   document.getElementById("loginbutton").innerHTML=`<button type="button" class="button btn-primary flexbox hide-mediumsc hide-smallsc" style="width: 10%;" type="button"  onclick="javascript:window.location.href='/panel'">
 		  <ion-icon name="folder-open-outline"></ion-icon> Open <div class="btn-secondary" ></div>
@@ -610,7 +607,7 @@ async function validate(){
   let username = document.getElementById("username").value;
   const response = await fetch("/pass/validate/?username="+username+"&password="+password);
 	const json = await response.json();
-  if(json.data==true){
+  if(json.data===true){
 	  localStorage.setItem("login", "true");
 	  window.location.href="/login?username="+username+"&password="+password;
   }
@@ -622,7 +619,7 @@ async function validate(){
 		  timeout: 5000
 	  });
   }
-}	
+}
 </script>
 
 </html>

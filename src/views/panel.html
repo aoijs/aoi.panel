@@ -218,7 +218,7 @@
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <h2 class="uk-modal-title" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;'>New File</h2>
             <div id="myFile" action="/api/!auth/newFile" method='get' autocomplete='off'>
-                <input type='text' name='file' id="file" placeholder='Name of file...' autocomplete='false' style="width:100"  class="uk-input uk-form-width-large" size="50" required>
+                <input type='text' name='file' id="file" placeholder='Name of file...' autocomplete='false' style="width: auto"  class="uk-input uk-form-width-large" size="50" required>
                 <br><br>
                 <br>
     
@@ -235,7 +235,7 @@
             <a ><button class="uk-button " style="color:#FFFFFF;background: linear-gradient(120deg, #ea00ff, #0509e6);border-radius: 30px;animation: gradient-animation 4s ease-in-out infinite;" onclick="javascript:newFile()">New file</button></a>
     
             <h2 class="uk-modal-title" style='font-family: "Dosis",sans-serif;color: #FFFFFF;'>Editor</h2>
-            <table class="uk-table uk-table-small uk-table-divider " style='font-family: "Dosis",sans-serif;color: #FFFFFF;' style="border-radius: 30px;margin: 30px;padding: 30px;max-width: 100%;">
+            <table class="uk-table uk-table-small uk-table-divider " style="border-radius: 30px;margin: 30px;padding: 30px;max-width: 100%;">
                 <thead>
                     <tr>
                         <th style='font-family: "Dosis",sans-serif;color: #FFFFFF;'>File / Directory Name</th>
@@ -306,7 +306,7 @@
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" style="background-color: #1e1e1e;" align="center">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <h2 class="uk-modal-title" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;'>Guilds</h2>
-        <div id="guildList" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;display: inline-block;display: flex;justify-content: space-between;' align="center" class="w3-hide-medium w3-hide-small">
+        <div id="guildList" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;display: flex;justify-content: space-between;' class="w3-hide-medium w3-hide-small">
         </div>
         <div id="guildList2" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;justify-content: space-between; ' align="center" class="w3-hide-large">
         </div>
@@ -347,7 +347,7 @@
         var a = getParameterByName("dir").split("/");
         console.log(a)
         var n=1;
-        if(a[a.length-1]==""){n=2}
+        if(a[a.length-1]===""){n=2}
         link = getParameterByName("dir").replace("/"+a[a.length-n],"");    
     }
     console.log(link)
@@ -360,13 +360,15 @@
         window.location.href="#"
     }
   }
-  var baseLk="";
-  async function getBL(){
+
+    let baseLk = "";
+
+    async function getBL(){
     if(getParameterByName("dir"))return baseLk=getParameterByName("dir");
     let baseLink = await fetch ("/api/!auth/baseRoute")
 .then(x => x.json())
 .then(y => {return y})
-    console.log("baselink:"+baseLink.data)
+//    console.log("baselink:"+baseLink.data)
     baseLk=baseLink.data
   }
   getBL()
@@ -375,9 +377,9 @@ fetch (file)
 .then(x => x.json())
 .then(y => {
   let a="";
-  console.log(y)
+//  console.log(y)
   for(let i=0;i<y.length;i++){
-    if(y[i].type=="dir"){
+    if(y[i].type==="dir"){
       a+=`<tr>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'>Dir: ${y[i].path.replace(baseLk,"")}</th>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'><a href="/panel/?dir=${y[i].path}"><button class="uk-button uk-button-default uk-button-small" style="color:white;" style="background: linear-gradient(120deg, #ea00ff, #0509e6);border-radius: 30px;animation: gradient-animation 4s ease-in-out infinite;">Open</button></a></th>
@@ -423,7 +425,7 @@ async function deleteFile(filepath){
   let a="";
   console.log(y)
   for(let i=0;i<y.length;i++){
-    if(y[i].type=="dir"){
+    if(y[i].type==="dir"){
       a+=`<tr>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'>Dir: ${y[i].path.replace(baseLk,"")}</th>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'><a href="/panel/?dir=${y[i].path}"><button class="uk-button uk-button-default uk-button-small" style="color:white;" style="background: linear-gradient(120deg, #ea00ff, #0509e6);border-radius: 30px;animation: gradient-animation 4s ease-in-out infinite;">Open</button></a></th>
@@ -472,7 +474,7 @@ async function deleteFolder(filepath){
         .then(data=>data.json())
         .then(json=>{return json})
     UIkit.notification.closeAll()
-    if(fd.data=="Success!"){
+    if(fd.data==="Success!"){
             UIkit.notification({
                 message: 'Success',
                 status: 'success',
@@ -485,7 +487,7 @@ async function deleteFolder(filepath){
   let a="";
   console.log(y)
   for(let i=0;i<y.length;i++){
-    if(y[i].type=="dir"){
+    if(y[i].type==="dir"){
       a+=`<tr>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'>Dir: ${y[i].path.replace(baseLk,"")}</th>
             <th style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;font-size:4vw;'><a href="/panel/?dir=${y[i].path}"><button class="uk-button uk-button-default uk-button-small" style="color:white;" style="background: linear-gradient(120deg, #ea00ff, #0509e6);border-radius: 30px;animation: gradient-animation 4s ease-in-out infinite;">Open</button></a></th>
@@ -537,7 +539,7 @@ async function createFile(){
             .then(data=>data.json())
             .then(json=>{return json})
         UIkit.notification.closeAll()
-        if(fd.data=="Success!"){
+        if(fd.data==="Success!"){
             UIkit.notification({
                 message: 'Success',
                 status: 'success',
@@ -650,21 +652,30 @@ async function createFile(){
             document.getElementById("uptime").innerHTML=json.uptime;
             document.getElementById("cpu").innerHTML=parseFloat(json.cpu).toFixed(2);
         }
-        var guildHTML = "";
-        async function guildData(){
-            const res= await fetch("/api/!auth/guilds");
-            const json = await res.json();
-            for(let i=0;i<json.length;i++){
-                document.getElementById("guildList").innerHTML+=`<a ><img src="${json[i].iconURL.replace(".webp",".png")}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${json[i].name}</a><br><br>`
-                document.getElementById("guildList2").innerHTML+=`<a ><img src="${json[i].iconURL.replace(".webp",".png")}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${json[i].name}</a><br><br>`
-                guildHTML+=`<a ><img src="${json[i].iconURL.replace(".webp",".png")}"  onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${json[i].name}</a><br><br>`
-            }
-            if(json.length==0){document.getElementById("guildList").innerHTML="No guilds found.";document.getElementById("guildList2").innerHTML="No guilds found."}
-        }
-        guildData()
-        setInterval(stats,1000)
 
-        
+        let guildHTML = "";
+
+        async function guildData() {
+            const res = await fetch("/api/!auth/guilds");
+            const json = await res.json();
+            for (let i = 0; i < json.length; i++) {
+                const iconURL = json[i].iconURL;
+                const iconSrc = iconURL ? iconURL.replace(".webp", ".png") : "https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png";
+
+                document.getElementById("guildList").innerHTML += `<a><img src="${iconSrc}" id="icons" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;" alt="guildList"></img><br>${json[i].name}</a><br><br>`;
+                document.getElementById("guildList2").innerHTML += `<a><img src="${iconSrc}" id="icons" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;" alt="guidList2"></img><br>${json[i].name}</a><br><br>`;
+                guildHTML += `<a><img src="${iconSrc}" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;" alt="guildIcon"></img><br>${json[i].name}</a><br><br>`;
+            }
+            if (json.length == 0) {
+                document.getElementById("guildList").innerHTML = "No guilds found.";
+                document.getElementById("guildList2").innerHTML = "No guilds found.";
+            }
+        }
+
+        guildData();
+        setInterval(stats, 1000);
+
+
     </script>
 
 </body>

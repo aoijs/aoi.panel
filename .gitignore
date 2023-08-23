@@ -1,14 +1,14 @@
-.replit
+#Ignore modules
 node_modules
-replit.nix
-/database
-/commands
-/interaction
-/__tests__
-/.upm/store.json
+
+#Ignore database files
+database
+
+#Ignore Test Environment
+commands
+config.json
+plugins
+/index.js
 .idea
 .vscode
-index.test.js
-package-lock.json
-.git
-.config
+.DS_Store

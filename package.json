@@ -1,10 +1,10 @@
 {
     "name": "@akarui/aoi.panel",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
     "main": "src/index.js",
     "scripts": {
-        "test": "node index.test.js"
+        "test": "node index.js"
     },
     "engines": {
         "node": ">=16.9.0"
@@ -35,12 +35,12 @@
     },
     "devDependencies": {
         "aoi.js": "^6.4.0",
+        "aoi.js-library": "^2.0.2",
         "node": "^17.9.1"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/AkaruiDevelopment/panel.git"
     },
-    "author": "",
     "homepage": "https://github.com/AkaruiDevelopment/panel#readme"
 }
