@@ -7,7 +7,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/AkaruiDevelopment/panel?color=blue&style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/AkaruiDevelopment/panel?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AkaruiDevelopment/panel?style=social)
-![img](https://raw.githubusercontent.com/aoijs/website/main/assets/images/aoipanel-banner.png)
+![img](https://cdn.discordapp.com/attachments/1003012450871955566/1154069587638362132/CA0456B9-FA37-4DE3-8F95-9AB3A8B2ACCA.png?ex=654ba28f&is=65392d8f&hm=36fa4f2dd8be6bd1994eb56d830d65fc09ca991ba1e13a29722c4dbc11dad9d1&)
 
 
 ## Installation
