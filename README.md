@@ -42,7 +42,7 @@ loader.load(bot.cmd, "./commands/");
 
 const panel = new Panel({
   port:3000,
-  client:bot
+  client:client
 })
 
 panel.loadAPI({
