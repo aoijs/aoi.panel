@@ -1,46 +1,80 @@
 {
+  "_from": "@akarui/aoi.panel",
+  "_id": "@akarui/aoi.panel@0.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-8sAosVozQ2vUhD1M2WVCJ5+uPkmDv4WgErc77x4E4jiSwxfPhY/hPdBLkTacDatGH0uni1XsCS2T45ejdsHCaA==",
+  "_location": "/@akarui/aoi.panel",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@akarui/aoi.panel",
     "name": "@akarui/aoi.panel",
-    "version": "0.0.6",
-    "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
-    "main": "src/index.js",
-    "scripts": {
-        "test": "node index.js"
-    },
-    "engines": {
-        "node": ">=16.9.0"
-    },
-    "keywords": [
-        "aoi.js",
-        "aoi.js panel",
-        "aoi.panel",
-        "panel",
-        "express",
-        "discord",
-        "discord bot panel",
-        "aoi",
-        "dbdjs",
-        "akarui",
-        "akaruidevelopment",
-        "dashboard"
-    ],
-    "bugs": {
-        "url": "https://github.com/AkaruiDevelopment/panel/issues"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "body-parser": "^1.20.0",
-        "express": "^4.18.1",
-        "express-session": "^1.17.3",
-        "node-fetch": "^2.6.1"
-    },
-    "devDependencies": {
-        "aoi.js": "^6.4.0",
-        "aoi.js-library": "^2.0.2",
-        "node": "^17.9.1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AkaruiDevelopment/panel.git"
-    },
-    "homepage": "https://github.com/AkaruiDevelopment/panel#readme"
+    "escapedName": "@akarui%2faoi.panel",
+    "scope": "@akarui",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@akarui/aoi.panel/-/aoi.panel-0.0.5.tgz",
+  "_shasum": "ff2046f112078250b927d6b34bea9409f0d080b9",
+  "_spec": "@akarui/aoi.panel",
+  "_where": "/home/container",
+  "author": {
+    "name": "Leref"
+  },
+  "bugs": {
+    "url": "https://github.com/AkaruiDevelopment/panel/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "node-fetch": "^2.6.1"
+  },
+  "deprecated": false,
+  "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
+  "devDependencies": {
+    "aoi.js": "^6.4.0",
+    "node": "^17.9.1"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "homepage": "https://github.com/AkaruiDevelopment/panel#readme",
+  "keywords": [
+    "aoi.js",
+    "aoi.js panel",
+    "aoi.panel",
+    "panel",
+    "express",
+    "discord",
+    "discord bot panel",
+    "aoi",
+    "dbdjs",
+    "akarui",
+    "akaruidevelopment",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "maintainers": [
+    {
+      "name": "Bumblebee-3"
+    }
+  ],
+  "name": "@akarui/aoi.panel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkaruiDevelopment/panel.git"
+  },
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "version": "0.0.6"
 }

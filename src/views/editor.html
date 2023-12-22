@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/js/uikit-icons.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.22/dist/css/uikit.min.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
   <style>
     @media (max-width:600px){.hide-smallsc{display:none!important}}
@@ -23,12 +24,12 @@
 	margin: 0;
 	padding: 0;
 	/*overflow: hidden;*/
-  background-color: #1e1e1e;
+  background-color: #141414;
 }
 #container{
   position: absolute;
 	/*overflow: hidden;*/
-  height:100%;
+  height:500px;
   background-color: #1e1e1e;
   width:100%;
 }
@@ -49,36 +50,121 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
 </head>
+<style>
+  .navbar {
+    background-color: #0f0f0f;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    text-decoration-color: thistle;
+  }
+
+  .navbar-iconl {
+    width: 50px;
+    display: flex;
+  }
+
+  .titlelogo {
+    color: white;
+    font-size: 30px;
+
+
+  }
+
+  .home {
+    padding: 8px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .home:hover {
+    padding: 8px;
+    font-size: 20px;
+    color: white;
+  }
+
+  @media (max-width: 400px) {
+    .titlelogo {
+      display: none;
+    }
+  }
+
+  .ps {
+    margin: 0px 0px 0px 0px;
+    background-color: #141414;
+    text-align: end;
+    padding: 20px 0px 20px 0px;
+  }
+
+  .Prettify {
+    margin: 5px;
+    text-decoration: none;
+    background-color: #0d6efd;
+    color: #ffffff;
+    
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .Prettify:hover {
+    text-decoration: none;
+    color: #9b9b9b;
+    background-color: #0c4fb3;
+  }
+
+  .Prettify:active {
+    text-decoration: none;
+    color: #919191;
+    background-color: #0a3576;
+  }
+  .save {
+    text-decoration: none;
+    background-color: #198754;
+    color: #ffffff;
+    margin: 5px 30px 5px 5px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .save:hover {
+    text-decoration: none;
+    color: #bdbdbd;
+    background-color: #14633e;
+  }
+
+  .save:active {
+    text-decoration: none;
+    color: #c1c1c1;
+    background-color: #0f5032;
+  }
+</style>
 
 <body>
-  <nav class="uk-navbar-container" style="background-color:#000000;border-radius: 30px;margin: 20px;padding: 10px;">
-    <div class="uk-container">
-      <div uk-navbar>
-
-        <div class="uk-navbar-left hide-smallsc">
-
-          <a class="uk-navbar-item uk-logo" href="#" aria-label="Back to Home"
-            style="color:#FFFFFF;">AkaruiDevelopment</a>
-          
-        </div>
-        <div class="uk-navbar-right" >
-          
-          <div class="uk-navbar-item" id="home">
-            <a href="/panel"><span uk-icon="home"></span><span class="hide-smallsc"> Home</span></a>
-          </div>
-          <div class="uk-navbar-item" id="pret" style="top: 200px;">
-            <a onclick="pret()"><span uk-icon="bolt"></span><span class="hide-smallsc"> Prettify</span></a>
-          </div>
-          <div class="uk-navbar-item" id="save">
-            <a onclick="save1()"><span uk-icon="download"></span><span class="hide-smallsc"> Save</span></a>
-          </div>
-
-
-        </div>
-
+  <nav class="navbar">
+    <a class="btnkl" style="text-decoration: none;" href="/panel">
+      <div class="navbar-iconl">
+        <img class="logonav" src="https://github.com/aoijs/website/blob/master/assets/images/aoipanel.png?raw=true"
+          alt="Icon 4" />
+        <span style="text-decoration: none;" class="titlelogo ">AOI.PANEL</span>
       </div>
-    </div>
+    </a>
+    <a href="/panel" style="text-decoration: none;" class="home"><i class="navicon bi bi-house"></i> Home</a>
   </nav>
+    <div class="ps">
+    <a id="pret" onclick="pret()" class="Prettify">
+      <i class="bi bi-lightning-charge-fill"></i> Prettify
+    </a>
+    <a id="save" onclick="save1()" class="save">
+      <i class="bi bi-floppy2-fill"></i> Save
+    </a>
+  </div>
   <br>
   <div id="container"></div>
   <div id="diff" style="display:none;"></div>
@@ -138,7 +224,7 @@ let proxy = URL.createObjectURL(new Blob([`
 `], { type: 'text/javascript' }));
 
 require(["vs/editor/editor.main"], async function() {
-  let keywords = await fetch("https://aoi-api.bumblebeerox1.repl.co/api/getArrayFunctionList")
+  let keywords = await fetch("https://api.aoijs.org/api/getArrayFunctionList")
     .then(data => data.json())
     .then((json) => { return json.data })
   console.log(keywords)
@@ -146,7 +232,7 @@ require(["vs/editor/editor.main"], async function() {
     provideCompletionItems: (model, position) => {
       const suggestions = [
         ...keywords.map( k => {
-          /*let d = await fetch("https://aoi-api.bumblebeerox1.repl.co/api/panelfunction?function="+k)
+          /*let d = await fetch("https://api.aoijs.org/api/panelfunction?function="+k)
     .then(data=>data.json())
     .then((json) => {return json})*/
 
@@ -167,7 +253,7 @@ require(["vs/editor/editor.main"], async function() {
 
   monaco.languages.registerHoverProvider("javascript", {
     provideHover: function(model, position) {
-      return xhr("https://aoi-api.bumblebeerox1.repl.co/api/function?function=" + model.getWordAtPosition(position).word).then(function(res) {
+      return xhr("https://api.aoijs.org/api/function?function=" + model.getWordAtPosition(position).word).then(function(res) {
         let d = JSON.parse(res.responseText);
         if(d.name=="function not found") return;
         if (d.err == "" || !d.err||d.name!="function not found") {

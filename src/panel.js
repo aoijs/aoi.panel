@@ -75,7 +75,16 @@ class Panel {
         res.sendFile(__dirname+"/assets/"+file)
       })
     })
-
+	fs.readdirSync(__dirname+"/css/").forEach(file => {
+      app.get("/css/"+file,function(req,res){
+        res.sendFile(__dirname+"/css/"+file)
+      })
+    })
+      fs.readdirSync(__dirname+"/js/").forEach(file => {
+      app.get("/js/"+file,function(req,res){
+        res.sendFile(__dirname+"/js/"+file)
+      })
+    })
     require("./gui/frameworkmain.js")(data,this.params,app,this);
     app.set('view engine', 'html');
     app.set('views', __dirname + "/pages");
