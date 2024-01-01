@@ -71,7 +71,7 @@ class Panel {
     }))
     const fs = require("fs");
     fs.readdirSync(__dirname+"/assets/").forEach(file => {
-      app.get("/images/"+file,function(req,res){
+      app.get("/assets/"+file,function(req,res){
         res.sendFile(__dirname+"/assets/"+file)
       })
     })

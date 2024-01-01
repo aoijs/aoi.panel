@@ -62,8 +62,8 @@ body {
 }
 .hofuu {
         width:700px;
-    text-overflow: "...";
-  font-size: 30px;
+    overflow: hidden;
+  font-size: 25px;
 }
 @media screen and (max-width: 1209px) {
   .hofuu {
