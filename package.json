@@ -1,6 +1,6 @@
 {
     "name": "@akarui/aoi.panel",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
     "main": "src/index.js",
     "scripts": {
@@ -45,7 +45,8 @@
       "name": "Leref"
     },
     "maintainers": [
-      "Bumblebee-3"
+      "Bumblebee-3",
+      "wiltark"
     ],
     "homepage": "https://github.com/AkaruiDevelopment/panel#readme"
 }

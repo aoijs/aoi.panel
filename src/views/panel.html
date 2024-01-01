@@ -3,16 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="https://github.com/aoijs/website/blob/master/assets/images/aoipanel.png?raw=true" type="image/png"/>
+    <link
+      rel="shortcut icon"
+      href="https://github.com/aoijs/website/blob/master/assets/images/aoipanel.png?raw=true"
+      type="image/png"
+    />
     <title>@akarui/aoi.panel</title>
     <!-- css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
-    <link rel="stylesheet"href="/css/prism-coy.css"/>
-    <link rel="stylesheet" href="/css/jquery.terminal.css"/>
-    <link rel="stylesheet" href="/css/navbar.css"/>
-    <link rel="stylesheet" href="/css/mine.css"/>
-    <link rel="stylesheet" href="/css/w3.css"/>
-    <link rel="stylesheet" href="/css/panel.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/css/prism-coy.css" />
+    <link rel="stylesheet" href="/css/jquery.terminal.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/mine.css" />
+    <link rel="stylesheet" href="/css/w3.css" />
+    <link rel="stylesheet" href="/css/panel.css" />
     <!--js-->
     <script src="/js/uikit.min.js"></script>
     <script src="/js/uikit-icons.min.js"></script>
@@ -70,16 +77,22 @@
                 <div class="tiltesub">Eval</div>
               </li>
               <li>
-                <a class="uk-button" uk-toggle="target: #modal-close-djsEval">DISCORD.JS</a>
+                <a class="uk-button" uk-toggle="target: #modal-close-djsEval"
+                  >DISCORD.JS</a
+                >
               </li>
               <li>
-                <a class="uk-button" uk-toggle="target: #modal-close-aoiEval">AOI.JS</a>
+                <a class="uk-button" uk-toggle="target: #modal-close-aoiEval"
+                  >AOI.JS</a
+                >
               </li>
               <li>
                 <div class="tiltesub">Commands</div>
               </li>
               <li>
-                <a class="uk-button" uk-toggle="target: #modal-close-default">SHELL</a>
+                <a class="uk-button" uk-toggle="target: #modal-close-default"
+                  >SHELL</a
+                >
               </li>
             </ul>
           </div>
@@ -139,7 +152,9 @@
         <button class="uk-button btnretart" onclick="reboot()">
           <i class="bi bi-arrow-clockwise"></i> Restart
         </button>
-        <a href="/logout" class="btnlogout"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
+        <a href="/logout" class="btnlogout"
+          ><i class="bi bi-box-arrow-in-left"></i> Logout</a
+        >
       </div>
       <div class="box2">
         <div class="boybox2">
@@ -177,10 +192,28 @@
       <h1 class="soon">SOON</h1>
     </div>
     <br />
-    <div id="modal-close-default" uk-modal style=" font-family: 'Dosis', sans-serif; font-weight: 1000; color: #ffffff; ">
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" style="border-radius: 10px; background-color: #1e1e1e" >
+    <div
+      id="modal-close-default"
+      uk-modal
+      style="
+        font-family: 'Dosis', sans-serif;
+        font-weight: 1000;
+        color: #ffffff;
+      "
+    >
+      <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+        style="border-radius: 10px; background-color: #1e1e1e"
+      >
         <button class="uk-modal-close-default" type="button" uk-close></button>
-        <h2 class="uk-modal-title"style="font-family: 'Dosis', sans-serif;font-weight: 1000;color: #ffffff;">
+        <h2
+          class="uk-modal-title"
+          style="
+            font-family: 'Dosis', sans-serif;
+            font-weight: 1000;
+            color: #ffffff;
+          "
+        >
           Execute!
         </h2>
         <form
@@ -253,13 +286,15 @@
             class="uk-button"
             onclick="javascript:createFile()"
             id="saveNewFile"
-            style=" color: white;
+            style="
+              color: white;
               background-color: rgb(70, 70, 70);
               border: none;
               padding: 10px;
               border-radius: 10px;
               cursor: pointer;
-              transition: all 0.3s;"
+              transition: all 0.3s;
+            "
             type="submit"
           >
             <i class="bi bi-file-earmark-plus-fill"></i> Create!
@@ -549,11 +584,7 @@
         color: #ffffff;
       "
     >
-      <div
-        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
-        style="background-color: #1e1e1e"
-        align="center"
-      >
+      <div class="uk-modal-body" style="background-color: #1e1e1e">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <h2
           class="uk-modal-title"
@@ -565,33 +596,12 @@
         >
           Guilds
         </h2>
-        <div
-          id="guildList"
-          style="
-            font-family: 'Dosis', sans-serif;
-            font-weight: 1000;
-            color: #ffffff;
-            display: inline-block;
-            display: flex;
-            justify-content: space-between;
-          "
-          align="center"
-          class="w3-hide-medium w3-hide-small"
-        ></div>
-        <div
-          id="guildList2"
-          style="
-            font-family: 'Dosis', sans-serif;
-            font-weight: 1000;
-            color: #ffffff;
-            justify-content: space-between;
-          "
-          align="center"
-          class="w3-hide-large"
-        ></div>
+
+        <div class="container4" id="guildList"></div>
+        <div style="display: none" id="guildList2"></div>
       </div>
     </div>
-      
+
     <script>
       function newFile() {
         UIkit.modal("#modal-close-select").toggle();
@@ -871,8 +881,8 @@
               y[i].path
             }')">Delete</button></th>
         </tr>`;
-            } else {
-              a += `<tr>
+                } else {
+                  a += `<tr>
             <th class="hofuu" style='font-family: "Dosis",sans-serif;font-weight: 1000;color: #FFFFFF;overflow: hidden;'><div class="hofuu"><i class="bi bi-file-earmark-text-fill"></i> ${y[
               i
             ].path.replace(baseLk, "")}</div></th>
@@ -929,26 +939,32 @@
         for (let i = 0; i < json.length; i++) {
           document.getElementById(
             "guildList"
-          ).innerHTML += `<a ><img src="${json[i].iconURL.replace(
+          ).innerHTML += `<div class="cardf"><div style="imgp"><a ><img class="imgp" src="${json[
+            i
+          ].iconURL.replace(
             ".webp",
             ".png"
-          )}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${
+          )}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" ></img></div><div class="cardf-content">${
             json[i].name
-          }</a><br><br>`;
+          }</a></div></div>`;
           document.getElementById(
             "guildList2"
-          ).innerHTML += `<a ><img src="${json[i].iconURL.replace(
+          ).innerHTML += `<div class="cardf"><div class="imgp"><a ><img  class="imgp" src="${json[
+            i
+          ].iconURL.replace(
             ".webp",
             ".png"
-          )}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${
+          )}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" ></img></div><div class="cardf-content">${
             json[i].name
-          }</a><br><br>`;
-          guildHTML += `<a ><img src="${json[i].iconURL.replace(
+          }</a></div></div>`;
+          guildHTML += `<div class="cardf"> <div class="imgp"><a ><img class="imgp" src="${json[
+            i
+          ].iconURL.replace(
             ".webp",
             ".png"
-          )}"  onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" style="border-radius: 50%; width: 150px;background: linear-gradient(120deg, #ea00ff, #0509e6) border-box;color: #313149;padding: 5px;border: 1px solid transparent;display: inline-block;margin: 15px 0;"></img><br>${
+          )}"  onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" "></img></div><div class="cardf-content">${
             json[i].name
-          }</a><br><br>`;
+          }</a></div></div>`;
         }
         if (json.length == 0) {
           document.getElementById("guildList").innerHTML = "No guilds found.";
@@ -978,7 +994,7 @@
             success: function (response) {
               console.log(response);
               document.getElementById("data").innerHTML = response.data;
-              document.getElementById("data").style.display = "block";
+              document.getElementById("data").style.display = "flax";
               document.getElementById("execBut").disabled = false;
               UIkit.notification.closeAll();
             },
