@@ -1,6 +1,5 @@
-const path = require('path')
-const fs = require('fs')
 const util = require("./utilFuncs.js");
+const {AoiError} = require("aoi.js");
 
 class Panel {
     constructor(params) {
@@ -9,27 +8,22 @@ class Panel {
         util.checkVersion();
         util.checkPackage();
 
-        console.log("\x1b[32m%s\x1b[0m", "Initializing @akarui/aoi.panel.")
-        if (!params.port) {
-            console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] A port was not provided. Taking default as 3000.")
-            params.port = 3000;
-        }
         if (!params.client) {
-            console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] Aoi.js client was not provided. Exiting code.")
-            process.exit(0)
+            throw new TypeError("Client was not provided!")
+        }
+        if (!params.port) {
+            throw new TypeError("Port was not provided!")
         }
     }
 
     loadAPI(data) {
         if (!data.auth) {
-            console.log("\x1b[33m%s\x1b[0m", "[@akarui/aoi.panel] A auth key for API was not provided. Exiting code.")
-            process.exit(0)
+            throw new TypeError("Authentication key was not provided!")
         }
         this.auth = data.auth;
         const app = require("express")();
         app.listen(this.params.port)
         this.app = app;
-        console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel API ready on port: " + this.params.port)
         const f = require("./api/index.js");
         f.loadAPIRoutes(this);
     }
@@ -37,25 +31,20 @@ class Panel {
     loadGUI(data) {
         const params = this.params;
         if (!this.app) {
-            console.log("You need to run the function loadAPI() before you run loadGUI()")
-            process.exit(0)
+            throw new TypeError("API was not loaded! Please load the API before loading the GUI!")
         }
         if (!data.username) {
-            console.log("Username(s) was not provided!");
-            process.exit(0);
+            throw new TypeError("Username(s) was not provided!")
         }
         if (!data.password) {
-            console.log("Password(s) was not provided!");
-            process.exit(0);
+            throw new TypeError("Password(s) was not provided!")
         }
-        if (Array.isArray(data.password) == true && Array.isArray(data.username) == false || Array.isArray(data.password) == false && Array.isArray(data.username) == true) {
-            console.log("Username and Passwords should both be arrays!");
-            process.exit(0);
+        if (Array.isArray(data.password) === true && Array.isArray(data.username) === false || Array.isArray(data.password) === false && Array.isArray(data.username) === true) {
+            throw new TypeError("Username and Passwords must be both an array or both a string!")
         }
         if (Array.isArray(data.password) && Array.isArray(data.username)) {
-            if (data.password.length != data.username.length) {
-                console.log("Username and Passwords Array length must match!");
-                process.exit(0);
+            if (data.password.length !== data.username.length) {
+                throw new TypeError("Username and Passwords Array length must match!");
             }
         }
         this.data = data;
@@ -94,44 +83,48 @@ class Panel {
         app.set('view engine', 'html');
         app.set('views', __dirname + "/pages");
         app.get("/", function (req, res) {
-            //if(!req.session) return res.sendFile(__dirname+"/views/index.html");
             if (Array.isArray(data.username)) {
                 for (let i = 0; i < data.username.length; i++) {
-                    if (req.session.username == data.username[i] && req.session.password == data.password[i]) {
+                    if (req.session.username === data.username[i] && req.session.password === data.password[i]) {
                         return res.sendFile(__dirname + "/views/index2.html");
                     }
                 }
                 return res.sendFile(__dirname + "/views/index.html");
             } else {
-                if (req.session.username == data.username && req.session.password == data.password) {
+                if (req.session.username === data.username && req.session.password === data.password) {
                     return res.sendFile(__dirname + "/views/index2.html");
                 }
                 return res.sendFile(__dirname + "/views/index.html");
             }
 
         })
-
-        console.log("\x1b[32m%s\x1b[0m", "aoi.js Panel GUI ready on port: " + params.port)
+        AoiError.createCustomBoxedMessage(
+            [
+                {
+                    text: `Successfully connected Panel on port ${params.port}`,
+                    textColor: "green",
+                },
+            ],
+            "white",
+            { text: "@akarui/aoi.panel", textColor: "cyan" }
+        );
     }
 
     isLoggedIn(req, res) {
         const data = this.data;
         if (Array.isArray(data.username)) {
             for (let i = 0; i < data.username.length; i++) {
-                if (req.session.username == data.username[i] && req.session.password == data.password[i]) {
+                if (req.session.username === data.username[i] && req.session.password === data.password[i]) {
                     return true;
                 }
             }
             return false;
         } else {
-            if (req.session.username == data.username && req.session.password == data.password) {
-                return true;
-            }
-            return false;
+            return req.session.username === data.username && req.session.password === data.password;
+
         }
     }
 }
-
 
 module.exports = {
     Panel
