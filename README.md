@@ -15,13 +15,20 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/AkaruiDevelopment/panel?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AkaruiDevelopment/panel?style=social)
 
-## Installation
+### Table of Contents
+
+- [Installation](#installation)
+    - [Setup](#setup)
+- [Adding Multiple Users](#adding-multiple-users)
+- [Making Custom Pages](#making-custom-pages)
+
+### Installation
 
 ```bash
 npm i @akarui/aoi.panel
 ```
 
-## Setup:
+### Setup
 
 ```javascript
 const {Panel} = require("@akarui/aoi.panel")
@@ -54,9 +61,26 @@ panel.loadAPI({
 })
 
 panel.loadGUI({
-    username: ["username 1", "username 2"],
-    password: ["Password 1", "Password 2"],
+    username: ["username 1"],
+    password: ["Password 1"],
 })
 ```
 
-Join our [Support Server](https://aoi.js.org/invite) for support
+### Adding Multiple Users
+
+```javascript
+panel.loadGUI({
+    username: ["username 1", "username 2", "username 3"],
+    password: ["Password 1", "Password 2", "Password 3"],
+})
+```
+
+### Making Custom Pages
+
+```javascript
+const app = panel.app;
+app.get("/example", (req, res) => {
+    res.send("This is an example page.");
+})
+```
+
