@@ -1,4 +1,11 @@
-# @akarui/aoi.panel
+<p align="center">
+  <a href="https://aoi.js.org">
+    <img width="150" src="https://github.com/aoijs/website/blob/master/assets/images/aoipanel.png?raw=true" alt="aoi.panel">
+  </a>
+</p>
+
+<h1 align="center">@akarui/aoi.panel</h1>
+
 ![npm](https://img.shields.io/npm/dt/@akarui/aoi.panel?color=blue&label=NPM%20Downloads&logo=npm&logoColor=Green)
 ![GitHub](https://img.shields.io/github/license/AkaruiDevelopment/panel?color=blue&logo=github)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/AkaruiDevelopment/panel?color=blue&label=Git%20Version)
@@ -7,8 +14,6 @@
 ![GitHub forks](https://img.shields.io/github/forks/AkaruiDevelopment/panel?color=blue&style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/AkaruiDevelopment/panel?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/AkaruiDevelopment/panel?style=social)
-![img](https://raw.githubusercontent.com/aoijs/website/main/assets/images/aoipanel-banner.png)
-
 
 ## Installation
 
@@ -16,36 +21,42 @@
 npm i @akarui/aoi.panel
 ```
 
-## Basic Usage:
+## Setup:
+
 ```javascript
 const {Panel} = require("@akarui/aoi.panel")
-const { AoiClient, LoadCommands } = require("aoi.js");
+const {AoiClient} = require("aoi.js");
 
-const bot = new AoiClient({
-    token: "Bot token",
-    prefix: "p!",
-    intents: ["Guilds", "GuildMessages", "MessageContent"],
-    events: ["onMessage", "onInteractionCreate"]
+const client = new AoiClient({
+    intents: ["MessageContent", "Guilds", "GuildMessages"],
+    events: ["onMessage", "onInteractionCreate"],
+    prefix: "Discord Bot Prefix",
+    token: "Discord Bot Token",
+    database: {
+        type: "aoi.db",
+        db: require("@akarui/aoi.db"),
+        dbType: "KeyValue",
+        tables: ["main"],
+        securityKey: "a-32-characters-long-string-here",
+    }
 });
 
-const loader = new LoadCommands(bot);
-loader.load(bot.cmd, "./commands/");
+
+client.loadCommands("./commands/", true);
 
 const panel = new Panel({
-  port:3000,
-  client:bot
+    port: 3000,
+    client: client
 })
 
 panel.loadAPI({
-  auth:" Authentication key here (random string)"//no spaces, keep it only alphanumeric...
+    auth: "Authentication-Key"//No spaces, keep it only alphanumeric.
 })
 
 panel.loadGUI({
-  username:["username 1","username 2"],
-  password:["Password 1","Password 2"],
+    username: ["username 1", "username 2"],
+    password: ["Password 1", "Password 2"],
 })
 ```
-
-View the full documentation [here](https://github.com/AkaruiDevelopment/panel/tree/v0.0.5/docs/intro.md)
 
 Join our [Support Server](https://aoi.js.org/invite) for support
