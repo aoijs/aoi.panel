@@ -1,10 +1,16 @@
-const fetch = require("node-fetch");
-const {AoiError} = require("aoi.js");
+const { Agent, fetch } = require("undici");
+const { AoiError } = require("aoi.js");
 const json = require("../package.json");
+
 async function checkVersion() {
     try {
-        const res = await fetch("https://registry.npmjs.com/@akarui/aoi.panel");
-        const data = await res.json();
+        const agent = new Agent();
+        const response = await fetch("https://registry.npmjs.com/@akarui/aoi.panel", {
+            method: "GET",
+            agent,
+        });
+
+        const data = await response.json();
         const c_version = json.version;
 
         if (c_version.includes("dev")) {
@@ -63,7 +69,7 @@ function checkPackage() {
             "red",
             { text: "@akarui/aoi.panel", textColor: "cyan" }
         );
-  }
+    }
 }
 
 module.exports = {

@@ -5,7 +5,7 @@ function loadAPIRoutes(data){
   let app = data.app;
   let auth=data.auth;
   function checkAuth(req, res, next) {
-    
+
     if(!req.params.auth){
       return res.status(401).json({"error":"No auth was provided."})
     }
