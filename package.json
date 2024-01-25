@@ -9,6 +9,11 @@
     "engines": {
         "node": ">=16.9.0"
     },
+    "files": [
+        "src",
+        "LICENSE",
+        "README.md"
+    ],
     "keywords": [
         "aoi.js",
         "aoi.js panel",

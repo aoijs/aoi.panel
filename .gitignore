@@ -2,13 +2,14 @@
 node_modules
 
 #Ignore database files
-database
+/database
 
 #Ignore Test Environment
-commands
+/commands
 config.json
 plugins
 /index.js
 .idea
 .vscode
 .DS_Store
+ignore
