@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://aoi.js.org">
+  <a href="https://panel.aoijs.org">
     <img width="150" src="https://github.com/aoijs/website/blob/master/assets/images/aoipanel.png?raw=true" alt="aoi.panel">
   </a>
 </p>
