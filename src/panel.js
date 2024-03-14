@@ -104,9 +104,13 @@ class Panel {
                     text: `Successfully connected Panel on port ${params.port}`,
                     textColor: "green",
                 },
+                {
+                    text: `good development !!!😊`,
+                   
+                },
             ],
             "white",
-            { text: "@akarui/aoi.panel", textColor: "cyan" }
+            { text: "@akarui/aoi.panel v0.0.9", textColor: "cyan" }
         );
     }
 

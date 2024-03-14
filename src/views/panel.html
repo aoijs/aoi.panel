@@ -137,7 +137,7 @@
             >
           </li>
           <li>
-            <a class="btnk uk-button" uk-toggle="target: #modal-close-guild"
+            <a class="uk-button" uk-toggle="target: #modal-close-guild"
               >Guilds</a
             >
           </li>
@@ -147,7 +147,7 @@
     <!-- container -->
     <div class="container">
       <div class="box">
-        <h1>Welcome to AOI.PANEL</h1>
+        <h1 style="color: white; ">Welcome to AOI.PANEL</h1>
         <p>Panel synced with the bot</p>
         <button class="uk-button btnretart" onclick="reboot()">
           <i class="bi bi-arrow-clockwise"></i> Restart
@@ -584,7 +584,7 @@
         color: #ffffff;
       "
     >
-      <div class="uk-modal-body" style="background-color: #1e1e1e">
+      <div class="uk-modal-body" style="background-color: #1e1e1e; border-radius: 10px;">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <h2
           class="uk-modal-title"
@@ -939,7 +939,7 @@
         for (let i = 0; i < json.length; i++) {
           document.getElementById(
             "guildList"
-          ).innerHTML += `<div class="cardf"><div style="imgp"><a ><img class="imgp" src="${json[
+          ).innerHTML += `<div class="cardf"><div style="imgp"><a ><img class="imgp" style="  width: 100%;height: 100%;" src="${json[
             i
           ].iconURL.replace(
             ".webp",
@@ -949,7 +949,7 @@
           }</a></div></div>`;
           document.getElementById(
             "guildList2"
-          ).innerHTML += `<div class="cardf"><div class="imgp"><a ><img  class="imgp" src="${json[
+          ).innerHTML += `<div class="cardf"><div class="imgp"><a ><img  class="imgp" style="  width: 100%;height: 100%;" src="${json[
             i
           ].iconURL.replace(
             ".webp",
