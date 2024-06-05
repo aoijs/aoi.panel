@@ -14,7 +14,7 @@ async function checkVersion() {
         const c_version = json.version;
 
         if (c_version.includes("dev")) {
-            AoiError.createCustomBoxedMessage(
+            AoiError.createConsoleMessage(
                 [
                     {
                         text: `You are currently on a development version.`,
@@ -30,7 +30,7 @@ async function checkVersion() {
         const l_version = data["dist-tags"].latest;
 
         if (c_version !== l_version) {
-            AoiError.createCustomBoxedMessage(
+            AoiError.createConsoleMessage(
                 [
                     {
                         text: `@akarui/aoi.panel is outdated! Update with "npm install @akarui/aoi.panel@latest".`,
@@ -42,7 +42,7 @@ async function checkVersion() {
             );
         }
     } catch (error) {
-        AoiError.createCustomBoxedMessage(
+        AoiError.createConsoleMessage(
             [
                 {
                     text: `Failed to check for updates: ${error.message}`,
@@ -59,7 +59,7 @@ function checkPackage() {
     const c_name = json.name;
 
     if (c_name !== "@akarui/aoi.panel") {
-        AoiError.createCustomBoxedMessage(
+        AoiError.createConsoleMessage(
             [
                 {
                     text: `You are using a modified version of @akarui/aoi.panel. Please install the original version.`,
