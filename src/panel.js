@@ -98,16 +98,13 @@ class Panel {
             }
 
         })
-        AoiError.createCustomBoxedMessage(
+        AoiError.createConsoleMessage(
             [
                 {
                     text: `Successfully connected Panel on port ${params.port}`,
                     textColor: "green",
                 },
-                {
-                    text: `good development !!!😊`,
-                   
-                },
+               
             ],
             "white",
             { text: "@akarui/aoi.panel v0.0.9", textColor: "cyan" }
