@@ -19,9 +19,8 @@ function loadAPI(data,params){
         }
         return res.status(401).json({"error":"Invalid auth key!"})
     }
-    
-    
-    const endpoints = util.getAllDirs(process.cwd()+"/src/api/endpoints/fileRoutes").concat(util.getAllDirs(process.cwd()+"/src/api/endpoints/miscRoutes"));
+    console.log(__dirname+"/endpoints/fileRoutes")
+    const endpoints = util.getAllDirs(__dirname+"/endpoints/fileRoutes").concat(util.getAllDirs(__dirname+"/endpoints/miscRoutes"));
     for(let i=0;i<endpoints.length;i++){
         if(endpoints[i].type=="file"){
             const endpoint = require(endpoints[i].path);

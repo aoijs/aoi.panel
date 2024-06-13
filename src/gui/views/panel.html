@@ -195,7 +195,7 @@
         for (let i = 0; i < json.length; i++) {
           document.getElementById(
             "guildList"
-          ).innerHTML += ` <li>
+          ).innerHTML += ` <li style="max-width:300px;">
                 <img class="imgp" style="  width: 70%;height: auto; border-radius:50%;" src="${json[
             i
           ].iconURL.replace(
@@ -228,10 +228,10 @@
                 localStorage.setItem("botname",json.usertag);
                 localStorage.setItem("botAVT",json.avatarURL);
                 localStorage.setItem("id",json.id);
-                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;margin-right: auto;border-radius:50%;" src="${botAVT}" /><span class="badge">‎ ‎ ‎ ‎ </span>`;
+                document.getElementById("logo").innerHTML = `<img style="width:100px;height:100px;margin-left: 40px;margin-right: auto;border-radius:50%;" src="${botAVT}" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'"/><span class="badge">‎ ‎ ‎ ‎ </span>`;
             } catch(e) {
                 document.getElementById("botname").innerHTML = localStorage.getItem("botname");
-                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" /><span class="badge1">‎ ‎ ‎ ‎ </span>`;
+                document.getElementById("logo").innerHTML = `<img style="width:100px;height:100px;margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'"/><span class="badge1">‎ ‎ ‎ ‎ </span>`;
 
             }
         }
@@ -246,7 +246,7 @@
                 if(json.uptime.trim().startsWith("0d 0h 0m")&&rebooted==true){alert("Successfully rebooted system!");rebooted=false;getBotData();}
             }catch(e) {
                 document.getElementById("botname").innerHTML = localStorage.getItem("botname");
-                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" /><span class="badge1">‎ ‎ ‎ ‎ </span>`;
+                document.getElementById("logo").innerHTML = `<img style="width:100px;height:100px;margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'"/><span class="badge1">‎ ‎ ‎ ‎ </span>`;
 
             }
         }

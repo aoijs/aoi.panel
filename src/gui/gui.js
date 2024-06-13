@@ -13,7 +13,7 @@ function loadGUI(data,params){
 
     }
     app.get("/",function(req,res){
-        res.sendFile(process.cwd()+"/src/gui/views/login.html");
+        res.sendFile(__dirname+"/views/login.html");
     })
     
     fs.readdirSync(__dirname+"/assets/").forEach(file => {
@@ -50,17 +50,17 @@ function loadGUI(data,params){
     })
 
     app.get("/panel",isLoggedIn,(req,res)=>{
-        const data = fs.readFileSync(process.cwd()+"/src/gui/views/panel.html").toString()
+        const data = fs.readFileSync(__dirname+"/views/panel.html").toString()
         const auth = req.session.username+"-"+req.session.password
         res.send(data.replace(/(!auth)/g,auth));
     })
     app.get("/editor",isLoggedIn,(req,res)=>{
-        const data = fs.readFileSync(process.cwd()+"/src/gui/views/editor.html").toString()
+        const data = fs.readFileSync(__dirname+"/views/editor.html").toString()
         const auth = req.session.username+"-"+req.session.password;
         res.send(data.replace(/(!auth)/g,auth));
     })
     app.get("/eval",isLoggedIn,(req,res)=>{
-        const data = fs.readFileSync(process.cwd()+"/src/gui/views/eval.html").toString()
+        const data = fs.readFileSync(__dirname+"/views/eval.html").toString()
         const auth = req.session.username+"-"+req.session.password;
         res.send(data.replace(/(!auth)/g,auth));
     })
