@@ -1,0 +1,52 @@
+const util = require("../utilFuncs.js");
+function loadAPI(data,params){
+    function checkAuth(req, res, next, perms) {
+        const auth = params.auth;
+        if(!req.params.auth){
+          return res.status(401).json({"error":"No auth was provided."})
+        }
+        /*TODO: CHECK IF AUTH IS AN ACCOUNT AND THEN CHECK PERMISSIONS OF ACCOUNT*/ 
+        const accountData = require(process.cwd()+params.accounts);
+        for(let i=0;i<accountData.length;i++){
+            let a = req.params.auth.split("-");
+            if(a[0]==accountData[i].username && a[1]==accountData[i].password){
+                for(let j=0;j<accountData[i].perms.length;j++){
+                    if(perms==accountData[i].perms[j]||accountData[i].perms[j]=="admin" || perms == "startup"){
+                        return next();
+                    }
+                }
+            }
+        }
+        return res.status(401).json({"error":"Invalid auth key!"})
+    }
+    
+    
+    const endpoints = util.getAllDirs(process.cwd()+"/src/api/endpoints/fileRoutes").concat(util.getAllDirs(process.cwd()+"/src/api/endpoints/miscRoutes"));
+    for(let i=0;i<endpoints.length;i++){
+        if(endpoints[i].type=="file"){
+            const endpoint = require(endpoints[i].path);
+            
+            if(endpoint.method=="get"){
+                //console.log("Loaded API Route:"+endpoint.route)
+                data.app.get(endpoint.route,(req,res,next)=>{(endpoint.reqAuth==true)?checkAuth(req,res,next,endpoint.perms):(req,res,next)=>{next()}},function(req,res){endpoint.run(req,res,data);});
+            }
+        }
+    }
+    
+    data.app.get("/api/baseRoute",function(req,res){
+        res.status(200).json({
+            "data":process.cwd()
+        })
+    })
+    data.app.get("/api",function(req,res){
+        res.status(200).json({
+            "usertag":data.params.client.user.tag,
+            "avatarURL":`https://cdn.discordapp.com/avatars/${data.params.client.user.id}/${data.params.client.user.avatar}.png`,
+            "id":data.params.client.user.id
+        })
+    })
+}
+
+module.exports = {
+    loadAPI
+}

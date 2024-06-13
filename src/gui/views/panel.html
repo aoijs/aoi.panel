@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/aoipanel.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assets/panel.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-polyfills/keyboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/unix_formatting.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/less.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/figlet/lib/figlet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.css" />
+    
+    <title>Aoi.Panel - Panel</title>
+  </head>
+
+  <body class="dark">
+    <!-- Sidebar -->
+
+    <div class="sidebar close">
+      <a href="#" class="logo">
+        <img src="/images/aoi-bird.png" height="50px" style="margin: 5px" />
+        <div class="logo-name"><span>AOI.</span>PANEL</div>
+      </a>
+      <ul class="side-menu">
+        <li class="active">
+          <a onclick="javascript:closeE()"><i class="bx bxs-dashboard"></i>Dashboard</a>
+        </li>
+        <li>
+          <a onclick="javascript:openEditor()"><i class="bx bx-code"></i>Code Editor</a>
+        </li>
+        <li>
+          <a onclick="javascript:openTerm()"><i class="bx bx-terminal"></i>Terminal</a>
+        </li>
+        <li>
+          <a onclick="javascript:openEval()"><i class="bx bx-code-block"></i>Evaluate</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-cog"></i>Settings</a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="/logout" class="logout">
+            <i class="bx bx-log-out-circle"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-bottom-nav__item">
+        <a href="/editor" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-code"></i>
+          <div class="bottom-text">Code</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a onclick="javascript:openTerm()" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-terminal"></i>
+          <div class="bottom-text">Terminal</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <div class="mobile-bottom-nav__item-content">
+          <a onclick="javascript:closeE()" class="active">
+            <i class="bx bxs-dashboard"></i>
+            <div class="bottom-text">Dashboard</div>
+          </a>
+        </div>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a onclick="javascript:openEval()" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-code-block"></i>
+          <div class="bottom-text">Eval</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a href="" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-cog"></i>
+          <div class="bottom-text">Settings</div>
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Navbar -->
+      <nav>
+        <img src="/images/aoi-bird.png" class="imgp" height="50px" style="margin: 12px" />
+        <i class="bx bx-menu"></i>
+        <form action="#"></form>
+        
+      </nav>
+
+      <!-- End of Navbar -->
+
+      <main id="dash">
+        <div class="header">
+          <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+              <li><a href="#"> Home </a></li>
+              /
+              <li><a href="#" class="active"></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bottom-data">
+          <!-- Reminders -->
+            <div class="rounded-full hide-smallsc" id="logo"></div>
+
+          <div class="welcom reminders ">
+            <h2>Welcome to AOI.PANEL v1</h2>
+              <p>Panel synced with <span id="botname">(LOADING...)</span></p>
+            <button class="buttonreboot" onclick="javascript:reboot();">
+              <i class="bi bi-arrow-counterclockwise"></i>reboot
+            </button>
+            <button class="button"><i class="bi bi-power"></i>stop</button>
+          </div>
+
+          <!-- End of Reminders-->
+        </div>
+        <!-- Insights -->
+        <ul class="insights">
+          <li>
+            <i class="bx bi bi-arrow-up-right"></i>
+            <span class="info">
+              <p>Uptime</p>
+              <h3 id="uptime">(LOADING...)</h3>
+            </span>
+          </li>
+          <li>
+            <i class="bx bi bi-memory"></i>
+            <span class="info">
+              <p>RAM</p>
+              <h3 id="ram">(LOADING...)</h3>
+            </span>
+          </li>
+          <li>
+            <i class="bx bi bi-cpu"></i>
+            <span class="info">
+              <p>CPU</p>
+              <h3 id="cpu">(LOADING...)</h3>
+            </span>
+          </li>
+        </ul>
+        <!-- End of Insights -->
+          <div style="overflow: hidden; ">
+          	<br><br>
+            <div class="header">
+              <div class="left">
+                <h3 style="color:#FFFFFF;">Guild List</h3>
+
+              </div>
+            </div>
+            <div>
+                <ul class="insights" id="guildList" style="overflow: hidden; ">
+
+                </ul>
+            </div>
+          </div>
+      </main>
+        <main id="term" style="display:none;">
+        <div class="header">
+          <div class="left">
+            <h1>Terminal</h1>
+            <ul class="breadcrumb">
+              <li><a href="#"> Home </a></li>
+              /
+              <li><a href="#" class="active">Shell</a></li>
+            </ul>
+          </div>
+        </div>
+            <br><br>
+            <div id="terminal"></div>
+      </main>
+    </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<script>
+        var guildHTML = "";
+      async function guildData() {
+        const res = await fetch("/api/!auth/guilds");
+        const json = await res.json();
+        for (let i = 0; i < json.length; i++) {
+          document.getElementById(
+            "guildList"
+          ).innerHTML += ` <li>
+                <img class="imgp" style="  width: 70%;height: auto; border-radius:50%;" src="${json[
+            i
+          ].iconURL.replace(
+            ".webp",
+            ".png"
+          )}" id="icons" onerror="this.src='https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png'" ></img>
+                <span class="info">
+                  <h4 style="color:#FFFFFF;">${json[i].name}</h4>
+                  <h5 style="color:#FFFFFF;">Members: ${json[i].members.length}</h5>
+                </span>
+              </li>`;
+        }
+        if (json.length == 0) {
+          document.getElementById("guildList").innerHTML = "No guilds found.";
+        }
+      }
+      guildData();
+        
+        var rebooted=false;
+        
+        var botname="";var botAVT = "";var botid="";
+        async function getBotData() {
+            try{
+                const res = await fetch("/api");
+                const json = await res.json();
+                document.getElementById("botname").innerHTML = json.usertag;
+                botname=json.usertag;
+                botAVT=json.avatarURL;
+                botid= json.id;
+                localStorage.setItem("botname",json.usertag);
+                localStorage.setItem("botAVT",json.avatarURL);
+                localStorage.setItem("id",json.id);
+                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;margin-right: auto;border-radius:50%;" src="${botAVT}" /><span class="badge">‎ ‎ ‎ ‎ </span>`;
+            } catch(e) {
+                document.getElementById("botname").innerHTML = localStorage.getItem("botname");
+                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" /><span class="badge1">‎ ‎ ‎ ‎ </span>`;
+
+            }
+        }
+		getBotData();
+    	async function stats() {
+            try{
+            const res = await fetch("/api/!auth/stats");
+            const json = await res.json();
+                document.getElementById("ram").innerHTML = parseFloat(json.ram).toFixed(2)+"MiB";
+                document.getElementById("uptime").innerHTML = json.uptime;
+                document.getElementById("cpu").innerHTML = parseFloat(json.cpu).toFixed(2)+"%";
+                if(json.uptime.trim().startsWith("0d 0h 0m")&&rebooted==true){alert("Successfully rebooted system!");rebooted=false;getBotData();}
+            }catch(e) {
+                document.getElementById("botname").innerHTML = localStorage.getItem("botname");
+                document.getElementById("logo").innerHTML = `<img style="margin-left: 40px;border-radius:50%;" src="${localStorage.getItem("botAVT")}" /><span class="badge1">‎ ‎ ‎ ‎ </span>`;
+
+            }
+        }
+        setInterval(stats, 1000);
+        async function reboot() {
+            rebooted = true;
+            let d = await fetch("/api/!auth/reboot");
+            let s = await d.json();
+            alert("Rebooting System. This may take a while!")
+        }
+        
+        async function openTerm(){
+            const res = await fetch("/api/!auth/shellexec");
+            const json = await res.json();
+            if(json.error=="execute code not provided!"){
+            	document.getElementById("term").style.display="block";
+            	document.getElementById("dash").style.display="none";
+            }
+            else {
+                alert("You don't have terminal access! Request an Admin to give you access...")
+            }
+        }
+        async function openEval(){
+            const res = await fetch("/api/!auth/shellexec");
+            const json = await res.json();
+            if(json.error=="execute code not provided!"){
+            	window.location.href="/eval"
+            }
+            else {
+                alert("You don't have Code Evaluating access! Request an Admin to give you access...")
+            }
+        }
+        async function openEditor(){
+            const res = await fetch("/api/!auth/file?file=smfdd");
+            const json = await res.json();
+            console.log(json)
+            if(json.err=="file not found"){
+            	window.location.href="/editor";
+            }
+            else {
+                alert("You don't have Code Editor access! Request an Admin to give you access...")
+            }
+        }
+        function closeE(){
+            document.getElementById("term").style.display="none";
+            document.getElementById("dash").style.display="block";
+            
+        }
+
+    </script>
+    <script src="/assets/panel.js"></script>
+      <style>
+      .badge {
+          position: relative;
+          right:20%;
+          top:-12%;
+          padding: 5px 10px;
+          border-radius: 50%;
+          background: #2E8B57;
+          color: white;
+          border: 5px solid var(--light);
+      }
+      .badge1 {
+          position: relative;
+          right:20%;
+          top:-12%;
+          padding: 5px 10px;
+          border-radius: 50%;
+          background: #25252c;
+          color: white;
+          border: 5px solid var(--light);
+      }
+          @media (max-width:600px){.hide-smallsc{display:none!important}}
+          /*@media (max-width:992px){.badge{display:none!important;}.badge1{display:none!important;}}*/
+      </style>
+         <script>
+        figlet.defaults({ fontPath: 'https://unpkg.com/figlet/fonts/' });
+        figlet.preloadFonts(['Standard', 'Slant'], ready);
+
+        var term;
+
+        function ready() {
+            term = $('#terminal').terminal(function(cmd) {
+                // echo function will run it in each render,
+                // so text can be resized based on cols
+                this.echo(() => exec(this, cmd));
+            }, {
+                greetings: false,
+                onInit() {
+                    this.echo(() => render(this, 'aoi .panel',"Slant") +
+                        `\n[[;rgba(255,255,255,0.99);]@aoijs/aoi.panel Terminal v1.0]. Type a command. Eg: \`help\`\n`)
+                }
+            });
+        }
+
+        function render(term, text, font) {
+            const cols = term.cols();
+            return figlet.textSync(text, {
+                font: font || 'Standard',
+                width: cols,
+                whitespaceBreak: true
+            });
+        }
+        function exec(terminal,cmd){
+            let mc = cmd.split(" ")[0]||cmd;
+            var resp = false;
+            if(mc=="help"&&!cmd.split(" ")[1]){
+                resp=true;
+                return "Welcome to @aoijs/aoi.panel's terminal. You can use all shell commands here, and a few custom ones. To list custom commands use `help --commands`"
+            }
+            if(mc=="help"&&cmd.split(" ")[1]=="--commands"){
+                resp=true;
+                return "Here is the list of all commands : \n1) aoieval {code}\n2) reboot\n3) botinfo\n4) kill";
+            }
+            if(mc=="aoieval"){
+                resp = true;
+                if(!cmd.replace(mc,"")||cmd.replace(mc,"")==""||cmd.replace(mc,"")==" ") return "Please provide code to evaluate.";
+                $.ajax({ // create an AJAX call...
+                            type: "get",
+                            url: "/api/!auth/aoieval?execute="+cmd.replace(mc,""),
+                            success: function(response) { 
+                                console.log(response.data);
+                                terminal.echo(response.data);
+                            }
+                        });
+                return "Evaluation code. Please wait!"
+            }
+            if(mc=="reboot"){
+                resp = true;
+                $.ajax({
+                            type: "get",
+                            url: "/api/!auth/reboot",
+                            success: function(response) { 
+                                console.log(response.data);
+                                terminal.echo(response.data);
+                            }
+                        });
+                return "Rebooting. This may take a while!"
+            }
+            if(mc=="kill"){
+                resp=true;
+                $.ajax({ // create an AJAX call...
+                            type: "get",
+                            url: "/api/!auth/shellexec?execute=kill 1",
+                            success: function(response) { 
+                                console.log(response.data);
+                                terminal.echo(response.data.replace(/<br>/g,"").replace(/\\r/g,""));
+                            }
+                        });
+                return "Killing the code.";
+            }
+            if(mc=="botinfo"){
+                resp=true;
+                $.ajax({ // create an AJAX call...
+                            type: "get",
+                            url: "/api",
+                            success: function(response) { 
+                                console.log(response);
+                                let template = `Bot Details:\nUsername: ${response.usertag}\nID: ${response.id}\nAvatarURL: ${response.avatarURL}`;
+                                terminal.echo(template);
+                            }
+                        });
+                return "Fetching bot info...";
+            }
+            if(mc=="functioninfo"){
+                resp=true;
+                if(!cmd.replace(mc,"").replace(" ","")||cmd.replace(mc,"").replace(" ","")==""||cmd.replace(mc,"").replace(" ","")==" ") return "No function was provided!";
+                $.ajax({ // create an AJAX call...
+                            type: "get",
+                            url: "https://aoijs-api.vercel.app/api/v1/functions?name="+cmd.replace(mc,"").replace(" ",""),
+                            success: function(response) { 
+                                console.log(response);
+                                let template = `Function Information:\nFunction Name: ${response.data.function}\nDescription: ${response.data.description}\nUsage: ${response.data.usage.replace(/```/g,"").replace("php","").replace(/\\n/g,"").replace(/\n/g,"")}\nDocs: ${response.data.documentation}`;
+                                terminal.echo(template);
+                            }
+                        });
+                return `Fetching Function info (of ${cmd.replace(mc,"").replace(" ","")})...`;
+            }
+            if(resp==false){
+                /*UIkit.notification({
+                            message: 'Executing command. This may take a while!',
+                            status: 'success',
+                            pos: 'top-center',
+                            timeout: 20000
+                        });*/
+                        $.ajax({ // create an AJAX call...
+                            type: "get",
+                            url: "/api/!auth/shellexec?execute="+cmd,
+                            success: function(response) { 
+                                console.log(response.data);
+                                terminal.echo(response.data.replace(/<br>/g,"").replace(/\\r/g,""));
+                                
+                                //document.getElementById("data").style.display="block";
+                                //document.getElementById("execBut").disabled=false;
+                            }
+                        });
+                return "Executing : "+cmd;
+            }
+        }
+
+    </script>
+  </body>
+</html>
