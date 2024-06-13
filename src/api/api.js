@@ -19,7 +19,6 @@ function loadAPI(data,params){
         }
         return res.status(401).json({"error":"Invalid auth key!"})
     }
-    console.log(__dirname+"/endpoints/fileRoutes")
     const endpoints = util.getAllDirs(__dirname+"/endpoints/fileRoutes").concat(util.getAllDirs(__dirname+"/endpoints/miscRoutes"));
     for(let i=0;i<endpoints.length;i++){
         if(endpoints[i].type=="file"){
