@@ -25,7 +25,6 @@ function loadAPI(data,params){
             const endpoint = require(endpoints[i].path);
             
             if(endpoint.method=="get"){
-                //console.log("Loaded API Route:"+endpoint.route)
                 data.app.post(endpoint.route,(req,res,next)=>{(endpoint.reqAuth==true)?checkAuth(req,res,next,endpoint.perms):(req,res,next)=>{next()}},function(req,res){endpoint.run(req,res,data);});
             }
         }
