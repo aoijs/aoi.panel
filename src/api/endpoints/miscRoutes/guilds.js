@@ -3,7 +3,7 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/guilds",
+    route : "/api/guilds",
     reqAuth : true,
     method : "get",
     perms:"startup",

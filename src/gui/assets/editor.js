@@ -112,7 +112,7 @@ require(["vs/editor/editor.main"], async function () {
 
   let editor = monaco.editor.create(document.getElementById('container'), {
     value: value,
-    language: "javascript",
+    language: "text",
     minimap: { enabled: false },
     theme: 'vs-dark',
     /*wordWrap: "wordWrapColumn",
@@ -136,8 +136,12 @@ require(["vs/editor/editor.main"], async function () {
   window.value = value;
   window.editor = editor;
 
-  async function getJson(file) {
-    let myObject = await fetch(file);
+  async function getJson(file,f) {
+    let myObject = await fetch(file, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({auth: auth, file: f })
+    });
     let myJson = await myObject.json();
     var type = param("file").split(".")[param("file").split(".").length - 1]
     console.log(type)
@@ -146,6 +150,21 @@ require(["vs/editor/editor.main"], async function () {
     }
     else if (type == "ts") {
       type = "typescript"
+    }
+    else if (type == "md") {
+      type = "markdown"
+    }
+    else if (type == "html") {
+      type = "html"
+    }
+    else if (type == "css") {
+      type = "css"
+    }
+    else if (type == "json") {
+      type = "json"
+    }
+    else{
+      type="text"
     }
     //type="text/"+type
 
@@ -158,7 +177,7 @@ require(["vs/editor/editor.main"], async function () {
     console.log("do nothing")
   } else {
     console.log("fetch " + param("file"))
-    getJson("/api/" + auth + "/file?file=" + param("file"))
+    getJson("/api/file", param("file"))
   }
 
 
@@ -172,7 +191,7 @@ require(["vs/editor/editor.main"], async function () {
     console.log("do nothing")
   } else {
     console.log("fetch " + param("file"))
-    getJson("/api/!auth/file?file=" + param("file"))
+    getJson("/api/file",param("file"))
   }
 
 
@@ -247,10 +266,14 @@ async function save2() {
   console.log(code)
   if (!file) return;
   console.log(`/api/${auth}/setFile?file=${file}&code=${escape(code)}`)
-  const fetched = await fetch(`/api/${auth}/setFile?file=${file}&code=${escape(code)}`);
-  const datat = await fetched.json();
-  console.log(datat);
-  alert(datat.data)
+  let myObject = await fetch(`/api/setFile`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({auth: auth, file: file,code:code })
+  });
+  let myJson = await myObject.json();
+  console.log(myJson);
+  alert(myJson.data)
 }
 async function del() {
   let file = param("file");
@@ -259,10 +282,12 @@ async function del() {
 
   if (d == true) {
     let file = param("file");
-    console.log(`/api/${auth}/deleteFile?filepath=${file}`)
-    const fetched = await fetch(`/api/${auth}/deleteFile?filepath=${file}`);
-    const datat = await fetched.json();
-    console.log(datat);
+    let myObject = await fetch(`/api/deleteFile`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({auth: auth, file: file })
+    });
+    let myJson = await myObject.json();
     window.location.href = "/editor";
   }
 }
@@ -273,7 +298,11 @@ var a = "";
 
 //NEW CODE HERE  
 async function guildData(dir) {
-  const res = await fetch(`/api/${auth}/dirs?dir=${dir}`);
+  const res = await fetch("/api/dirs", {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({auth: auth, dir: dir })
+  });
   const json = await res.json();
   var code = ""
   var d = ""
@@ -326,7 +355,12 @@ async function newFile2() {
   let v = document.getElementById("file").value;
   if (v == (param("folder") || a)) return alert("Failed to create file: enter file name please.");
   const res = await fetch(`/api/${auth}/createFile?filepath=${v}`);
-  const json = await res.json();
+  let myObject = await fetch(`/api/createFile`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({auth: auth, filepath: v })
+  });
+  let json = await myObject.json();
   alert(json.data);
   window.location.href = window.location.href;
 }

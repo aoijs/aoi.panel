@@ -3,12 +3,12 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/dirs",
+    route : "/api/dirs",
     reqAuth : true,
     method : "get",
     perms:"readwrite",
     run : async (req,res)=> {
-        var dirR = req.query.dir;
+        var dirR = req.body.dir;
         if (!dirR) {
           dirR = process.cwd()
         }
@@ -39,7 +39,6 @@ module.exports = {
         } catch (e) {
           return res.json({ "error": e })
         }
-      
         res.json(list)
       }
 }

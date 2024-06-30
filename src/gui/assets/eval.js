@@ -168,14 +168,21 @@ require(["vs/editor/editor.main"], async function () {
 
 
 async function aoie() {
-  console.log(escape(editor.getValue().trim()));
-  const res = await fetch("/api/" + auth + "/aoieval?execute=" + escape(editor.getValue().trim()));
+  const res = await fetch("/api/aoieval", {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({auth: auth, execute: editor.getValue().trim() })
+  });
   const json = await res.json();
   document.getElementById("aoiout").innerHTML = json.data || json.error
 }
 async function djse() {
-  console.log(escape(editor.getValue().trim()));
-  const res = await fetch("/api/" + auth + "/djseval?execute=" + escape(editor2.getValue().trim()));
+  const res = await fetch("/api/djseval", {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({auth: auth, execute: editor2.getValue().trim() })
+  });
   const json = await res.json();
+  
   document.getElementById("djsout").innerHTML = json.data || json.error
 }

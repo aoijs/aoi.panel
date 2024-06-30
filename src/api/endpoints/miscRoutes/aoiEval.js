@@ -3,7 +3,7 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/aoieval",
+    route : "/api/aoieval",
     reqAuth : true,
     method : "get",
     perms:"shell",
@@ -18,7 +18,7 @@ module.exports = {
             [],
             {
             name: "aoi Eval",
-            code: `${req.query.execute}`,
+            code: `${req.body.execute}`,
             },
             client.db,
             true,

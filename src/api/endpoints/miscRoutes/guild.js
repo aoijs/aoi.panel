@@ -3,12 +3,12 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/guild/:id",
+    route : "/api/guild/",
     reqAuth : true,
     method : "get",
     perms:"startup",
     run : async (req,res,data)=> {
-        let guild = await data.params.client.guilds.cache.get(req.params.id);
+        let guild = await data.params.client.guilds.cache.get(req.body.id);
         if(!guild){return res.status(404).json({"data":"Guild not found!"})}
         var owner;
         try {

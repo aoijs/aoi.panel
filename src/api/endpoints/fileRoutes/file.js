@@ -3,12 +3,12 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/file",
+    route : "/api/file",
     reqAuth : true,
     perms:"readwrite",
     method : "get",
     run : async (req,res,data)=> {
-        let f = req.query.file;
+        let f = req.body.file;
         const acc = data.params.accounts;
         if (!f) return res.status(404).json({ "err": "file not provided" });
         if(f.includes(acc)) return res.json({ "data": ["Cannot access this file"] });

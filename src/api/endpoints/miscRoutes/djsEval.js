@@ -3,17 +3,18 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/djseval",
+    route : "/api/djseval",
     reqAuth : true,
     perms:"shell",
     method : "get",
     run : async (req,res,data)=> {
+        if(!req.body.execute) return res.json({"err":"no code provided"})
         var result;
         try {
         const bot = data.params.client;
         const client = bot;
 
-        result=await eval(req.query.execute);
+        result=await eval(req.body.execute);
         }
         catch (e) {
         result = e;

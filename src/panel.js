@@ -1,5 +1,3 @@
-const path = require('path')
-const fs = require('fs')
 const util = require("./utilFuncs.js");
 const api = require('./api/api.js');
 const gui = require("./gui/gui.js");
@@ -18,11 +16,11 @@ class Panel {
       this.accounts = accounts;
       params.client.awaitedCommand({
         name: "panelawaitedcommand",
-        code: `$cacheMembers[$guildID;false]`
+        code: `$cacheMembers[$guildID;false]$suppressErrors`
       });
       params.client.readyCommand({
         channel: "$randomChannelID",
-        code: `$forEachGuild[1s;{};panelawaitedcommand;]`
+        code: `$forEachGuild[1s;{};panelawaitedcommand;]$suppressErrors`
       })
       setTimeout(()=>{util.checkPanel(this)},10000)
       
@@ -46,6 +44,10 @@ class Panel {
         resave: true,
         saveUninitialized: true
       }))
+      app.post('/test', (req, res) => {
+        console.log(req.body)
+        res.json({requestBody: req.body})
+      })
       app.listen(params.port,function(){
         
         AoiError.createConsoleMessage(

@@ -3,23 +3,22 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/deleteFile",
+    route : "/api/deleteFile",
     reqAuth : true,
     method : "get",
     perms:"readwrite",
     run : async (req,res,data)=> {
         const acc = data.params.accounts;
-        let f = req.query.filepath;
+        let f = req.body.file;
+        
         if(f.includes(acc)) return res.json({ "data": "Cannot access this file" });
 
         try{
-            fs.unlinkSync(req.query.filepath.replace("\\\\","\\"), "")
+            fs.unlinkSync(req.body.file.replace("\\\\","\\"), "")
             res.status(200).json({"data":"Success!"})
         }
         catch(e){
-            res.status(400).json({"data":"Error Occurred while deleting file: "+req.query.filepath.replace("\\\\","\\")})
-            console.log(e)
-            console.log(e.stack)
+            res.status(400).json({"data":""})
         }
     }
 }

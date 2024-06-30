@@ -3,7 +3,7 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/createFile",
+    route : "/api/createFile",
     reqAuth : true,
     method : "get",
     perms:"readwrite",
@@ -11,11 +11,20 @@ module.exports = {
         try{
       
             const path = require("path")
-            fs.writeFileSync(path.normalize(req.query.filepath).replace("\\","\\\\"), "")
+            let p = path.normalize(req.body.filepath).replace("\\","\\\\");
+            let a= p.split("\\");
+            if(a.length==1){
+              a=p.split("/")
+            }
+            let dir = p.replace(a[a.length-1],"")
+            if (!fs.existsSync(dir)){
+              fs.mkdirSync(dir, { recursive: true });
+            }
+            fs.writeFileSync(p, "")
             res.status(200).json({"data":"Success!"})
           }
           catch(e){
-            res.status(400).json({"data":"Error Occurred while creating file: "+req.query.filepath.replace("\\\\","\\")})
+            res.status(400).json({"data":"Error Occurred while creating file: "+req.body.filepath.replace("\\\\","\\")})
             console.log(e)
             console.log(e.stack)
           }

@@ -3,7 +3,7 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/stats",
+    route : "/api/stats",
     reqAuth : true,
     method : "get",
     perms:"startup",

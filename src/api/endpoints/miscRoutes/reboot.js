@@ -3,7 +3,7 @@ const path = require("path");
 
 
 module.exports = {
-    route : "/api/:auth/reboot",
+    route : "/api/reboot",
     reqAuth : true,
     method : "get",
     perms:"startup",

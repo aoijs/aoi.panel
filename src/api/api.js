@@ -2,13 +2,13 @@ const util = require("../utilFuncs.js");
 function loadAPI(data,params){
     function checkAuth(req, res, next, perms) {
         const auth = params.auth;
-        if(!req.params.auth){
+        if(!req.body.auth){
           return res.status(401).json({"error":"No auth was provided."})
         }
         /*TODO: CHECK IF AUTH IS AN ACCOUNT AND THEN CHECK PERMISSIONS OF ACCOUNT*/ 
         const accountData = require(process.cwd()+params.accounts);
         for(let i=0;i<accountData.length;i++){
-            let a = req.params.auth.split("-");
+            let a = req.body.auth.split("-");
             if(a[0]==accountData[i].username && a[1]==accountData[i].password){
                 for(let j=0;j<accountData[i].perms.length;j++){
                     if(perms==accountData[i].perms[j]||accountData[i].perms[j]=="admin" || perms == "startup"){
@@ -26,7 +26,7 @@ function loadAPI(data,params){
             
             if(endpoint.method=="get"){
                 //console.log("Loaded API Route:"+endpoint.route)
-                data.app.get(endpoint.route,(req,res,next)=>{(endpoint.reqAuth==true)?checkAuth(req,res,next,endpoint.perms):(req,res,next)=>{next()}},function(req,res){endpoint.run(req,res,data);});
+                data.app.post(endpoint.route,(req,res,next)=>{(endpoint.reqAuth==true)?checkAuth(req,res,next,endpoint.perms):(req,res,next)=>{next()}},function(req,res){endpoint.run(req,res,data);});
             }
         }
     }

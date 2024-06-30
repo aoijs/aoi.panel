@@ -27,9 +27,9 @@ function loadGUI(data,params){
         })
     });
 
-    app.get("/pass/validate/",async (req,res)=>{
-        let uname= req.query.username;
-        let pass = req.query.password;
+    app.post("/pass/validate/",async (req,res)=>{
+        let uname= req.body.username;
+        let pass = req.body.password;
         for(let i=0;i<data.accounts.length;i++){
             if(data.accounts[i].username==uname && data.accounts[i].password==pass){
                 return res.json({data:true})
