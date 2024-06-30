@@ -1,6 +1,6 @@
 {
   "name": "@aoijs/aoi.panel",
-  "version": "1.0.0",
+  "version": "1.0.0-dev",
   "description": "The aoi.panel module provides a panel component for the aoi.js library using express.",
   "main": "src/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@akarui/aoi.music": "^2.4.0",
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
