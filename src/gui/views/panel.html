@@ -38,8 +38,8 @@
       <li>
         <a onclick="javascript:openEditor()"><i class="bx bx-code"></i>Code Editor</a>
       </li>
-      <li>
-        <a onclick="javascript:openTerm()"><i class="bx bx-terminal"></i>Terminal</a>
+      <li id="termbutton">
+        <a onclick="javascript:openTerm()" ><i class="bx bx-terminal"></i>Terminal</a>
       </li>
       <li>
         <a onclick="javascript:openEval()"><i class="bx bx-code-block"></i>Evaluate</a>
@@ -199,7 +199,7 @@
       for (let i = 0; i < json.length; i++) {
         document.getElementById(
           "guildList"
-        ).innerHTML += ` <li style="md:max-width:300px;">
+        ).innerHTML += ` <li style="max-width:400px;">
                 <img class="imgp" style="  width: 70%;height: auto; border-radius:50%;" src="${json[
             i
           ].iconURL.replace(
@@ -280,11 +280,30 @@
       if (json.error == "execute code not provided!") {
         document.getElementById("term").style.display = "block";
         document.getElementById("dash").style.display = "none";
+        const sideLinks = document.querySelectorAll(
+          ".sidebar .side-menu li a:not(.logout)"
+        );
+  
+        sideLinks.forEach((item) => {
+          const li = item.parentElement;
+            sideLinks.forEach((i) => {
+              i.parentElement.classList.remove("active");
+            });
+            document.getElementById("termbutton").classList.add("active");
+        });
+
       }
       else {
         alert("You don't have terminal access! Request an Admin to give you access...")
       }
     }
+
+    let params = new URLSearchParams(document.location.search);
+    let terminal = params.get("term");
+    if(terminal=="true"){
+      openTerm();
+    }
+
     async function openEval() {
       const res = await fetch("/api/djseval", {
         method: "POST",

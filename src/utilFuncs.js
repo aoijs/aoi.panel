@@ -6,10 +6,10 @@ async function checkVersion() {
 
   const data = await fetch('https://registry.npmjs.com/@akarui/aoi.panel').then(r => r.json());
   let c_version = require('../package.json').version
-  if (c_version.includes("dev")===true) return console.log("You are using dev version of akarui/aoi.panel.");
+  if (c_version.includes("dev")===true) return console.log("You are using dev version of aoijs/aoi.panel.");
   let l_version = data["dist-tags"].latest;
   if (c_version !== l_version && !(c_version >= l_version)) {
-    console.log("\x1b[33m%s\x1b[0m","You are not using the latest version of @akarui/aoi.panel!\nCurrent Version:" + c_version + "\nLatest Version:" + l_version);
+    console.log("\x1b[33m%s\x1b[0m","You are not using the latest version of @aoijs/aoi.panel!\nCurrent Version:" + c_version + "\nLatest Version:" + l_version);
   }
 
 }
@@ -18,8 +18,8 @@ function checkPackage() {
 
   let c_name = require('../package.json').name;
   
-  if (c_name !== "@akarui/aoi.panel") {
-    console.log("\x1b[33m%s\x1b[0m","You are not using the official version of @akarui/aoi.panel! The Developers at akaruiDevelopment are not responsible for anything going wrong with your bot! Install the official panel using: npm i @akarui/aoi.panel");
+  if (c_name !== "@aoijs/aoi.panel") {
+    console.log("\x1b[33m%s\x1b[0m","You are not using the official version of @aoijs/aoi.panel! The Developers at aoijs are not responsible for anything going wrong with your bot! Install the official panel using: npm i @aoijs/aoi.panel");
   }
 }
 
@@ -60,7 +60,7 @@ function checkParams(params){
     ],
     "white",
     {
-      text: "@akarui/aoi.panel ",
+      text: "@aoijs/aoi.panel ",
       textColor: "cyan",
     }
   );

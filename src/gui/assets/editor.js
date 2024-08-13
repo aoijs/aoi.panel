@@ -309,11 +309,13 @@ async function guildData(dir) {
   for (let i = 0; i < json.length; i++) {
     d = json[i].root;
     a = json[i].root;
+    var somed = json[i].path.split("/")[json[i].path.split("/").length - 1]
+    if(somed == json[i].path){somed = json[i].path.split("\\")[json[i].path.split("\\").length - 1]}
     if (json[i].type == "file") {
-      code += `<a href="/editor?file=${json[i].path}"><div class="text-white rounded-md pl-2 py-1 bg-black m-1">${json[i].path.split("/")[json[i].path.split("/").length - 1]}</div></a>`
+      code += `<a href="/editor?file=${json[i].path}"><div class="text-white rounded-md pl-2 py-1 bg-black m-1">${somed}</div></a>`
     }
     if (json[i].type == "dir") {
-      code = `<a href="/editor?folder=${json[i].path}"><div class="text-white rounded-md pl-2 py-1 bg-black m-1">./${json[i].path.split("/")[json[i].path.split("/").length - 1]}/</div></a>` + code
+      code = `<a href="/editor?folder=${json[i].path}"><div class="text-white rounded-md pl-2 py-1 bg-black m-1">./${somed}/</div></a>` + code
     }
   }
   document.getElementById("filelistsjs").innerHTML = code;
