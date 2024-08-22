@@ -1,0 +1,30 @@
+.badge {
+    position: relative;
+    right: 20%;
+    top: -12%;
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: #2E8B57;
+    color: white;
+    border: 5px solid var(--light);
+  }
+  
+  .badge1 {
+    position: relative;
+    right: 20%;
+    top: -12%;
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: #25252c;
+    color: white;
+    border: 5px solid var(--light);
+  }
+  
+  @media (max-width:600px) {
+    .hide-smallsc {
+      display: none !important;
+    }
+  }
+  
+  /*@media (max-width:992px){.badge{display:none!important;}.badge1{display:none!important;}}*/
+  

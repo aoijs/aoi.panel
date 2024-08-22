@@ -21,6 +21,16 @@ function loadGUI(data,params){
             res.sendFile(__dirname+"/assets/"+file)
         })
     });
+    fs.readdirSync(__dirname+"/assets/css/").forEach(file => {
+        app.get("/assets/css/"+file,function(req,res){
+            res.sendFile(__dirname+"/assets/css/"+file)
+        })
+    });
+    fs.readdirSync(__dirname+"/assets/js/").forEach(file => {
+        app.get("/assets/js/"+file,function(req,res){
+            res.sendFile(__dirname+"/assets/js/"+file)
+        })
+    });
     fs.readdirSync(__dirname+"/assets/images/").forEach(file => {
         app.get("/images/"+file,function(req,res){
             res.sendFile(__dirname+"/assets/images/"+file)

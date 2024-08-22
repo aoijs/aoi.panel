@@ -1,0 +1,16 @@
+#Ignore modules
+node_modules
+
+#Ignore database files
+/database
+
+#Ignore Test Environment
+/commands
+config.json
+plugins
+/index.js
+/index.test.js
+.idea
+.vscode
+.DS_Store
+ignore
