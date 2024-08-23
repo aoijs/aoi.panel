@@ -6,6 +6,6 @@ module.exports = [
     }, {
         username: "user",
         password: "user",
-        perms: [ "startup"]//admin startup shell
+        perms: [ "startup"]//admin startup shell editor
     }
 ]

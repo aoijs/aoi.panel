@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/aoipanel.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/panel.css" />
+    <link rel="stylesheet" href="/assets/editor.css" />
+    <script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+
+    <title>Aoi.Panel - Logs</title>
+  </head>
+
+  <body class="dark">
+    <!-- Sidebar -->
+    <div class="sidebar close">
+      <a href="#" class="logo">
+        <img src="/images/aoi-bird.png" height="50px" style="margin: 5px; max-width: 50px; max-height: 50px;" />
+        <div class="logo-name"><span>AOI.</span>PANEL</div>
+      </a>
+      <ul class="side-menu">
+        <li>
+          <a href="/panel"><i class="bx bxs-dashboard"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="/editor"><i class="bx bx-code active"></i>Code Editor</a>
+        </li>
+        <li>
+          <a href="/panel?term=true"><i class="bx bx-terminal"></i>Terminal</a>
+        </li>
+        <li>
+          <a href="/eval"><i class="bx bx-code-block"></i>Evaluate Code</a>
+        </li>
+        <li class="active">
+          <a href="/logs"><i class="bx bx-cog"></i>Logs</a>
+        </li>
+
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="/logout" class="logout">
+            <i class="bx bx-log-out-circle"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-bottom-nav__item">
+        <a href="#" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-code"></i>
+          <div class="bottom-text">Code</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a href="/panel?term=true" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-terminal"></i>
+          <div class="bottom-text">Terminal</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <div class="mobile-bottom-nav__item-content">
+          <a href="/panel">
+            <i class="bx bxs-dashboard"></i>
+            <div class="bottom-text">Dashboard</div>
+          </a>
+        </div>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a href="/eval" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-code-block"></i>
+          <div class="bottom-text">Eval</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a href="/eval" class="mobile-bottom-nav__item-content" class="active">
+          <i class="bx bx-cog"></i>
+          <div class="bottom-text">Logs</div>
+        </a>
+      </div>
+
+    </nav>
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Navbar -->
+      <nav>
+        <img src="/images/aoi-bird.png" class="imgp h-8" style="margin: 12px" />
+        <i class="bx bx-menu"></i>
+        <form action="#"></form>
+
+      </nav>
+
+      <!-- End of Navbar -->
+
+      <main>
+        <div class="header">
+          <div class="left">
+            <h1>Logs</h1>
+            <ul class="breadcrumb hide-smallsc">
+              <li><a href="#"> Home </a></li>
+              /
+              <li><a href="#" class="active">Aoi.Panel - Logs</a></li>
+            </ul>
+          </div>
+        </div>
+        <br>
+
+        <div id="logs">
+
+        </div>
+        <a onclick="javascript:del()" id="delbut"><button class="rounded-xl bg-indigo-700 p-2 m-4">Delete Logs</button></a>
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      </main>
+    </div>
+
+    <script src="/assets/panel.js"></script>
+    <style>
+      @media (max-width:600px) {
+        .hide-smallsc {
+          display: none !important;
+        }
+      }
+
+      /*@media (max-width:992px){
+        .badge{display:none!important;}.badge1{display:none!important;}
+      }*/
+    </style>
+
+    <script>
+      require.config({
+        paths: {
+          'vs': 'https://unpkg.com/monaco-editor@latest/min/vs'
+        }
+      });
+
+      window.MonacoEnvironment = {
+        getWorkerUrl: () => proxy
+      };
+
+      let proxy = URL.createObjectURL(new Blob([`
+        self.MonacoEnvironment = {
+          baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+        };
+        importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+      `], {
+        type: 'text/javascript'
+      }));
+      var auth = "!auth"
+      async function getB(){
+        const rest = await fetch("/api/baseRoute", {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then((d)=>d.json()).then((d)=>{return d.data})
+        return rest;
+      }
+      
+
+
+      async function update() {
+        let base = await getB();
+        console.log(base)
+        const res = await fetch("/api/getAllLogs", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            auth: auth
+          })
+        });
+        const json = await res.json();
+        let data = ""
+        for (let i = json.length - 1; i >= 0; i--) {
+          const d = new Date(json[i].date);
+          if(json[i].type == "edit"){
+            data += `<div class="w-full rounded-xl p-4" style="background-color:#181a1e;display:flex;flex-direction:column; overflow:hidden;" ><p class="text-white text-base">${json[i].data.replace(base,"")}</p><p class="text-xs text-gray-700">${d.toTimeString()}</p><div id="diff${i}" class="rounded-xl " style="height:300px;"></div></div><br>`
+            require(["vs/editor/editor.main"], function() {
+              const originalModel = monaco.editor.createModel(
+                json[i].ogcode,
+                "text/javascript"
+              );
+              const modifiedModel = monaco.editor.createModel(
+                json[i].code,
+                "text/javascript"
+              );
+
+              const diffEditor = monaco.editor.createDiffEditor(
+                document.getElementById(`diff${i}`),
+                {
+                  originalEditable: true,
+                  automaticLayout: true,
+                  readOnly: true,
+                	theme: "vs-dark",
+
+                }
+              );
+              diffEditor.setModel({
+                original: originalModel,
+                modified: modifiedModel,
+              });
+            });
+
+          }
+          else{
+            data += `<div class="w-full rounded-xl p-4" style="background-color:#181a1e;display:flex;flex-direction:column;" ><p class="text-white text-base">${json[i].data.replace(base,"")}</p><p class="text-xs text-gray-700">${d.toTimeString()}</p></div><br>`
+          }
+        }
+        (data == "") ? document.getElementById("delbut").style.display = "none" : document.getElementById("delbut").style.display = "block";
+        document.getElementById("logs").innerHTML = (data == "") ? `<div class="w-full rounded-xl p-4" style="background-color:#181a1e;display:flex;flex-direction:column;" ><p class="text-white text-base">No logs yet!</p></div>` : data;
+      }
+
+
+      async function del() {
+        let d = confirm("Are you sure you want to permanantly clear logs?")
+        if(!d) return;
+
+        const res = await fetch("/api/getDelLogs", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            auth: auth
+          })
+        });
+        const json = await res.json();
+        let data = ""
+        if (json.data == "success") {
+          document.getElementById("delbut").style.display = "none";
+          update();
+        }
+
+      }
+
+      update();
+    </script>
+
+  </body>
+</html>
+

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>@akarui/aoi.panel</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/css/uikit.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.13/dist/js/uikit-icons.min.js"></script>
+	<style>
+		@import url("https://fonts.googleapis.com/css?family=Dosis:300,400,700,800");
+		@media (max-width:600px) {
+			.hide-smallsc {
+				display: none !important
+			}
+
+			#container {
+				display: hidden, !important;
+			}
+
+			#login {
+				width: 100% !important;
+			}
+		}
+
+		@media (min-width:993px) {
+			.hide-largesc {
+				display: none !important
+			}
+		}
+
+		@media (max-width:992px) and (min-width:601px) {
+			.hide-mediumsc {
+				display: none !important
+			}
+
+			#container {
+				display: hidden, !important;
+			}
+
+			#login {
+				width: 100% !important;
+			}
+		}
+
+		@media (max-width: 600px) {
+			body {
+				font-size: 16px;
+			}
+
+			#container {
+				width: 100%;
+				padding: 0 15px;
+			}
+
+			#login {
+				width: 100%;
+			}
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+
+		html,
+		body {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			/*overflow: hidden;*/
+			background-color: #1e1e1e;
+		}
+
+		#container {
+			position: absolute;
+			/*overflow: hidden;*/
+			height: 100%;
+			background-color: #1e1e1e;
+			width: 100%;
+		}
+
+		#overlay {
+			font-family: "Dosis", sans-serif;
+			font-weight: 1000;
+			position: fixed;
+			display: none;
+			width: 0%;
+			height: 0%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 100;
+			cursor: pointer;
+			left: 15%;
+			line-height: 20px;
+			margin-top: -100px;
+			position: absolute;
+			text-align: center;
+			top: 45%;
+			width: 70%;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background: #1e1e1e;
+			min-height: 100vh;
+		}
+
+		.container {
+			position: relative;
+			overflow: hidden;
+			height: 100vh;
+			animation: animate 4s linear infinite;
+			max-width: 70%;
+			z-index: 8;
+		}
+
+		#top {
+			z-index: 9;
+		}
+
+		@keyframes animate {
+			0% {
+				filter: hue-rotate(0deg);
+			}
+
+			100% {
+				filter: hue-rotate(360deg);
+			}
+		}
+
+		.row {
+			display: inline-flex;
+			margin-left: -50px;
+			margin-top: -32px;
+			overflow: hidden;
+		}
+
+		.row:nth-child(even) {
+			margin-left: 1px;
+		}
+
+		.hexagon {
+			position: relative;
+			height: 110px;
+			width: 100px;
+			background: #1e1e1e;
+			margin: 1px;
+			clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+			transition: 2s;
+		}
+
+		.hexagon:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50%;
+			height: 100%;
+			pointer-events: none;
+			background: rgba(255, 255, 255, 0.02);
+		}
+
+		.hexagon:hover {
+			transition: 0s;
+			background: #0f0;
+		}
+	</style>
+	<!--css-->
+	<link href="./assets/login.css" rel="stylesheet">
+</head>
+
+<body class="bg-[url('../img/bg.png')]  bg-cover flex max-[300px]:block">
+
+	<div class="login hide-mediumsc hide-smallsc" style="width: 45%;"
+		class=" rounded-r-[20px] max-[600px]:rounded-r-[0px] bg-box content-around flex justify-start pl-25 max-[600px]:pl-0 max-[600px]:block "
+		style="width:30%">
+		<div
+			class="flex min-[600px]-full flex-col justify-center mx-4 w-460px max-[600px]:mx-0 max-[600px]:px-6 h-[100lvh] lg:px-8 rounded-[20px]-lg">
+			<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+				<img class="mx-auto h-30 w-auto" src="/images/aoipanel-banner.png" alt="Aoi.panel">
+				<h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Login to your
+					account
+				</h2>
+			</div>
+
+			<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+				<form class="space-y-6" action="javascript:validate()">
+					<div>
+						<label for="text" class="block text-sm font-medium leading-6 text-white">Username</label>
+						<div class="mt-2 flex bg-login rounded-md ">
+							<i class="my-1 mx-1 w-7 max-[600px]:my-3 max-[600px]:mx-1 max-[600px]:w-10 text-white"
+								data-lucide="user"></i> <input id="username" name="username" type="text"
+								autocomplete="text" required style="margin-left: 5px;"
+								class="bg-login block w-full  rounded-r-md max-[600px]:py-3 min-[600px]:py-1.5 text-white shadow-sm  ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+						</div>
+					</div>
+
+					<div>
+						<div class="flex items-center justify-between">
+							<label for="password"
+								class="block text-sm font-medium leading-6 text-white">Password</label>
+
+						</div>
+						<div class="mt-2 flex bg-login rounded-md ">
+							<i class="my-1 mx-1 w-7 max-[600px]:my-3 max-[600px]:mx-1 max-[600px]:w-10 text-white"
+								data-lucide="lock"></i><input id="password" name="password" type="password"
+								autocomplete="current-password" required style="margin-left: 5px;"
+								class="bg-login block w-full  rounded-r-md  py-1.5 text-white shadow-sm  ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+						</div>
+					</div>
+
+					<div>
+						<button type="submit"
+							class="flex w-full justify-center rounded-md bg-primary px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+
+	</div>
+	<div class="login hide-largesc" style="width: 100%;"
+		class="rounded-r-[20px] max-[600px]:rounded-r-[0px] bg-box content-around flex justify-start pl-25 max-[600px]:pl-0 max-[600px]:block "
+		style="width:30%">
+		<div
+			class="flex min-[600px]-full flex-col justify-center mx-4 w-460px max-[600px]:mx-0 max-[600px]:px-6 h-[100lvh] lg:px-8 rounded-[20px]-lg">
+			<div class="sm:mx-auto sm:w-full sm:max-w-sm;">
+				<img class="mx-auto h-30 w-auto" src="/images/aoipanel-banner.png" alt="Aoi.panel">
+				<h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Login to your
+					account
+				</h2>
+			</div>
+
+			<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+				<form class="space-y-6" action="javascript:validate2()">
+					<div>
+						<label for="text" class="block text-sm font-medium leading-6 text-white">Username</label>
+						<div class="mt-2 flex bg-login rounded-md ">
+							<i class="my-1 mx-1 w-7 max-[600px]:my-3 max-[600px]:mx-1 max-[600px]:w-10 text-white"
+								data-lucide="user"></i> <input id="username2" name="username" type="text"
+								autocomplete="text" required style="margin-left: 5px;"
+								class="bg-login block w-full  rounded-r-md max-[600px]:py-3 min-[600px]:py-1.5 text-white shadow-sm  ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+						</div>
+					</div>
+
+					<div>
+						<div class="flex items-center justify-between">
+							<label for="password"
+								class="block text-sm font-medium leading-6 text-white">Password</label>
+
+						</div>
+						<div class="mt-2 flex bg-login rounded-md ">
+							<i class="my-1 mx-1 w-7 max-[600px]:my-3 max-[600px]:mx-1 max-[600px]:w-10 text-white"
+								data-lucide="lock"></i><input id="password2" name="password" type="password"
+								autocomplete="current-password" required style="margin-left: 5px;"
+								class="bg-login block w-full  rounded-r-md  py-1.5 text-white shadow-sm  ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+						</div>
+					</div>
+
+					<div>
+						<button type="submit"
+							class="flex w-full justify-center rounded-md bg-primary px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+
+	</div>
+	<div class="container hide-smallsc hide-mediumsc">
+		<div id="overlay" style="pointer-events: none ">
+			<div id="text" align="center" style="left:100;">
+				<img src="/images/aoibanner.png" height="100%" width="100%"
+					style="border-radius: 5px;margin: -24px;padding: 10px;" class="hide-mediumsc hide-smallsc"></img>
+			</div>
+		</div>
+		<script>
+			function on() {
+				document.getElementById("overlay").style.display = "block";
+			}
+			on()
+		</script>
+
+		<div class="row">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+
+		</div>
+		<div class="row altline2">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+
+		</div>
+		<div class="row line2">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+
+		<div class="row altline3">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row line3">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row altline4">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row line4">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row altline5">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row line5">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+		<div class="row">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+		</div>
+	</div>
+
+
+</body>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+	lucide.createIcons();
+</script>
+<script>
+	function getParameterByName(name, url = window.location.href) {
+		name = name.replace(/[\[\]]/g, '\\$&');
+		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, ' '));
+
+	}
+
+	if (getParameterByName("loggedout") == "true") { localStorage.setItem("login", "false") }
+	//if(localStorage.getItem("login")=="true"){window.location.href="/panel";}
+	/*if(localStorage.getItem("login")=="true"){
+	  document.getElementById("loginbutton").innerHTML=`<button type="button" class="button btn-primary flexbox hide-mediumsc hide-smallsc" style="width: 10%;" type="button"  onclick="javascript:window.location.href='/panel'">
+			  <ion-icon name="folder-open-outline"></ion-icon> Open <div class="btn-secondary" ></div>
+		  </button>
+		  <button type="button" class="button btn-primary flexbox hide-largesc" style="width: 40%;" type="button" onclick="javascript:window.location.href='/panel'">
+			  <ion-icon name="folder-open-outline"></ion-icon> Open <div class="btn-secondary" ></div>
+		  </button>`
+	}*/
+
+
+	async function validate() {
+		let password = document.getElementById("password").value;
+		let username = document.getElementById("username").value;
+	
+		const response = await fetch("/pass/validate", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'}, 
+			body: JSON.stringify({
+				username:username,
+				password:password
+			})
+		})
+		const json = await response.json();
+		if (json.data == true) {
+			localStorage.setItem("login", "true");
+			window.location.href = "/login?username=" + username + "&password=" + password;
+		}
+		else {
+			UIkit.notification({
+				message: 'Invalid Username / Password!',
+				status: 'danger',
+				pos: 'bottom-left',
+				timeout: 5000
+			});
+		}
+	}
+	async function validate2() {
+		let password = document.getElementById("password2").value;
+		let username = document.getElementById("username2").value;
+		const response = await fetch("/pass/validate", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'}, 
+			body: JSON.stringify({
+				username:username,
+				password:password
+			})
+		})
+		const json = await response.json();
+		if (json.data == true) {
+			localStorage.setItem("login", "true");
+			window.location.href = "/login?username=" + username + "&password=" + password;
+		}
+		else {
+			UIkit.notification({
+				message: 'Invalid Username / Password!',
+				status: 'danger',
+				pos: 'bottom-left',
+				timeout: 5000
+			});
+		}
+	}	
+</script>
+
+
+</html>
