@@ -58,7 +58,7 @@ client.loadCommands("./commands/", true);
 
 const panel = new Panel({
   port:3000,//port
-  client:bot,//aoi.js client
+  client:client,//aoi.js client
   accounts : "/panel.userconfig.js" //accounts file (for security reasons must be a separate file)
 })
 
