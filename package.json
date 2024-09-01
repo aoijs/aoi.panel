@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "aoi.js": "^6.8.5",
-    "node": "^17.9.1",
     "tailwindcss": "^3.4.3"
   },
   "repository": {
