@@ -10,7 +10,7 @@ const {
   checkAuth,
   checkPanel,
   getAllDirs
-} = require("./utilFuncs.js");
+} = require("./utils.js");
 const api = require('./api/api.js');
 const gui = require("./gui/gui.js");
 

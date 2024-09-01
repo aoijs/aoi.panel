@@ -1,4 +1,4 @@
-const util = require("../utilFuncs.js");
+const util = require("../utils.js");
 function loadAPI(data,params){
     function checkAuth(req, res, next, perms) {
         const auth = params.auth;

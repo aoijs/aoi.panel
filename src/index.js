@@ -1,5 +1,5 @@
 const { Panel } = require("./panel.js");
-const { AccountsPermissions } = require('./utilFuncs.js');
+const { AccountsPermissions } = require('./utils.js');
 
 module.exports = {
   Panel,
