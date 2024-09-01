@@ -1,62 +1,55 @@
 const fs = require('fs');
-const { format } = require('date-fns');
+const path = require('path');
 
 class PanelLogs {
-    
-    constructor(data){
-        this.data = data;
-        this.folder = __dirname+"/logs/panelLogs";
-        
-        if(!fs.existsSync(this.folder)){
-            fs.mkdirSync(this.folder, {recursive: true});
-        }
+  constructor(data) {
+    this.data = data;
+    this.folderPath = path.join(__dirname, '/logs/panel');
+    this.filePath = path.join(this.folderPath, 'logs.json');
 
-    }
-    newLog(logdata,type,ogcode,code){
+    const oldFolderPath = path.join(__dirname, '/logs/panelLogs');
+    if (fs.existsSync(oldFolderPath)) {
+      fs.renameSync(oldFolderPath, this.folderPath);
+    } else if (!fs.existsSync(this.folderPath)) {
+      fs.mkdirSync(this.folderPath, { recursive: true });
+    };
+  }
 
-        const date = Date.now();
-        var json = JSON.parse(fs.readFileSync(this.folder+"/logs.json").toString());
-        if(type!="edit"){
-            let log = {
-                "date":date,
-                "data":logdata
-            }
-            json.push(log);
-        }
-        else{
-            let log = {
-                "date":date,
-                "data":logdata,
-                "type":"edit",
-                "ogcode":ogcode,
-                "code":code
-            }
-            json.push(log);
-        }
-        //console.log(log);
-        fs.writeFileSync(this.folder+"/logs.json",JSON.stringify(json));
+  newLog(data, type, ogcode, code) {
+    const logs = JSON.parse(fs.readFileSync(this.filePath));
+    const newLog = {
+      date: Date.now(),
+      data,
+      ...(type === 'edit' ? {
+        type,
+        ogcode,
+        code
+      } : {})
+    };
 
-    }
-    getLogs(){
-    let jjs = JSON.parse(fs.readFileSync(this.folder+"/logs.json").toString());
-        return jjs;
-    }
-    resetLogs(usr){
-        const date = Date.now();
-        let json = []
-        let log = {
-            "date":date,
-            "data":`${usr} cleared the logs.`
-        }
-        json.push(log);
+    logs.push(newLog);
+    fs.writeFileSync(this.filePath, JSON.stringify(logs));
+  }
 
-        fs.writeFileSync(this.folder+"/logs.json",JSON.stringify(json));
-    }
+  getLogs() {
+    if (!fs.existsSync(this.filePath)) {
+      fs.writeFileSync(this.filePath, JSON.stringify([]));
+      return [];
+    };
 
+    return JSON.parse(fs.readFileSync(this.filePath));
+  }
 
+  resetLogs(username) {
+    const newLogs = [{
+      date: Date.now(),
+      data: `${username} cleared the logs.`
+    }];
 
-}
+    fs.writeFileSync(this.filePath, JSON.stringify(newLogs));
+  }
+};
 
 module.exports = {
-    PanelLogs
-}
+  PanelLogs
+};
