@@ -11,7 +11,8 @@ module.exports = {
         let f = req.body.file;
         const acc = data.params.accounts;
         if (!f) return res.status(404).json({ "err": "file not provided" });
-        if(f.includes(acc)) return res.json({ "data": ["Cannot access this file"] });
+        let fl = acc.split("/")[acc.split("/").length-1];
+        if(f.endsWith(fl)) return res.json({ "data": ["Cannot access this file"] });
         if(f.includes("@aoijs/aoi.panel")||f.includes("@akarui/aoi.panel")||f.includes("@aoijs\\aoi.panel")||f.includes("@akarui\\aoi.panel")) return res.json({ "data": ["Cannot access this file"] });
 
         //console.log(f)

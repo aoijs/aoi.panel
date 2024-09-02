@@ -39,6 +39,9 @@
         <li>
           <a href="/eval"><i class="bx bx-code-block"></i>Evaluate Code</a>
         </li>
+        <li id="logbutton">
+          <a onclick="javascript:openLogs()" ><i class="bx bx-cog"></i>Logs</a>
+        </li>
         
       </ul>
       <ul class="side-menu">
@@ -52,16 +55,17 @@
     </div>
     <!-- End of Sidebar -->
     <nav class="mobile-bottom-nav">
-      <div class="mobile-bottom-nav__item">
-        <a href="#" class="mobile-bottom-nav__item-content" class="active">
-          <i class="bx bx-code"></i>
-          <div class="bottom-text">Code</div>
-        </a>
-      </div>
+      
       <div class="mobile-bottom-nav__item">
         <a href="/panel?term=true" class="mobile-bottom-nav__item-content">
           <i class="bx bx-terminal"></i>
           <div class="bottom-text">Terminal</div>
+        </a>
+      </div>
+      <div class="mobile-bottom-nav__item">
+        <a onclick="javascript:openLogs()" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-cog"></i>
+          <div class="bottom-text">Logs</div>
         </a>
       </div>
       <div class="mobile-bottom-nav__item">
@@ -76,6 +80,14 @@
         <a href="/eval" class="mobile-bottom-nav__item-content">
           <i class="bx bx-code-block"></i>
           <div class="bottom-text">Eval</div>
+        </a>
+      </div>
+      
+
+      <div class="mobile-bottom-nav__item">
+        <a href="/logout" class="mobile-bottom-nav__item-content">
+          <i class="bx bx-log-out-circle"></i>
+          <div class="bottom-text">Logout</div>
         </a>
       </div>
       
@@ -129,6 +141,25 @@
       </style>
       <script>
         var auth = "!auth"
+        async function openLogs() {
+      const res = await fetch("/api/getAllLogs", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ auth : "!auth" })
+      });
+      const json = await res.json();
+      console.log(json)
+      if (json.error) {
+        alert("You don't have ADMIN access! Request an Admin to give you access...")
+        resetHL();
+      }
+      else {
+        window.location.href="/logs";
+      }
+    }
+    function resetHL() {window.location.reload()}
+
+
       </script>
       <script src="/assets/editor.js"></script>
 

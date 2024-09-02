@@ -72,14 +72,7 @@
         <div class="bottom-text">Terminal</div>
       </a>
     </div>
-    <div class="mobile-bottom-nav__item">
-      <div class="mobile-bottom-nav__item-content">
-        <a onclick="javascript:closeE()" class="active">
-          <i class="bx bxs-dashboard"></i>
-          <div class="bottom-text">Dashboard</div>
-        </a>
-      </div>
-    </div>
+    
     <div class="mobile-bottom-nav__item">
       <a onclick="javascript:openEval()" class="mobile-bottom-nav__item-content">
         <i class="bx bx-code-block"></i>
@@ -404,21 +397,7 @@
   <script>
     figlet.defaults({ fontPath: 'https://unpkg.com/figlet/fonts/' });
     figlet.preloadFonts(['Standard', 'Slant'], ready);
-    function resetHL() {
-      const sideLinks = document.querySelectorAll(
-    ".sidebar .side-menu li a:not(.logout)"
-  );
-  
-  sideLinks.forEach((item) => {
-    const li = item.parentElement;
-    item.addEventListener("click", () => {
-      sideLinks.forEach((i) => {
-        i.parentElement.classList.remove("active");
-      });
-      li.classList.add("active");
-    });
-  });
-    }
+    function resetHL() {window.location.reload()}
 
     var term;
 
